@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Code — مستشار المادة</title>
+  <meta name="theme-color" content="#16233b" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg-2:#16233b;
+      --panel:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.14);
+      --text:#0d4496;
+      --muted:#9aa7bd;
+      --blue:#38bdf8;
+      --purple:#8b5cf6;
+      --green:#4ade80;
+      --amber:#fbbf24;
+      --red:#ef4444;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+
+      /* premium study palette */
+      --imp-blue:#1d4ed8;
+      --imp-blue-bg:#eff6ff;
+      --imp-green:#047857;
+      --imp-green-bg:#ecfdf5;
+      --imp-dark:#0f172a;
+      --imp-radius:20px;
+    }
+
+    [data-theme="light"]{
+      --bg:#f1f5f9;
+      --bg-2:#e2e8f0;
+      --panel:rgba(0,0,0,.04);
+      --border:rgba(0,0,0,.12);
+      --text:#0f172a;
+      --muted:#64748b;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      background:radial-gradient(1200px 700px at 50% 35%, var(--bg-2) 0%, var(--bg) 60%);
+      color:var(--text);
+      min-height:100vh;
+      transition:background .3s,color .3s;
+    }
+
+    /* topbar */
+    .topbar{
+      display:flex;align-items:center;gap:14px;
+      padding:12px 18px;border-bottom:1px solid var(--border);
+      background:var(--panel);backdrop-filter:blur(14px);
+      flex-wrap:wrap;position:sticky;top:0;z-index:100;
+    }
+    .brand{font-weight:800;letter-spacing:1px;color:var(--blue);display:flex;align-items:center;gap:8px}
+    .version{font-size:11px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;padding:2px 8px;border-radius:6px}
+    .searchWrap{flex:1;max-width:420px}
+    .search{
+      width:100%;padding:9px 16px;border-radius:999px;
+      border:1px solid var(--border);background:rgba(0,0,0,.25);color:var(--text);
+      outline:none;transition:.2s;font-size:14px;
+    }
+    [data-theme="light"] .search{background:rgba(255,255,255,.6)}
+    .search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(56,189,248,.18)}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      padding:9px 14px;border-radius:10px;border:1px solid var(--border);
+      background:var(--panel);color:var(--text);cursor:pointer;font-size:13px;
+      transition:.2s;display:flex;align-items:center;gap:6px;
+    }
+    .btn:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+    .btn.primary{border-color:rgba(56,189,248,.6);background:linear-gradient(135deg,rgba(56,189,248,.22),rgba(139,92,246,.18))}
+    .header-right{display:flex;flex-direction:column;align-items:flex-end;font-size:12px;color:var(--text);line-height:1.4;margin-inline-start:auto;font-weight:600}
+
+    /* control panel */
+    .control-panel{
+      background:rgba(22,35,59,.92);border-bottom:1px solid var(--border);
+      padding:15px 20px;display:flex;flex-direction:column;gap:12px;
+      position:sticky;top:60px;z-index:90;backdrop-filter:blur(18px);
+      box-shadow:0 10px 30px rgba(0,0,0,.30);
+    }
+    .cp-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+    .cp-title{font-size:18px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:10px}
+    .unit-selector{display:flex;gap:10px;flex-wrap:wrap}
+    .unit-btn{
+      padding:8px 18px;border-radius:10px;background:rgba(255,255,255,.05);
+      border:1px solid var(--border);color:var(--muted);cursor:pointer;
+      font-weight:800;transition:.25s;position:relative;min-width:120px;text-align:center;
+    }
+    .unit-btn:hover{color:var(--text);background:rgba(255,255,255,.10)}
+    .unit-btn.active{
+      background:linear-gradient(90deg,var(--blue),var(--purple));
+      color:#fff;border-color:transparent;
+      box-shadow:0 0 15px rgba(56,189,248,.35);
+    }
+    .unit-btn small{display:block;font-size:10px;opacity:.85;margin-top:2px}
+
+    /* container */
+    .container{max-width:1200px;margin:18px auto 100px;padding:0 18px 100px}
+
+    /* premium q&a */
+    .section-title{
+      margin:32px 0 18px;
+      padding:12px 18px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#dbeafe,#f5f3ff);
+      color:#1e3a8a;
+      font-size:1.18rem;
+      border-left:7px solid var(--imp-blue);
+      font-weight:800;
+    }
+    .section-title:first-child{margin-top:0}
+
+    .qa-card{
+      background:#fff;border:1px solid #e2e8f0;border-radius:var(--imp-radius);
+      box-shadow:0 10px 26px rgba(15,23,42,.06);margin:16px 0;overflow:hidden;transition:.25s;
+      color:var(--imp-dark);
+    }
+    .qa-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,23,42,.12)}
+
+    .question,.answer{
+      padding:18px 22px;display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:start;
+    }
+    .question{background:var(--imp-blue-bg);border-bottom:1px solid #bfdbfe;cursor:pointer}
+    .answer{background:var(--imp-green-bg);display:none}
+    .label{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:70px;padding:5px 8px;border-radius:999px;
+      color:#fff;font-size:.75rem;font-weight:800;letter-spacing:0.4px;
+    }
+    .q-label{background:linear-gradient(135deg,#2563eb,#1e40af)}
+    .a-label{background:linear-gradient(135deg,#059669,#047857)}
+    .question p,.answer p{margin:0;font-weight:600;line-height:1.65}
+    .question p{color:var(--imp-blue)}
+    .answer p{color:var(--imp-green)}
+    .ans{color:#e11d48;font-weight:900}
+    .blank{color:#94a3b8;letter-spacing:2px;font-weight:800}
+    .num-chip{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:42px;height:30px;padding:0 8px;border-radius:999px;
+      background:linear-gradient(135deg,#0ea5e9,#7c3aed);
+      color:#fff;font-weight:900;font-size:16px;
+      box-shadow:0 6px 12px rgba(14,165,233,.25);
+    }
+
+    /* formula / calc */
+    .formula{
+      display:inline-block;font-family:Consolas,"Courier New",monospace;font-weight:900;
+      color:#312e81;background:#eef2ff;border:1px solid #c7d2fe;padding:7px 11px;border-radius:10px;margin:5px 0;
+    }
+    .calc{
+      display:block;font-family:Consolas,"Courier New",monospace;font-weight:800;
+      color:#7c2d12;background:#fff7ed;border-left:6px solid #f97316;
+      padding:12px 15px;border-radius:12px;margin-top:8px;
+    }
+
+    /* premium intro / lesson titles */
+    .auto-unit-intro{
+      margin:24px 0 18px;padding:24px;border-radius:22px;
+      background:radial-gradient(circle at top right, rgba(56,189,248,.18), transparent 35%),linear-gradient(135deg, rgba(56,189,248,.12), rgba(139,92,246,.12));
+      border:1px solid var(--border);box-shadow:var(--shadow);
+    }
+    .auto-unit-intro h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.3rem);color:var(--blue);font-weight:900}
+    .auto-unit-intro p{margin:0;color:var(--muted);font-weight:700}
+    .lesson-title-premium{
+      margin:28px 0 14px;padding:14px 18px;border-radius:18px;
+      background:linear-gradient(135deg, rgba(15,127,115,.18), rgba(56,189,248,.12));
+      border:1px solid rgba(56,189,248,.35);color:var(--blue);font-size:1.15rem;font-weight:900;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+    }
+    .group-title-premium{
+      display:flex;align-items:center;gap:10px;margin:22px 0 12px;color:var(--amber);font-size:1rem;font-weight:900;
+    }
+    .group-title-premium .num-badge{
+      width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 18px rgba(56,189,248,.35);
+    }
+
+    /* improved comparison cards */
+    .compare-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0 14px;
+    }
+    .compare-box{
+      background:linear-gradient(135deg,#eff6ff,#ecfdf5);
+      border:1px solid #cbd5e1;border-radius:18px;padding:14px;
+      box-shadow:0 10px 20px rgba(15,23,42,.06);
+    }
+    .compare-box h4{
+      margin:0 0 16px;font-size:16px;font-weight:900;color:#1e3a8a;text-transform:uppercase;letter-spacing:.6px;
+    }
+    .compare-box p{margin:0;color:#0f172a;font-weight:600;font-size:16px;line-height:1.6}
+    .compare-box strong{color:#dc2626}
+    .compare-box table{
+      width:100%;border-collapse:collapse;margin-top:4px;
+    }
+    .compare-box th,.compare-box td{
+      border:1px solid #cbd5e1;padding:20px 26px;text-align:center;font-size:24px;
+      vertical-align:middle;font-weight:800;line-height:1.7;
+    }
+    .compare-box th{
+      background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+      color:#fff;font-weight:800;font-size:24px;
+    }
+    .compare-box tr:nth-child(even) td{background:rgba(255,255,255,.55)}
+
+    /* global big tables — centered in middle of page, extra large */
+    table{
+      width:96% !important;
+      margin:24px auto !important;
+      border-collapse:collapse;
+    }
+    table th,table td{
+      text-align:center !important;vertical-align:middle !important;
+      font-size:24px !important;font-weight:800;line-height:1.7;
+      padding:20px 26px;
+    }
+    table th{font-size:24px !important}
+    /* tables inside Q/A grid cards: span full width & center */
+    .question table,.answer table{grid-column:1 / -1;justify-self:center}
+    .question > table,.answer > table{width:96% !important;margin:18px auto !important}
+
+    /* term card table style */
+    .term-card .question p{color:#1d4ed8}
+    .term-card .answer p{color:#047857}
+    .term-premium-table{
+      width:100%;border-collapse:collapse;background:#fff;color:#0f172a;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px rgba(15,23,42,.08)
+    }
+    .term-premium-table th,.term-premium-table td{padding:20px 26px;border:1px solid #e2e8f0;text-align:center;vertical-align:middle;font-size:24px;font-weight:800;line-height:1.7}
+    .term-premium-table th{background:#1e3a8a;color:#fff;text-transform:uppercase;font-size:24px}
+    .term-premium-table td.term-answer{color:#e11d48;font-weight:900}
+    .mini{width:96%;border-collapse:collapse;background:#fff;color:#0f172a;margin:24px auto;border-radius:14px;overflow:hidden;box-shadow:0 8px 22px rgba(15,23,42,.10)}
+    .mini th,.mini td{border:1px solid #e2e8f0;padding:20px 26px;text-align:center;vertical-align:middle;font-size:24px;font-weight:800;line-height:1.7}
+    .mini th{background:#1e3a8a;color:#fff;font-size:24px}
+    .mini td{font-size:24px}
+    .mini tr:nth-child(even) td{background:#f8fafc}
+
+    /* flashcards */
+    .flashcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:18px 0}
+    .flashcard-container{perspective:1000px;height:240px;cursor:pointer}
+    .flashcard{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+    .flashcard-container:hover .flashcard{transform:rotateY(5deg)}
+    .flashcard.flipped{transform:rotateY(180deg)}
+    .flashcard-front,.flashcard-back{
+      position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px;border:2px solid var(--border);padding:18px;text-align:center;font-weight:700;
+    }
+    .flashcard-front{background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(139,92,246,.15));border-color:rgba(56,189,248,.5);color:var(--blue)}
+    .flashcard-back{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(251,191,36,.15));border-color:rgba(239,68,68,.5);color:var(--red);transform:rotateY(180deg)}
+    .flashcard-text{font-size:16px;line-height:1.4;word-break:break-word}
+    .flashcard-hint{font-size:11px;color:var(--muted);margin-top:10px;opacity:.7;font-weight:500}
+    .view-toggle{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+    .view-toggle .btn{flex:1;min-width:150px}
+    .view-toggle .btn.active{border-color:var(--green);background:rgba(74,222,128,.15);color:var(--green)}
+    .formula-table{display:none;width:100%;border-collapse:separate;border-spacing:6px}
+    .formula-table td{
+      padding:22px;background:var(--panel);border:1px solid var(--border);border-radius:12px;
+      text-align:center;vertical-align:middle;transition:.2s;color:var(--text);font-size:24px;font-weight:800;
+    }
+    .formula-table td:hover{background:rgba(56,189,248,.1);border-color:var(--blue);transform:scale(1.03)}
+
+    /* toast */
+    .toast-notify{
+      position:fixed;top:80px;right:-420px;padding:18px 26px;border-radius:16px;
+      color:#fff;font-weight:700;font-size:16px;z-index:5000;
+      transition:right .5s cubic-bezier(.2,.9,.3,1.2);
+      display:flex;align-items:center;gap:14px;box-shadow:0 10px 40px rgba(0,0,0,.5);max-width:380px;
+    }
+    .toast-notify.show{right:20px}
+    .toast-notify.success{background:linear-gradient(135deg,#22c55e,#16a34a)}
+    .toast-notify.fail{background:linear-gradient(135deg,#ef4444,#dc2626)}
+    .toast-icon{font-size:36px}
+    .toast-text{display:flex;flex-direction:column;gap:3px}
+    .toast-title{font-size:18px;font-weight:900}
+    .toast-desc{font-size:13px;opacity:.9}
+
+    /* watermark */
+    .watermark{
+      position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;user-select:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='300'%3E%3Ctext x='50%25' y='50%25' transform='rotate(-30 225 150)' text-anchor='middle' font-family='sans-serif' font-size='28' font-weight='bold' fill='%23ffffff' opacity='0.10'%3EProf./ Ayman Mansour%3C/text%3E%3C/svg%3E");
+      background-repeat:repeat;
+    }
+    [data-theme="light"] .watermark{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='300'%3E%3Ctext x='50%25' y='50%25' transform='rotate(-30 225 150)' text-anchor='middle' font-family='sans-serif' font-size='28' font-weight='bold' fill='%23000000' opacity='0.12'%3EProf./ Ayman Mansour%3C/text%3E%3C/svg%3E");
+    }
+
+    /* contact buttons */
+    .contact-buttons{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:1rem;z-index:1000}
+    .contact-btn{
+      width:60px!important;height:60px!important;border-radius:50%;
+      display:flex;justify-content:center;align-items:center;
+      font-size:1.8rem!important;color:#fff!important;text-decoration:none;
+      box-shadow:0 4px 15px rgba(0,0,0,.4);transition:all .3s ease;
+    }
+    .contact-btn:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+    .contact-btn.phone{background:#ef4444!important}
+    .contact-btn.whatsapp{background:#22c55e!important}
+
+    @media (max-width:768px){
+      .header-right{display:none}
+      .question,.answer{grid-template-columns:1fr}
+      .flashcard-grid{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+      .flashcard-container{height:200px}
+      .container{padding:0 12px 80px}
+      .unit-selector{overflow-x:auto;width:100%}
+      .control-panel{top:120px}
+    }
+
+    /* ===== CONTENT PROTECTION ===== */
+    *{
+      -webkit-user-select:none !important;
+      -moz-user-select:none !important;
+      -ms-user-select:none !important;
+      user-select:none !important;
+      -webkit-touch-callout:none !important;
+      -webkit-user-drag:none !important;
+    }
+    input,textarea{-webkit-user-select:text !important;user-select:text !important}
+    img{pointer-events:none}
+
+    /* Block printing completely */
+    @media print{
+      html,body{display:none !important;visibility:hidden !important}
+      *{display:none !important}
+    }
+
+    /* Blur overlay when window loses focus (screenshot deterrent) */
+    body.protected-blur .container,
+    body.protected-blur .topbar,
+    body.protected-blur .control-panel{
+      filter:blur(18px) !important;
+      transition:filter .15s;
+    }
+    .protect-shield{
+      position:fixed;inset:0;z-index:99998;display:none;
+      align-items:center;justify-content:center;flex-direction:column;gap:14px;
+      background:rgba(11,18,32,.97);color:#fff;text-align:center;padding:30px;
+    }
+    .protect-shield.on{display:flex}
+    .protect-shield .ps-icon{font-size:60px}
+    .protect-shield .ps-title{font-size:26px;font-weight:900;color:#38bdf8}
+    .protect-shield .ps-sub{font-size:16px;color:#9aa7bd;font-weight:600;max-width:480px}
+
+    /* DevTools warning overlay */
+    .devtools-block{
+      position:fixed;inset:0;z-index:99999;display:none;
+      align-items:center;justify-content:center;flex-direction:column;gap:16px;
+      background:#0b1220;color:#fff;text-align:center;padding:30px;
+    }
+    .devtools-block.on{display:flex}
+    .devtools-block h1{color:#ef4444;font-size:30px;font-weight:900}
+    .devtools-block p{color:#9aa7bd;font-size:17px;font-weight:600;max-width:500px}
+
+    /* ===== mobile responsive upgrades ===== */
+    .table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    @media (max-width:768px){
+      table{width:100% !important;margin:18px auto !important}
+      table th,table td{font-size:18px !important;padding:12px 14px !important}
+      .mini th,.mini td,.compare-box th,.compare-box td,
+      .term-premium-table th,.term-premium-table td{font-size:18px !important;padding:12px 14px !important}
+      .topbar{justify-content:center;text-align:center}
+      .brand{font-size:15px;justify-content:center;flex-wrap:wrap}
+      .section-title{font-size:1rem;padding:10px 14px}
+      .auto-unit-intro{padding:16px}
+      .auto-unit-intro h2{font-size:1.35rem}
+      .lesson-title-premium{font-size:1rem;padding:12px 14px}
+      .question,.answer{padding:14px 14px;gap:10px}
+      .contact-buttons{bottom:1rem;right:1rem}
+      .contact-btn{width:50px!important;height:50px!important;font-size:1.4rem!important}
+      .toast-notify{max-width:88vw;font-size:14px;padding:14px 18px}
+      .compare-box{overflow-x:auto}
+    }
+    @media (max-width:420px){
+      table th,table td{font-size:15px !important;padding:9px 9px !important}
+      .mini th,.mini td,.compare-box th,.compare-box td,
+      .term-premium-table th,.term-premium-table td{font-size:15px !important;padding:9px 9px !important}
+      .unit-btn{min-width:96px;padding:7px 10px;font-size:13px}
+      .version{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<div class="watermark"></div>
+
+<div class="protect-shield" id="protectShield">
+  <div class="ps-icon">🛡️</div>
+  <div class="ps-title">Content Protected — المحتوى محمي</div>
+  <div class="ps-sub">Return to the page to continue reading. — عُد إلى الصفحة لمتابعة القراءة.<br>Prof. Ayman Mansour</div>
+</div>
+
+<div class="devtools-block" id="devtoolsBlock">
+  <h1>⛔ Access Blocked</h1>
+  <p>Developer tools are not allowed on this page. Please close them to continue.<br>أدوات المطوّر غير مسموح بها في هذه الصفحة.</p>
+</div>
+<div id="toastNotify" class="toast-notify">
+  <span class="toast-icon" id="toastIcon"></span>
+  <div class="toast-text">
+    <div class="toast-title" id="toastTitle"></div>
+    <div class="toast-desc" id="toastDescText"></div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <i class="fa-solid fa-flask" style="color:var(--blue)"></i>
+    <span>Science Code — مستشار المادة</span>
+    <span class="version">King v8.0</span>
+  </div>
+  <div class="header-right">
+    <div>Prepared by <span style="font-weight:800;font-size:14px;color:var(--blue)">Prof. Ayman Mansour</span></div>
+    <div>Phone: 01068018005 | WhatsApp: 01287996430</div>
+  </div>
+</header>
+
+<div class="control-panel">
+  <div class="cp-header">
+    <div class="cp-title"><i class="fa-solid fa-layer-group"></i> Unit Selector</div>
+    <div class="unit-selector">
+      <button class="unit-btn active" onclick="switchUnit(1)" id="u1">Unit One<br><small>Chemistry</small></button>
+      <button class="unit-btn" onclick="switchUnit(2)" id="u2">Unit Two<br><small>Electricity</small></button>
+      <button class="unit-btn" onclick="switchUnit(3)" id="u3">Unit Three<br><small>Genetics</small></button>
+      <button class="unit-btn" onclick="switchUnit(4)" id="u4">Unit Four<br><small>Hormones</small></button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="unit1-content"></div>
+  <div id="unit2-content" style="display:none"></div>
+  <div id="unit3-content" style="display:none"></div>
+  <div id="unit4-content" style="display:none"></div>
+</div>
+
+<div class="contact-buttons">
+  <a href="tel:01068018005" class="contact-btn phone" title="Call Us: 01068018005"><i class="fa-solid fa-phone"></i></a>
+  <a href="https://wa.me/201287996430" class="contact-btn whatsapp" title="WhatsApp: 01287996430" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+
+<script>
+const termsData = [
+  {
+    title:"Write scientic term of the following",
+    tag:"Terms",
+    rows:[
+      [1,"Breaking the existing bonds between the molecules of the reactants and forming new bonds between the molecules of the products.","Chemical Reaction"],
+      [2,"A chemical reaction in which a compound breaks down by heat into its simple elements or simpler compounds.","Thermal Decomposition Reaction"],
+      [3,"Arrangement of metals in descending order according to their degree of chemical activity.","Chemical Activity Series"],
+      [4,"A reaction in which a more active element replaces a less active element in one of its compounds.","Simple Substitution Reaction"],
+      [5,"A chemical reaction in which two compounds exchange radicals or ions to form two new compounds.","Double Substitution Reaction"],
+      [6,"The reaction between an acid and an alkali / base to produce salt and water.","Neutralization Reaction"],
+      [7,"A chemical process in which an atom loses one or more electrons during a chemical reaction.","Oxidation"],
+      [8,"A chemical process in which an atom gains one or more electrons during a chemical reaction.","Reduction"],
+      [9,"A substance that gives oxygen, removes hydrogen, or gains electrons during a chemical reaction.","Oxidizing Agent"],
+      [10,"A substance that removes oxygen, gives hydrogen, or loses electrons during a chemical reaction.","Reducing Agent"],
+      [11,"The change in the concentration of reactants and products per unit time.","Rate / Speed of Chemical Reaction"],
+      [12,"Reactions in which the catalyst increases the speed of the chemical reaction.","Positive Catalytic Reactions"],
+      [13,"Reactions in which the catalyst decreases the speed of the chemical reaction.","Negative Catalytic Reactions"],
+      [14,"A substance that changes the speed of a chemical reaction without being consumed or chemically changed.","Catalyst / Catalytic Agent"],
+      [15,"Chemical substances produced by living organisms that act as biological catalysts to increase the speed of biological reactions.","Enzymes"],
+      [16,"A metallic can found in modern cars, used to treat harmful gases produced by fuel combustion before they are expelled into the air.","Catalytic Converter"],
+      [17,"A safety means in modern cars that inflates in emergency situations to protect the driver from impact.","Airbag"],
+      [18,"A catalyst used to speed up the decomposition of hydrogen peroxide into water and oxygen.","Manganese Dioxide (MnO₂)"],
+      [19,"An enzyme found in potatoes that increases the speed of decomposition of hydrogen peroxide solution.","Oxidase Enzyme"],
+      [20,"A catalyst that increases the rate of a chemical reaction.","Positive Catalyst"],
+      [21,"A catalyst that decreases the rate of a chemical reaction.","Negative Catalyst"]
+    ]
+  },
+  {
+    title:"Unit Two: Electrical Energy",
+    tag:"Electric Current Terms",
+    rows:[
+      [22,"The flow of negative electric charges through a conductor.","Electric Current"],
+      [23,"The quantity of electric charge flowing through a cross-section of a conductor in one second.","Electric Current Intensity (I)"],
+      [24,"The current intensity produced by the passage of one coulomb of electricity through a cross-section of a conductor per second.","Ampere (A)"],
+      [25,"The electric charge transmitted by a constant current of one ampere in one second.","Coulomb (C)"],
+      [26,"The amount of electric charges.","Quantity of Electricity / Electric Charge (q)"],
+      [27,"The condition of an electrical conductor that indicates the direction of transmission of electric current to or from it if connected to another conductor.","Electric Potential of a Conductor"],
+      [28,"The work done to transfer a quantity of electricity of one coulomb between the two ends of a conductor.","Potential Difference (V)"],
+      [29,"The potential difference between the two ends of a conductor when one joule of work is done to transfer one coulomb.","Volt"],
+      [30,"The potential difference between the two poles of the electrical source in an open circuit / in the absence of electric current.","Electromotive Force (e.m.f.)"],
+      [31,"A device used to measure the intensity of electric current.","Ammeter"],
+      [32,"A device used to measure the potential difference or the electromotive force.","Voltmeter"],
+      [33,"The obstruction that electric current receives as it passes through conductors.","Electric Resistance (R)"],
+      [34,"The ratio between the potential difference between the two ends of a conductor and the intensity of the current passing through it.","Electric Resistance"],
+      [35,"The resistance of a conductor when the potential difference between its two ends is one volt and a current of one ampere passes through it.","Ohm (Ω)"],
+      [36,"The current passing through a conductor is directly proportional to the potential difference between its two ends when temperature is constant.","Ohm’s Law"],
+      [37,"A resistance used to control the electric current intensity and thus control the potential difference.","Sliding Rheostat / Variable Resistance"],
+      [38,"A device used to measure the resistance value of a conductor directly.","Ohmmeter"],
+      [39,"A resistance whose value cannot be changed.","Fixed / Constant Resistance"],
+      [40,"A resistance whose value can be changed to control the current intensity.","Variable Resistance / Rheostat"],
+      [41,"Cells that convert chemical energy into electrical energy.","Electrochemical Cells"],
+      [42,"A device that converts mechanical energy into electrical energy.","Electric Generator / Dynamo"],
+      [43,"A unidirectional electric current with constant intensity.","Direct Current (D.C.)"],
+      [44,"An electric current that is variable in both direction and intensity.","Alternating Current (A.C.)"],
+      [45,"A device used to raise or decrease electrical voltage.","Electric Transformer"]
+    ]
+  },
+  {
+    title:"Unit Two: Radioactivity and Nuclear Energy",
+    tag:"Terms",
+    rows:[
+      [46,"The force required to bind the components of the nucleus, protons and neutrons, together and overcome the repulsion force between positively charged protons.","Nuclear Bonding Force"],
+      [47,"The energy stored in the nucleus of an atom, which originates from nuclear bonding forces.","Nuclear Energy"],
+      [48,"The spontaneous decay of nuclei of some radioactive elements, emitting invisible radiations in an attempt to reach a more stable composition.","Phenomenon of Radioactivity"],
+      [49,"Elements whose nuclei tend to emit invisible radiation spontaneously.","Radioactive Elements"],
+      [50,"The radiation emitted naturally from radioactive elements present in nature.","Natural Radioactivity"],
+      [51,"Radiation released during artificial nuclear reactions, such as those in nuclear reactors or nuclear bombs.","Artificial Radioactivity"],
+      [52,"Particles with very low penetrating power that can be stopped by a thin sheet of paper.","Alpha Particles / Alpha Rays"],
+      [53,"Particles with medium penetrating power that pass through paper but are stopped by plastic or aluminum.","Beta Particles / Beta Rays"],
+      [54,"Rays with very high penetrating power that require thick dense materials such as lead to be absorbed.","Gamma Rays"],
+      [55,"The international unit used to measure the absorbed radiation dose that has a biological effect on the human body.","Sievert (Sv)"],
+      [56,"The chemical composition of hemoglobin in the blood changes and becomes unable to carry oxygen to all cells of the body.","Cellular Effects of Radiation"],
+      [57,"Effects resulting from exposure to small radiation doses for a long period, such as changes in cell structure and sex chromosomes.","Physical and Genetic Effects of Radiation"],
+      [58,"Slides used in the manufacture of computer parts and electronic circuits integrated into electrical devices.","Silicon Slides / Silicon Chips"],
+      [59,"The scientist who first identified radioactivity by detecting invisible rays emitted from uranium.","Henri Becquerel"],
+      [60,"A nuclear reactor that exploded on April 26, 1986, causing serious radioactive pollution.","Chernobyl Nuclear Reactor"]
+    ]
+  }
+];
+
+const revisionData = [
+  {
+    unit:"Unit 1 — Chemical Reactions",
+    lessons:[
+      {
+        title:"Lesson 1 — Chemical Reactions",
+        groups:[
+          {
+            title:"Define the Following (Concepts)",
+            items:[
+              ["Chemical reaction",`Breaking bonds between reactant molecules and forming new bonds between product molecules.`],
+              ["Thermal decomposition reactions",`Chemical reactions in which a compound breaks down by heat into simpler substances or elements.`],
+              ["Substitution reactions",`Reactions in which an element or radical replaces another element or radical in a compound. They may be simple or double substitution.`],
+              ["The series of chemical activity",`Arrangement of metals in descending order according to their chemical activity.`],
+              ["Simple substitution reactions",`A reaction in which a more active element replaces a less active element in one of its compounds.`],
+              ["Double substitution reaction",`A reaction in which two compounds exchange radicals or ions to form two new compounds.`],
+              ["Neutralization",`A reaction between an acid and an alkali/base to produce salt and water.<span class="formula">Acid + Alkali → Salt + Water</span>`],
+              ["The reaction of salt with salt",`A double substitution reaction between two salt solutions, often producing an insoluble precipitate.<span class="formula">AgNO<sub>3</sub> + NaCl → AgCl↓ + NaNO<sub>3</sub></span>`]
+            ]
+          },
+          {
+            title:"What Happens When...?",
+            items:[
+              ["Decomposition of Red mercury oxide",`Red mercury oxide decomposes by heat into silvery mercury droplets and oxygen gas. Oxygen relights a glowing splint.<span class="formula">2HgO → 2Hg + O<sub>2</sub>↑</span>`],
+              ["Decomposition of Blue copper hydroxide",`Blue copper hydroxide changes into black copper oxide and water vapor.<span class="formula">Cu(OH)<sub>2</sub> → CuO + H<sub>2</sub>O</span>`],
+              ["Decomposition of Green copper carbonate",`Green copper carbonate changes into black copper oxide and carbon dioxide gas, which turns limewater milky.<span class="formula">CuCO<sub>3</sub> → CuO + CO<sub>2</sub>↑</span>`],
+              ["Decomposition of Blue copper sulphate",`Blue hydrated copper sulphate loses water of crystallization and becomes white anhydrous copper sulphate.<span class="formula">CuSO<sub>4</sub>·5H<sub>2</sub>O → CuSO<sub>4</sub> + 5H<sub>2</sub>O</span>`],
+              ["Decomposition of White sodium nitrate",`White sodium nitrate decomposes by heat into sodium nitrite and oxygen gas.<span class="formula">2NaNO<sub>3</sub> → 2NaNO<sub>2</sub> + O<sub>2</sub>↑</span>`],
+              ["Adding a piece of sodium to a beaker of water",`Sodium reacts vigorously, moves on the water surface, hydrogen gas evolves, and sodium hydroxide solution is formed.<span class="formula">2Na + 2H<sub>2</sub>O → 2NaOH + H<sub>2</sub>↑</span>`],
+              ["Adding both Magnesium and Zinc to copper sulfate solution",`Magnesium and zinc replace copper because they are more active. The blue colour fades and reddish-brown copper is deposited.<span class="formula">Mg + CuSO<sub>4</sub> → MgSO<sub>4</sub> + Cu↓</span><span class="formula">Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu↓</span>`],
+              ["Adding copper to zinc sulfate solution",`No reaction occurs because copper is less active than zinc, so it cannot replace zinc from zinc sulphate.`],
+              ["Hydrochloric acid reacts with sodium carbonate",`Effervescence occurs due to carbon dioxide gas. Sodium chloride and water are formed.<span class="formula">Na<sub>2</sub>CO<sub>3</sub> + 2HCl → 2NaCl + H<sub>2</sub>O + CO<sub>2</sub>↑</span>`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Sodium reacts with dil. HCl while copper does not.",`Because sodium is above hydrogen in the chemical activity series, so it replaces hydrogen from dilute acids. Copper is below hydrogen, so it cannot replace it.`],
+              ["Both Mg and Zn can replace copper in copper sulfate solution.",`Because magnesium and zinc are more active than copper in the chemical activity series.`],
+              ["Copper can't replace zinc in zinc sulfate solution.",`Because copper is less active than zinc, so it cannot replace zinc from its salt solution.`],
+              ["Effervescence occurs when putting aluminum in diluted HCl.",`Because aluminum reacts with dilute hydrochloric acid producing hydrogen gas bubbles.<span class="formula">2Al + 6HCl → 2AlCl<sub>3</sub> + 3H<sub>2</sub>↑</span>`],
+              ["Gold doesn't react with dilute acids.",`Because gold is a very weakly active metal and lies below hydrogen in the chemical activity series.`],
+              ["A brownish red precipitate forms when magnesium is added to copper sulphate solution.",`Because magnesium replaces copper from copper sulphate solution, and copper metal deposits as a brownish-red precipitate.`]
+            ]
+          },
+          {
+            title:"Compare Between (Oxidation & Reduction)",
+            items:[
+              ["Oxidation vs Reduction (by oxygen/hydrogen)",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Oxidation</h4>
+                    <p>Gain of oxygen, loss of hydrogen, loss of electrons.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Reduction</h4>
+                    <p>Loss of oxygen, gain of hydrogen, gain of electrons.</p>
+                  </div>
+                </div>`],
+              ["Oxidation vs Reduction (by electrons)",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Oxidation</h4>
+                    <p>Loss of electrons, electron donor process, increases oxidation number.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Reduction</h4>
+                    <p>Gain of electrons, electron acceptor process, decreases oxidation number.</p>
+                  </div>
+                </div>`]
+            ]
+          },
+          {
+            title:"Complete / Explain by Equations",
+            items:[
+              ["Write all the main reaction equations.",`
+                <span class="formula">2HgO → 2Hg + O<sub>2</sub>↑</span>
+                <span class="formula">Cu(OH)<sub>2</sub> → CuO + H<sub>2</sub>O</span>
+                <span class="formula">CuCO<sub>3</sub> → CuO + CO<sub>2</sub>↑</span>
+                <span class="formula">CuSO<sub>4</sub>·5H<sub>2</sub>O → CuSO<sub>4</sub> + 5H<sub>2</sub>O</span>
+                <span class="formula">2NaNO<sub>3</sub> → 2NaNO<sub>2</sub> + O<sub>2</sub>↑</span>
+                <span class="formula">2Na + 2H<sub>2</sub>O → 2NaOH + H<sub>2</sub>↑</span>
+                <span class="formula">Mg + CuSO<sub>4</sub> → MgSO<sub>4</sub> + Cu↓</span>
+                <span class="formula">Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu↓</span>
+                <span class="formula">2Al + 6HCl → 2AlCl<sub>3</sub> + 3H<sub>2</sub>↑</span>
+                <span class="formula">Na<sub>2</sub>CO<sub>3</sub> + 2HCl → 2NaCl + H<sub>2</sub>O + CO<sub>2</sub>↑</span>
+                <span class="formula">HCl + NaOH → NaCl + H<sub>2</sub>O</span>
+                <span class="formula">AgNO<sub>3</sub> + NaCl → AgCl↓ + NaNO<sub>3</sub></span>`]
+            ]
+          }
+        ]
+      },
+      {
+        title:"Lesson 2 — Speed of Chemical Reactions",
+        groups:[
+          {
+            title:"Define the Following",
+            items:[
+              ["The speed of chemical reaction",`The change in concentration of reactants or products per unit time.`],
+              ["A catalyst",`A substance that changes the speed of a chemical reaction without being consumed or chemically changed.`],
+              ["Positive & Negative catalyst",`A <strong>positive catalyst</strong> increases the reaction speed. A <strong>negative catalyst</strong> decreases the reaction speed.`],
+              ["Enzymes",`Chemical substances produced by living organisms that act as biological catalysts and increase the speed of biological reactions.`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Covalent (organic) compounds are slow in reacting.",`Because their reactions require breaking covalent bonds between molecules, and they usually do not produce free ions in solution.`],
+              ["Ionic compounds are fast in reaction.",`Because their ions are already free in aqueous solution, so they combine quickly.`],
+              ["HCl reaction with iron filings is faster than with one iron piece.",`Because iron filings have a larger exposed surface area, increasing the number of collisions with acid particles.`],
+              ["Food spoils quickly if not frozen.",`Because higher temperature increases the speed of chemical and biological reactions causing food spoilage. Freezing slows these reactions.`],
+              ["Reaction speed increases when amount of reactants increases.",`Because increasing amount/concentration increases the number of reacting particles and successful collisions per second.`],
+              ["Aluminium burns faster in oxygen than in air.",`Because pure oxygen has a higher oxygen concentration than air, so combustion occurs faster.`],
+              ["Catalyst is used in some chemical reactions.",`Because it changes the reaction speed without being consumed; positive catalysts speed reactions up, and negative catalysts slow reactions down.`]
+            ]
+          },
+          {
+            title:"Experiments & Graph",
+            items:[
+              ["Experiment: Importance of a catalyst in a chemical reaction.",`Add manganese dioxide to hydrogen peroxide solution. Oxygen gas evolves quickly and relights a glowing splint. MnO<sub>2</sub> remains unchanged and acts as a catalyst.<span class="formula">2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub>↑</span>`],
+              ["Concentration at start and end of reaction (table).",`
+                <table class="mini">
+                  <tr><th>Time</th><th>Reactants concentration</th><th>Products concentration</th><th>Reaction speed</th></tr>
+                  <tr><td>Start</td><td>Maximum</td><td>Zero / minimum</td><td>High</td></tr>
+                  <tr><td>During reaction</td><td>Decreases</td><td>Increases</td><td>Gradually decreases</td></tr>
+                  <tr><td>End</td><td>Minimum / may be zero</td><td>Maximum</td><td>Very low or stops</td></tr>
+                </table>`]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    unit:"Unit 2 — Electric Energy & Radioactivity",
+    lessons:[
+      {
+        title:"Lesson 1 — Physical Properties of Electric Current",
+        groups:[
+          {
+            title:"Define the Following",
+            items:[
+              ["The electric current",`The flow of negative electric charges through a conductor.`],
+              ["Current intensity",`The quantity of electric charge passing through a cross-section of a conductor in one second.<span class="formula">I = q ÷ t</span>`],
+              ["The electric potential difference",`The work done to transfer a quantity of electricity of one coulomb between two points.`],
+              ["The potential difference",`The difference in electric potential between two points of a conductor.<span class="formula">V = W ÷ q</span>`],
+              ["The electric resistance (R)",`The obstruction that electric current receives while passing through a conductor.<span class="formula">R = V ÷ I</span>`],
+              ["Ampere / Coulomb / Volt / Joule / Ohm",`
+                <table class="mini">
+                  <tr><th>Term</th><th>Meaning</th></tr>
+                  <tr><td>Ampere (A)</td><td>Current when 1 coulomb passes in 1 second.</td></tr>
+                  <tr><td>Coulomb (C)</td><td>Quantity of charge carried by 1 ampere in 1 second.</td></tr>
+                  <tr><td>Volt (V)</td><td>Potential difference when 1 joule transfers 1 coulomb.</td></tr>
+                  <tr><td>Joule (J)</td><td>Unit of work or energy.</td></tr>
+                  <tr><td>Ohm (Ω)</td><td>Resistance when 1 volt produces 1 ampere.</td></tr>
+                </table>`],
+              ["Electromotive force (emf) & Ohm's Law",`<strong>Electromotive force:</strong> potential difference between the two poles of a source in an open circuit.<br><strong>Ohm’s Law:</strong> current through a conductor is directly proportional to potential difference when temperature is constant.<span class="formula">V = I × R</span>`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Rheostat is used in some electric circuits.",`Because it is a variable resistance used to control current intensity and potential difference in a circuit.`]
+            ]
+          },
+          {
+            title:"Compare (Ammeter & Voltmeter)",
+            items:[
+              ["Ammeter vs Voltmeter",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Ammeter</h4>
+                    <p>Measures current intensity, connected in series, low resistance, unit is ampere.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Voltmeter</h4>
+                    <p>Measures potential difference/emf, connected in parallel, high resistance, unit is volt.</p>
+                  </div>
+                </div>`]
+            ]
+          },
+          {
+            title:"Problems",
+            items:[
+              ["R = 2200 Ω, V = 220 V, time = 2 min. Find current intensity.",`Using Ohm’s law:<span class="formula">I = V ÷ R = 220 ÷ 2200 = 0.1 A</span>`],
+              ["W = 42000 J, q = 200 C. Find potential difference.",`<span class="formula">V = W ÷ q = 42000 ÷ 200 = 210 V</span>`],
+              ["R = 22 Ω, I = 10 A. Find potential difference.",`<span class="formula">V = I × R = 10 × 22 = 220 V</span>`],
+              ["V = 48 V, R = 12 Ω. Find ammeter reading.",`Ammeter reading is current intensity:<span class="formula">I = V ÷ R = 48 ÷ 12 = 4 A</span>`],
+              ["V = 6 V, I = 0.5 A. Find R, then find I when V = 12 V.",`First:<span class="formula">R = V ÷ I = 6 ÷ 0.5 = 12 Ω</span>When voltage becomes 12 V:<span class="formula">I = V ÷ R = 12 ÷ 12 = 1 A</span>`]
+            ]
+          },
+          {
+            title:"Devices & Units Table",
+            items:[
+              ["Quantity – Measuring device – Unit",`
+                <table class="mini">
+                  <tr><th>Quantity</th><th>Symbol</th><th>Measuring device</th><th>Unit</th></tr>
+                  <tr><td>Current intensity</td><td>I</td><td>Ammeter</td><td>Ampere (A)</td></tr>
+                  <tr><td>Potential difference</td><td>V</td><td>Voltmeter</td><td>Volt (V)</td></tr>
+                  <tr><td>Resistance</td><td>R</td><td>Ohmmeter</td><td>Ohm (Ω)</td></tr>
+                  <tr><td>Quantity of electricity</td><td>q</td><td>Calculated by q = I × t</td><td>Coulomb (C)</td></tr>
+                  <tr><td>Work / energy</td><td>W</td><td>Calculated by W = V × q</td><td>Joule (J)</td></tr>
+                </table>`]
+            ]
+          }
+        ]
+      },
+      {
+        title:"Lesson 2 — Electric Current and Cells",
+        groups:[
+          {
+            title:"Define the Following",
+            items:[
+              ["Electrochemical cells & Electric generator (dynamo)",`<strong>Electrochemical cells:</strong> cells that convert chemical energy into electrical energy.<br><strong>Electric generator / dynamo:</strong> a device that converts mechanical energy into electrical energy.`],
+              ["Connection in series & in parallel",`<strong>Series:</strong> cells are connected positive to negative; total emf increases.<br><strong>Parallel:</strong> positive poles are connected together and negative poles together; emf remains the same but current capacity/duration increases.`]
+            ]
+          },
+          {
+            title:"Compare (Direct vs Alternating Current)",
+            items:[
+              ["Direct current vs Alternating current",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Direct Current</h4>
+                    <p>One direction, constant intensity, produced by cells and batteries, difficult to transform.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Alternating Current</h4>
+                    <p>Changes direction and intensity, produced by generators and mains, easy to transform using transformers.</p>
+                  </div>
+                </div>`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Better to use AC rather than DC.",`Because alternating current can be transformed to high or low voltage easily, so it is suitable for long-distance transmission with less energy loss.`],
+              ["Some cells are connected in series.",`To increase the total electromotive force/voltage. In series, total emf equals the sum of the emfs.`],
+              ["Some cells are connected in parallel.",`To increase current capacity and make cells last longer while keeping the same emf.`]
+            ]
+          },
+          {
+            title:"Problems",
+            items:[
+              ["3 cells, each 3 V — find emf in series and parallel.",`In series:<span class="formula">e.m.f. = 3 + 3 + 3 = 9 V</span>In parallel:<span class="formula">e.m.f. = 3 V</span>`]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    unit:"Unit 3 — Genetics",
+    lessons:[
+      {
+        title:"Lesson 1 — The Main Principles of Heredity",
+        groups:[
+          {
+            title:"Define the Following",
+            items:[
+              ["Hereditary & Acquired traits",`<strong>Hereditary traits:</strong> traits transmitted from parents to offspring through genes.<br><strong>Acquired traits:</strong> traits gained during life due to environment, training, or accidents and are not inherited.`],
+              ["Dominant & Recessive trait",`<strong>Dominant trait:</strong> appears when its gene is present, whether pure or hybrid.<br><strong>Recessive trait:</strong> appears only when its two genes are recessive.`],
+              ["Pure & Hybrid trait",`<strong>Pure trait:</strong> controlled by two similar genes, such as TT or tt.<br><strong>Hybrid trait:</strong> controlled by two different genes, such as Tt.`],
+              ["Mendel's First Law (Segregation)",`The two genes of each trait separate during gamete formation, so each gamete carries only one gene for each trait.`],
+              ["Mendel's Second Law (Independent Assortment)",`Genes of different traits are inherited independently from one another if they are carried on different chromosome pairs.`],
+              ["Genetics",`The branch of biology that studies heredity and variation of traits in living organisms.`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Why did Mendel choose the pea plant?",`Because pea plants are easy to grow, have a short life cycle, produce many offspring, have clear contrasting traits, and can self-pollinate or cross-pollinate easily.`],
+              ["Mendel let pea plants self-pollinate for several generations.",`To obtain pure strains carrying stable traits before performing his crosses.`]
+            ]
+          },
+          {
+            title:"Genetics Problems",
+            items:[
+              ["Self-pollination of tall hybrid plant (Tt × Tt).",`
+                <table class="mini">
+                  <tr><th>Parents</th><td>Tt × Tt</td></tr>
+                  <tr><th>Gametes</th><td>T , t × T , t</td></tr>
+                  <tr><th>Genotype ratio</th><td>1 TT : 2 Tt : 1 tt</td></tr>
+                  <tr><th>Phenotype ratio</th><td>3 tall : 1 short</td></tr>
+                </table>`],
+              ["Black mouse (BB) × Brown mouse (bb).",`If black is dominant:<span class="formula">BB × bb → all Bb</span>All offspring are black hybrid mice.`],
+              ["Tall × short giving 50% tall : 50% short — find genetic structure.",`The tall parent must be hybrid and the short parent is recessive pure:<span class="formula">Tt × tt → 50% Tt tall + 50% tt short</span>`],
+              ["Dihybrid cross (TTyy × ttYY): tall green pod × short yellow pod.",`First generation:<span class="formula">TTyy × ttYY → all TtYy</span>All F1 are tall yellow-pod hybrids if tall and yellow are dominant. If F1 self-pollinates, the common dihybrid phenotypic ratio is:<span class="formula">9 tall yellow : 3 tall green : 3 short yellow : 1 short green</span>`]
+            ]
+          },
+          {
+            title:"Dominant & Recessive Traits in Humans",
+            items:[
+              ["List dominant vs recessive human traits.",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Dominant</h4>
+                    <p>Dark eyes, curly hair, free ear lobes, ability to roll tongue, widow’s peak hairline.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Recessive</h4>
+                    <p>Light eyes, straight hair, attached ear lobes, inability to roll tongue, straight hairline.</p>
+                  </div>
+                </div>`]
+            ]
+          }
+        ]
+      },
+      {
+        title:"Lesson — Genes",
+        groups:[
+          {
+            title:"Define the Following",
+            items:[
+              ["Genes",`Parts of DNA carried on chromosomes. They control hereditary traits by directing protein formation.`],
+              ["The chromosome & nucleic acid",`<strong>Chromosome:</strong> a thread-like structure in the nucleus made of DNA and proteins and carrying genes.<br><strong>Nucleic acid:</strong> a biological molecule such as DNA or RNA that stores and transfers genetic information.`]
+            ]
+          },
+          {
+            title:"Scientists' Efforts",
+            items:[
+              ["Match scientist to discovery.",`
+                <table class="mini">
+                  <tr><th>Scientist(s)</th><th>Discovery / Effort</th></tr>
+                  <tr><td>Gregor Mendel</td><td>Discovered the basic laws of heredity using pea plants.</td></tr>
+                  <tr><td>Friedrich Miescher</td><td>Discovered nucleic acids.</td></tr>
+                  <tr><td>Sutton and Boveri</td><td>Linked chromosomes with heredity.</td></tr>
+                  <tr><td>Thomas Morgan</td><td>Proved that genes are carried on chromosomes.</td></tr>
+                  <tr><td>Watson and Crick</td><td>Proposed the double-helix structure of DNA.</td></tr>
+                </table>`],
+              ["How do genes perform their functions?",`Genes perform their functions by controlling the formation of proteins and enzymes. The order of bases in DNA determines the order of amino acids in proteins, and proteins control traits.`]
+            ]
+          }
+        ]
+      },
+      {
+        title:"Lesson — Endocrine Glands & Hormones",
+        groups:[
+          {
+            title:"Glands, Hormones & Functions",
+            items:[
+              ["Summarize glands and their hormones.",`
+                <table class="mini">
+                  <tr><th>Gland</th><th>Main hormone(s)</th><th>Function</th></tr>
+                  <tr><td>Pituitary</td><td>Growth hormone + stimulating hormones</td><td>Controls growth and stimulates other endocrine glands.</td></tr>
+                  <tr><td>Thyroid</td><td>Thyroxine</td><td>Regulates metabolism, growth, and activity.</td></tr>
+                  <tr><td>Parathyroid</td><td>Parathormone</td><td>Regulates calcium and phosphorus levels in blood.</td></tr>
+                  <tr><td>Adrenal</td><td>Adrenaline</td><td>Prepares the body for emergency situations.</td></tr>
+                  <tr><td>Pancreas</td><td>Insulin and glucagon</td><td>Regulates blood glucose level.</td></tr>
+                  <tr><td>Testes</td><td>Testosterone</td><td>Male secondary sexual characters and sperm formation.</td></tr>
+                  <tr><td>Ovaries</td><td>Estrogen and progesterone</td><td>Female secondary sexual characters, menstrual cycle, and pregnancy support.</td></tr>
+                </table>`]
+            ]
+          },
+          {
+            title:"Give Reasons",
+            items:[
+              ["Pituitary is called the \"master gland\".",`Because it secretes hormones that control and regulate the activity of several other endocrine glands.`],
+              ["Pancreas is a mixed gland.",`Because it works as an endocrine gland by secreting insulin and glucagon directly into blood, and as an exocrine gland by secreting pancreatic juice through a duct into the small intestine.`],
+              ["Endocrine glands are called by this name.",`Because they are ductless glands that secrete hormones directly into the bloodstream.`]
+            ]
+          },
+          {
+            title:"Hormonal Disorder Diseases",
+            items:[
+              ["Diseases caused by hormone disorders.",`
+                <table class="mini">
+                  <tr><th>Hormone / Gland</th><th>Disorder</th><th>Result</th></tr>
+                  <tr><td>Growth hormone</td><td>Increase in childhood</td><td>Gigantism</td></tr>
+                  <tr><td>Growth hormone</td><td>Decrease in childhood</td><td>Dwarfism</td></tr>
+                  <tr><td>Growth hormone</td><td>Increase in adults</td><td>Acromegaly</td></tr>
+                  <tr><td>Thyroxine</td><td>Deficiency</td><td>Low metabolism / goiter may occur due to iodine deficiency.</td></tr>
+                  <tr><td>Insulin</td><td>Deficiency</td><td>Diabetes mellitus.</td></tr>
+                  <tr><td>Adrenaline</td><td>Excess effect</td><td>Increased heartbeat, blood pressure, and blood glucose during stress.</td></tr>
+                </table>`]
+            ]
+          },
+          {
+            title:"Compare (Endocrine vs Exocrine)",
+            items:[
+              ["Endocrine glands vs Exocrine glands",`
+                <div class="compare-grid">
+                  <div class="compare-box">
+                    <h4>Endocrine</h4>
+                    <p>Ductless, secrete hormones directly into blood, examples: pituitary, thyroid, adrenal.</p>
+                  </div>
+                  <div class="compare-box">
+                    <h4>Exocrine</h4>
+                    <p>Have ducts, secrete enzymes/sweat/saliva/mucus to surface or cavity, examples: salivary, sweat, gastric glands.</p>
+                  </div>
+                </div>`]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const formulas = [
+  {formula:'NaCl',name:'Sodium chloride'},
+  {formula:'HgO',name:'Mercuric oxide'},
+  {formula:'CaCl₂',name:'Calcium chloride'},
+  {formula:'Cu',name:'Copper'},
+  {formula:'NaNO₂',name:'Sodium nitrite'},
+  {formula:'CuO',name:'Copper oxide'},
+  {formula:'ZnCl₂',name:'Zinc chloride'},
+  {formula:'Hg',name:'Mercury'},
+  {formula:'NaNO₃',name:'Sodium nitrate'},
+  {formula:'CuSO₄',name:'Copper sulphate'},
+  {formula:'Ca(OH)₂',name:'Calcium hydroxide'},
+  {formula:'Al',name:'Aluminium'},
+  {formula:'NaOH',name:'Sodium hydroxide'},
+  {formula:'CaCO₃',name:'Calcium carbonate'},
+  {formula:'AlCl₃',name:'Aluminum chloride'},
+  {formula:'H₂',name:'Hydrogen'},
+  {formula:'AgNO₃',name:'Silver nitrate'},
+  {formula:'ZnSO₄',name:'Zinc sulphate'},
+  {formula:'H₂O₂',name:'Hydrogen peroxide'},
+  {formula:'O₂',name:'Oxygen'},
+  {formula:'HCl',name:'Hydrochloric acid'},
+  {formula:'MgSO₄',name:'Magnesium sulphate'},
+  {formula:'NaN₃',name:'Sodium azide'},
+  {formula:'CO₂',name:'Carbon dioxide'},
+  {formula:'AgCl',name:'Silver chloride'},
+  {formula:'N₂O₅',name:'Nitrogen pentoxide'},
+  {formula:'MnO₂',name:'Manganese dioxide'},
+  {formula:'SO₃',name:'Sulphur trioxide'}
+];
+
+function escapeHTML(text){
+  return String(text)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function normalizeQuestion(q){
+  return String(q).toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+}
+
+function showNotification(type,icon,title,desc){
+  const toast=document.getElementById('toastNotify');
+  document.getElementById('toastIcon').textContent=icon;
+  document.getElementById('toastTitle').textContent=title;
+  document.getElementById('toastDescText').textContent=desc;
+  toast.className='toast-notify '+type;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3500);
+}
+
+function playClickSound(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type='sine';osc.frequency.value=800;
+    gain.gain.setValueAtTime(0.05,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.1);
+    osc.start();osc.stop(ctx.currentTime+0.1);
+  }catch(e){}
+}
+
+function renderFlashcards(){
+  const grid=document.getElementById('flashcardGrid');
+  if(!grid) return;
+  grid.innerHTML='';
+  formulas.forEach(item=>{
+    const card=document.createElement('div');
+    card.className='flashcard-container';
+    card.innerHTML=`
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-front">
+          <div class="flashcard-text" style="font-size:18px">${item.name}</div>
+          <div class="flashcard-hint">👆 Click to flip</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="flashcard-text" style="font-size:28px">${item.formula}</div>
+          <div class="flashcard-hint">🧪 Formula</div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function switchView(view){
+  const flashcardView=document.getElementById('flashcardView');
+  const table=document.getElementById('formulaTable');
+  const fb=document.getElementById('flashcardBtn');
+  const tb=document.getElementById('tableBtn');
+  if(view==='flashcard'){
+    flashcardView.style.display='block';
+    table.style.display='none';
+    fb.classList.add('active');
+    tb.classList.remove('active');
+    renderFlashcards();
+  }else{
+    flashcardView.style.display='none';
+    table.style.display='table';
+    tb.classList.add('active');
+    fb.classList.remove('active');
+  }
+}
+
+function switchUnit(unitNum){
+  document.querySelectorAll('.unit-btn').forEach(btn=>btn.classList.remove('active'));
+  document.getElementById('u'+unitNum).classList.add('active');
+  document.getElementById('unit1-content').style.display='none';
+  document.getElementById('unit2-content').style.display='none';
+  document.getElementById('unit3-content').style.display='none';
+  document.getElementById('unit4-content').style.display='none';
+  document.getElementById('unit'+unitNum+'-content').style.display='block';
+  showNotification('success','✅','Unit Loaded','You are now viewing Unit '+unitNum+'.');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleAnswer(el){
+  const answer=el.nextElementSibling;
+  if(!answer || !answer.classList.contains('answer')) return;
+  const open=answer.style.display==='grid';
+  document.querySelectorAll('.answer').forEach(a=>a.style.display='none');
+  answer.style.display=open?'none':'grid';
+  playClickSound();
+}
+
+function showAllAnswers(){
+  document.querySelectorAll('.answer').forEach(a=>a.style.display='grid');
+  showNotification('success','👁️','All Answers','All answer cards are now visible.');
+}
+function hideAllAnswers(){
+  document.querySelectorAll('.answer').forEach(a=>a.style.display='none');
+  showNotification('success','🙈','Answers Hidden','All answer cards are now hidden.');
+}
+
+function toggleTheme(){
+  const body=document.body;
+  if(body.getAttribute('data-theme')==='light'){
+    body.removeAttribute('data-theme');
+  }else{
+    body.setAttribute('data-theme','light');
+  }
+  try{localStorage.setItem('chemTheme',body.getAttribute('data-theme')||'dark')}catch(e){}
+}
+
+function filterQuestions(query){
+  const q=query.trim().toLowerCase();
+  document.querySelectorAll('.qa-card, .term-card, .lesson-title-premium, .group-title-premium, .auto-unit-intro').forEach(el=>{
+    if(!q){
+      el.style.display='';
+      return;
+    }
+    const text=el.textContent.toLowerCase();
+    el.style.display=text.includes(q)?'':'none';
+  });
+}
+
+function renderTermCards(section, unitNo){
+  let n=1;
+  return `
+    <h3 class="section-title"><i class="fa-solid fa-book"></i> Scientific Terms — ${escapeHTML(section.title)}</h3>
+    ${section.rows.map(r=>`
+      <article class="qa-card term-card">
+        <div class="question" onclick="toggleAnswer(this)">
+          <span class="label q-label">Term ${n++}</span>
+          <p>${escapeHTML(r[1])}</p>
+        </div>
+        <div class="answer">
+          <span class="label a-label">Answer</span>
+          <p><strong>${escapeHTML(r[2])}</strong></p>
+        </div>
+      </article>
+    `).join('')}
+  `;
+}
+
+function renderRevisionCards(unitIndex, lessons){
+  let questionNo = 1;
+  const seen = new Set();
+
+  return lessons.map(lesson => `
+    <div class="lesson-title-premium"><i class="fa-solid fa-graduation-cap"></i> ${escapeHTML(lesson.title)}</div>
+    ${lesson.groups.map((group,gIndex)=>`
+      <div class="group-title-premium">
+        <span class="num-badge">${gIndex+1}</span>
+        <span>${escapeHTML(group.title)}</span>
+      </div>
+      ${group.items.map(item=>{
+        const key = normalizeQuestion(item[0]);
+        if(seen.has(key)) return '';
+        seen.add(key);
+        const currentNo = questionNo++;
+        return `
+          <article class="qa-card">
+            <div class="question" onclick="toggleAnswer(this)">
+              <span class="label q-label">Q ${currentNo}</span>
+              <p>${escapeHTML(item[0])}</p>
+            </div>
+            <div class="answer">
+              <span class="label a-label">Answer</span>
+              <p>${item[1]}</p>
+            </div>
+          </article>
+        `;
+      }).join('')}
+    `).join('')}
+  `).join('');
+}
+
+function renderUnit1(){
+  const unit1 = document.getElementById('unit1-content');
+  unit1.innerHTML = `
+    <div class="auto-unit-intro">
+      <h2>Unit One — Chemical Reactions</h2>
+      <p>Decomposition, substitution, neutralization, oxidation, reduction, catalysts and reaction speed.</p>
+    </div>
+
+    <div class="qa-card" style="padding:18px;background:#0f172a;border:none;">
+      <h3 style="color:#38bdf8;margin-bottom:12px;"><i class="fa-solid fa-layer-group"></i> Quick Formula Flashcards</h3>
+      <div class="view-toggle">
+        <button class="btn active" onclick="switchView('flashcard')" id="flashcardBtn"><i class="fa-solid fa-layer-group"></i> Flashcards</button>
+        <button class="btn" onclick="switchView('table')" id="tableBtn"><i class="fa-solid fa-table"></i> Table</button>
+      </div>
+      <div id="flashcardView"><div class="flashcard-grid" id="flashcardGrid"></div></div>
+      <table class="formula-table" id="formulaTable">
+        <tr>
+          <td><span class="formula">NaCl</span><br>Sodium chloride</td>
+          <td><span class="formula">HgO</span><br>Mercuric oxide</td>
+          <td><span class="formula">CaCl<sub>2</sub></span><br>Calcium chloride</td>
+          <td><span class="formula">Cu</span><br>Copper</td>
+        </tr>
+        <tr>
+          <td><span class="formula">NaNO<sub>3</sub></span><br>Sodium nitrate</td>
+          <td><span class="formula">CuSO<sub>4</sub></span><br>Copper sulphate</td>
+          <td><span class="formula">Ca(OH)<sub>2</sub></span><br>Calcium hydroxide</td>
+          <td><span class="formula">Al</span><br>Aluminium</td>
+        </tr>
+      </table>
+    </div>
+
+    ${renderTermCards(termsData[0], 1)}
+    <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Full Revision Questions</h3>
+    ${renderRevisionCards(1, revisionData[0].lessons)}
+  `;
+  switchView('flashcard');
+}
+
+function renderUnit2(){
+  const unit2 = document.getElementById('unit2-content');
+  unit2.innerHTML = `
+    <div class="auto-unit-intro">
+      <h2>Unit Two — Electric Energy & Radioactivity</h2>
+      <p>Electric current, resistance, cells, AC/DC, radioactivity and nuclear energy.</p>
+    </div>
+
+    ${renderTermCards(termsData[1], 2)}
+    ${renderTermCards(termsData[2], 2)}
+    <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Full Revision Questions</h3>
+    ${renderRevisionCards(2, revisionData[1].lessons)}
+  `;
+}
+
+function splitGeneticsHormones(){
+  const all = revisionData[2].lessons;
+  const genetics = all.filter(lesson => !/(endocrine|hormone|glands)/i.test(lesson.title));
+  const hormones = all.filter(lesson => /(endocrine|hormone|glands)/i.test(lesson.title));
+  return {genetics, hormones};
+}
+
+function renderUnit3(){
+  const unit3 = document.getElementById('unit3-content');
+  const {genetics} = splitGeneticsHormones();
+  unit3.innerHTML = `
+    <div class="auto-unit-intro">
+      <h2>Unit Three — Genetics</h2>
+      <p>Mendel laws, heredity, genes, chromosomes, DNA and genetic problems.</p>
+    </div>
+
+    <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Full Revision Questions</h3>
+    ${renderRevisionCards(3, genetics)}
+  `;
+}
+
+function renderUnit4(){
+  const unit4 = document.getElementById('unit4-content');
+  const {hormones} = splitGeneticsHormones();
+  unit4.innerHTML = `
+    <div class="auto-unit-intro">
+      <h2>Unit Four — Hormones</h2>
+      <p>Endocrine glands, hormones, functions, disorders and comparisons.</p>
+    </div>
+
+    <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Full Revision Questions</h3>
+    ${renderRevisionCards(4, hormones)}
+  `;
+}
+
+function init(){
+  renderUnit1();
+  renderUnit2();
+  renderUnit3();
+  renderUnit4();
+
+  try{
+    const savedTheme=localStorage.getItem('chemTheme');
+    if(savedTheme==='light'){
+      document.body.setAttribute('data-theme','light');
+    }
+  }catch(e){}
+
+  initProtection();
+  showNotification('success','📚','Ready','Science Revision Hub loaded successfully.');
+}
+
+
+/* =================== FULL PROTECTION SUITE =================== */
+function initProtection(){
+  // --- Block right-click / long-press menu ---
+  document.addEventListener('contextmenu', e=>{e.preventDefault();return false;}, {capture:true});
+
+  // --- Block copy / cut / paste / selection ---
+  ['copy','cut','paste'].forEach(ev=>{
+    document.addEventListener(ev, e=>{
+      e.preventDefault();
+      if(e.clipboardData) e.clipboardData.setData('text/plain','© Prof. Ayman Mansour — Protected Content');
+      return false;
+    }, {capture:true});
+  });
+  document.addEventListener('selectstart', e=>{
+    if(e.target && (e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')) return;
+    e.preventDefault();return false;
+  }, {capture:true});
+  document.addEventListener('dragstart', e=>{e.preventDefault();return false;}, {capture:true});
+
+  // --- Block dangerous keyboard shortcuts ---
+  document.addEventListener('keydown', e=>{
+    const k=(e.key||'').toLowerCase();
+    const blocked =
+      e.key==='F12' ||
+      (e.ctrlKey && e.shiftKey && ['i','j','c','k','e','s'].includes(k)) ||      // devtools
+      (e.metaKey && e.altKey && ['i','j','c','u'].includes(k)) ||               // mac devtools
+      (e.ctrlKey && ['u','s','p','c','x','a','g','f'].includes(k)) ||           // view-source/save/print/copy/select-all
+      (e.metaKey && ['u','s','p','c','x','a'].includes(k)) ||                   // mac equivalents
+      e.key==='PrintScreen';
+    if(blocked){
+      e.preventDefault();e.stopPropagation();
+      if(e.key==='PrintScreen'){ wipeForScreenshot(); }
+      if(e.ctrlKey && k==='p'){ showNotification('fail','🚫','Printing Disabled','هذه الصفحة محمية من الطباعة'); }
+      return false;
+    }
+  }, {capture:true});
+
+  // PrintScreen on keyup too (some browsers only fire keyup) + clear clipboard
+  document.addEventListener('keyup', e=>{
+    if(e.key==='PrintScreen'){
+      wipeForScreenshot();
+      try{navigator.clipboard.writeText('© Prof. Ayman Mansour — Protected Content');}catch(_){}
+    }
+  }, {capture:true});
+
+  // --- Block printing (window.print, Ctrl+P, browser menu) ---
+  try{ window.print = function(){ showNotification('fail','🚫','Printing Disabled','هذه الصفحة محمية من الطباعة'); }; }catch(_){}
+  window.addEventListener('beforeprint', ()=>{ document.body.style.visibility='hidden'; });
+  window.addEventListener('afterprint',  ()=>{ document.body.style.visibility=''; });
+  try{
+    const mq = window.matchMedia('print');
+    mq.addEventListener ? mq.addEventListener('change',m=>{ document.body.style.visibility = m.matches ? 'hidden' : ''; })
+                        : mq.addListener(m=>{ document.body.style.visibility = m.matches ? 'hidden' : ''; });
+  }catch(_){}
+
+  // --- Screenshot deterrent: blur content when page loses focus/visibility ---
+  const shield = document.getElementById('protectShield');
+  function protectOn(){ document.body.classList.add('protected-blur'); if(shield) shield.classList.add('on'); }
+  function protectOff(){ document.body.classList.remove('protected-blur'); if(shield) shield.classList.remove('on'); }
+  window.addEventListener('blur', protectOn);
+  window.addEventListener('focus', protectOff);
+  document.addEventListener('visibilitychange', ()=>{ document.hidden ? protectOn() : protectOff(); });
+
+  function wipeForScreenshot(){
+    protectOn();
+    setTimeout(protectOff, 1500);
+  }
+
+  // --- DevTools detection (size gap + debugger timing) ---
+  const dtBlock = document.getElementById('devtoolsBlock');
+  let dtOpen=false;
+  function setDevtools(open){
+    if(open===dtOpen) return;
+    dtOpen=open;
+    if(dtBlock) dtBlock.classList.toggle('on', open);
+  }
+  setInterval(()=>{
+    const wGap = Math.abs(window.outerWidth - window.innerWidth) > 200;
+    const hGap = Math.abs(window.outerHeight - window.innerHeight) > 250;
+    let timing=false;
+    const t0=performance.now();
+    debugger;
+    if(performance.now()-t0 > 120) timing=true;
+    setDevtools((wGap||hGap||timing));
+  }, 1200);
+
+  // --- Disable text selection via mouse on double/triple click ---
+  document.addEventListener('mousedown', e=>{ if(e.detail>1){e.preventDefault();} });
+
+  // --- Console warning ---
+  try{
+    console.clear();
+    console.log('%c⛔ STOP! المحتوى محمي','color:#ef4444;font-size:30px;font-weight:bold');
+    console.log('%c© Prof. Ayman Mansour — Science Code','color:#38bdf8;font-size:16px;font-weight:bold');
+  }catch(_){}
+}
+
+init();
+</script>
+
+</body>
+</html>
