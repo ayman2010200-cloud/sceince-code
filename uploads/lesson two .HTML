@@ -1,0 +1,3645 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combustion Reactions | تفاعلات الاحتراق</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #10213f;
+      --blue: #1f68bb;
+      --sky: #48bfe3;
+      --light-sky: #e9f8ff;
+      --orange: #ff922b;
+      --yellow: #ffd43b;
+      --red: #e94f4f;
+      --dark-red: #b72727;
+      --green: #1d9b62;
+      --lime: #a8d86a;
+      --purple: #7553b5;
+      --ink: #25364d;
+      --muted: #66778d;
+      --white: #ffffff;
+      --shadow: 0 14px 35px rgba(16, 33, 63, 0.13);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Nunito", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 9% 8%, rgba(255, 164, 61, 0.18), transparent 25%),
+        radial-gradient(circle at 91% 18%, rgba(72, 191, 227, 0.18), transparent 24%),
+        linear-gradient(135deg, #fffaf0, #eefaff 55%, #f7fbef);
+      min-height: 100vh;
+    }
+
+    html[lang="ar"] body {
+      font-family: "Cairo", Arial, sans-serif;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
+    }
+
+    .ar {
+      display: none;
+    }
+
+    html[lang="ar"] .en {
+      display: none !important;
+    }
+
+    html[lang="ar"] .ar {
+      display: inline;
+    }
+
+    .equation,
+    .formula,
+    sub,
+    sup {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: "Nunito", Arial, sans-serif;
+    }
+
+    .formula {
+      color: var(--blue);
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+
+    sub {
+      font-size: 0.72em;
+    }
+
+    sup {
+      font-size: 0.72em;
+    }
+
+    /* ---------------- Top Bar ---------------- */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.91);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(31, 104, 187, 0.12);
+    }
+
+    .topbar-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 1.05rem;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: white;
+      border-radius: 14px;
+      box-shadow: 0 7px 16px rgba(233, 79, 79, 0.25);
+      font-size: 1.35rem;
+    }
+
+    .top-note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: end;
+    }
+
+    /* ---------------- Hero ---------------- */
+
+    .hero {
+      padding: 60px 0 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--dark-red);
+      background: #fff0e2;
+      border: 1px solid #ffd9b8;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.86rem;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      color: var(--navy);
+      font-size: clamp(2.25rem, 5vw, 4.6rem);
+      line-height: 1.08;
+      margin: 15px 0;
+    }
+
+    html[lang="ar"] h1 {
+      font-family: "Cairo", Arial, sans-serif;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: #4a6079;
+      line-height: 1.9;
+      font-size: 1.06rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .hero-tag {
+      background: rgba(255, 255, 255, 0.87);
+      border: 1px solid #dceaf3;
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: #31506d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      box-shadow: 0 5px 12px rgba(16, 33, 63, 0.05);
+    }
+
+    /* ---------------- Fire Triangle Visual ---------------- */
+
+    .hero-visual {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .triangle-wrap {
+      width: 310px;
+      height: 300px;
+      position: relative;
+      filter: drop-shadow(0 18px 18px rgba(233, 79, 79, 0.18));
+    }
+
+    .triangle-line {
+      position: absolute;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow));
+      transform-origin: left center;
+    }
+
+    .triangle-line.one {
+      width: 245px;
+      left: 35px;
+      bottom: 30px;
+    }
+
+    .triangle-line.two {
+      width: 255px;
+      left: 40px;
+      bottom: 33px;
+      transform: rotate(-60deg);
+      background: linear-gradient(90deg, var(--sky), var(--blue));
+    }
+
+    .triangle-line.three {
+      width: 255px;
+      right: 25px;
+      bottom: 34px;
+      transform: rotate(240deg);
+      background: linear-gradient(90deg, var(--red), var(--orange));
+    }
+
+    .fire-center {
+      position: absolute;
+      inset: 89px 89px auto auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 70%, #ffed6f 0 18%, #ff9b2f 19% 41%, #e84141 42% 69%, #9b1e1e 70%);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 3.6rem;
+      box-shadow: 0 0 0 12px rgba(255, 200, 80, 0.23);
+      animation: glowFire 1.8s infinite alternate;
+    }
+
+    @keyframes glowFire {
+      from { box-shadow: 0 0 0 12px rgba(255, 200, 80, 0.18), 0 0 15px rgba(255, 100, 20, 0.25); }
+      to { box-shadow: 0 0 0 18px rgba(255, 200, 80, 0.28), 0 0 30px rgba(255, 100, 20, 0.5); }
+    }
+
+    .tri-label {
+      position: absolute;
+      color: white;
+      font-weight: 900;
+      font-size: 0.84rem;
+      text-align: center;
+      padding: 8px 11px;
+      border-radius: 10px;
+      box-shadow: 0 6px 14px rgba(16, 33, 63, 0.13);
+    }
+
+    .fuel-label {
+      bottom: 0;
+      left: 105px;
+      background: #ce6814;
+    }
+
+    .oxygen-label {
+      top: 112px;
+      left: -18px;
+      background: var(--blue);
+    }
+
+    .heat-label {
+      top: 112px;
+      right: -20px;
+      background: var(--red);
+    }
+
+    .floating-note {
+      position: absolute;
+      background: white;
+      border: 1px solid #dceaf3;
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      padding: 11px 13px;
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .floating-note.one {
+      top: 16px;
+      inset-inline-start: 0;
+    }
+
+    .floating-note.two {
+      bottom: 8px;
+      inset-inline-end: 0;
+    }
+
+    /* ---------------- Navigation ---------------- */
+
+    .lesson-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 9px 2px;
+      margin-bottom: 27px;
+      scrollbar-width: thin;
+    }
+
+    .lesson-nav a {
+      text-decoration: none;
+      white-space: nowrap;
+      color: #365670;
+      background: white;
+      border: 1px solid #dcebf2;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .lesson-nav a:hover {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* ---------------- Common ---------------- */
+
+    section {
+      margin: 32px 0;
+      scroll-margin-top: 95px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(31, 104, 187, 0.11);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 34px);
+    }
+
+    .section-label {
+      display: inline-block;
+      color: var(--orange);
+      font-size: 0.8rem;
+      letter-spacing: 0.7px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0 0 7px;
+      color: var(--navy);
+      font-size: clamp(1.65rem, 3vw, 2.5rem);
+      line-height: 1.3;
+      font-weight: 900;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 920px;
+      line-height: 1.8;
+      margin: 0 0 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, #ffffff, #f5fbff);
+      border: 1px solid #dcebf4;
+      padding: 19px;
+      border-radius: 18px;
+      transition: 0.24s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 22px rgba(16, 33, 63, 0.1);
+    }
+
+    .info-card h3 {
+      margin: 9px 0 8px;
+      color: var(--blue);
+      font-size: 1.08rem;
+    }
+
+    .info-card p,
+    .info-card li {
+      color: #4e637b;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .icon-circle {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      font-size: 1.55rem;
+      background: #edf9ff;
+    }
+
+    .callout {
+      margin-top: 18px;
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: #edf9ff;
+      color: #365772;
+      border-inline-start: 6px solid var(--sky);
+      line-height: 1.8;
+      font-size: 0.93rem;
+    }
+
+    .callout strong {
+      color: var(--blue);
+    }
+
+    .callout.warning {
+      background: #fff6e2;
+      border-color: var(--orange);
+      color: #705221;
+    }
+
+    .callout.danger {
+      background: #fff0f0;
+      border-color: var(--red);
+      color: #7c3434;
+    }
+
+    .callout.success {
+      background: #e9faef;
+      border-color: var(--green);
+      color: #2d674a;
+    }
+
+    .equation-box {
+      background: #112d50;
+      color: #eaf7ff;
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 12px;
+      font-family: "Nunito", Arial, sans-serif;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .reaction {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: "Nunito", Arial, sans-serif;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: 0.3px;
+    }
+
+    /* ---------------- Triangle Section ---------------- */
+
+    .mini-triangle {
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 177, 65, 0.22), transparent 25%),
+        linear-gradient(145deg, #fffdf8, #fff4e9);
+      border: 1px solid #ffe2c7;
+    }
+
+    .mini-triangle .triangle-wrap {
+      transform: scale(0.84);
+    }
+
+    .triangle-facts {
+      display: grid;
+      gap: 13px;
+    }
+
+    .triangle-fact {
+      background: white;
+      border: 1px solid #e3edf3;
+      border-radius: 15px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #466079;
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .triangle-fact .emoji {
+      font-size: 1.6rem;
+    }
+
+    /* ---------------- Cup Experiment ---------------- */
+
+    .experiment-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .cup-scene {
+      min-height: 330px;
+      background: linear-gradient(#f3fbff 0 65%, #f9efe2 65%);
+      border: 1px solid #d7eaf3;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cup-unit {
+      position: absolute;
+      width: 140px;
+      height: 230px;
+      bottom: 15px;
+      text-align: center;
+    }
+
+    .cup-unit.empty {
+      inset-inline-start: 9%;
+    }
+
+    .cup-unit.water {
+      inset-inline-end: 9%;
+    }
+
+    .paper-cup {
+      width: 105px;
+      height: 88px;
+      margin: 0 auto;
+      border: 5px solid #a56a3f;
+      border-top: 10px solid #c28a5f;
+      border-radius: 10px 10px 27px 27px;
+      background: #fff7eb;
+      position: relative;
+      z-index: 2;
+    }
+
+    .paper-cup.with-water::after {
+      content: "";
+      position: absolute;
+      height: 24px;
+      left: 5px;
+      right: 5px;
+      top: 12px;
+      background: linear-gradient(#6ed5ef, #198aca);
+      border-radius: 50%;
+    }
+
+    .tripod {
+      position: relative;
+      height: 50px;
+      width: 100px;
+      margin: -1px auto 0;
+      border-top: 5px solid #3c4856;
+    }
+
+    .tripod::before,
+    .tripod::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 55px;
+      background: #3c4856;
+      top: 0;
+      border-radius: 4px;
+    }
+
+    .tripod::before {
+      left: 15px;
+      transform: rotate(18deg);
+    }
+
+    .tripod::after {
+      right: 15px;
+      transform: rotate(-18deg);
+    }
+
+    .flame {
+      width: 43px;
+      height: 70px;
+      margin: -10px auto 0;
+      border-radius: 55% 45% 55% 45%;
+      background: radial-gradient(circle at 50% 72%, #fff277 0 17%, #ff9a23 18% 44%, #e73737 45% 80%);
+      transform: rotate(45deg);
+      animation: flicker 1s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: rotate(43deg) scale(0.92); }
+      to { transform: rotate(48deg) scale(1.06); }
+    }
+
+    .cup-label {
+      margin-top: 10px;
+      font-weight: 900;
+      color: #49637c;
+      font-size: 0.82rem;
+    }
+
+    .activity-steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      border-radius: 14px;
+      padding: 13px;
+      background: #f7fcff;
+      border: 1px solid #dcebf4;
+      color: #4f647c;
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .step-num {
+      display: inline-grid;
+      place-items: center;
+      width: 27px;
+      height: 27px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      margin-inline-end: 8px;
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    /* ---------------- Matches ---------------- */
+
+    .match-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .match-scene {
+      min-height: 310px;
+      background: linear-gradient(145deg, #fffaf1, #fff0dd);
+      border: 1px solid #ffe0b7;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .match-stick {
+      width: 210px;
+      height: 18px;
+      background: linear-gradient(90deg, #d7a66e, #a86a32);
+      border-radius: 999px;
+      transform: rotate(-22deg);
+      position: relative;
+    }
+
+    .match-head {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      inset-inline-end: -9px;
+      top: -12px;
+      background: radial-gradient(circle at 35% 30%, #ffbc5f, #cb3d27 70%);
+    }
+
+    .match-fire {
+      position: absolute;
+      top: -115px;
+      inset-inline-end: -24px;
+      font-size: 6rem;
+      animation: floatFire 1.3s infinite alternate;
+    }
+
+    @keyframes floatFire {
+      from { transform: scale(0.91) rotate(-3deg); }
+      to { transform: scale(1.07) rotate(4deg); }
+    }
+
+    .match-box {
+      position: absolute;
+      width: 180px;
+      height: 62px;
+      bottom: 35px;
+      inset-inline-start: 25px;
+      background: linear-gradient(145deg, #b84b4b, #802828);
+      border-radius: 6px;
+      border: 5px solid #742323;
+    }
+
+    .match-box::after {
+      content: "";
+      position: absolute;
+      height: 17px;
+      background: #7a402c;
+      left: -5px;
+      right: -5px;
+      top: -25px;
+      border-radius: 6px;
+    }
+
+    .match-box small {
+      color: white;
+      font-weight: 900;
+      position: absolute;
+      top: 17px;
+      left: 24px;
+    }
+
+    /* ---------------- Mg & C ---------------- */
+
+    .burning-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .metal-card,
+    .nonmetal-card {
+      border-radius: 20px;
+      padding: 21px;
+      min-height: 290px;
+    }
+
+    .metal-card {
+      background: linear-gradient(145deg, #eefaff, #d9f2ff);
+      border: 1px solid #bce5f7;
+    }
+
+    .nonmetal-card {
+      background: linear-gradient(145deg, #f8f8f8, #e8edf4);
+      border: 1px solid #d4dde6;
+    }
+
+    .metal-card h3,
+    .nonmetal-card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+    }
+
+    .mg-visual,
+    .carbon-visual {
+      height: 110px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .mg-strip {
+      width: 165px;
+      height: 15px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #9faebb, #f8ffff, #9faebb);
+      transform: rotate(-10deg);
+      position: relative;
+    }
+
+    .white-glow {
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 15px #fff, 0 0 35px #fff, 0 0 65px #f7ff8c;
+      opacity: 0.95;
+    }
+
+    .coal {
+      width: 100px;
+      height: 64px;
+      background: radial-gradient(circle at 25% 25%, #8f8f8f, #1f2630 55%, #07090c);
+      clip-path: polygon(8% 28%, 38% 0, 78% 12%, 100% 48%, 77% 100%, 28% 88%, 0 63%);
+      position: relative;
+    }
+
+    .coal::after {
+      content: "🔥";
+      position: absolute;
+      inset: -42px 0 auto;
+      text-align: center;
+      font-size: 3rem;
+      opacity: 0.75;
+    }
+
+    .oxide-badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 0.79rem;
+      font-weight: 900;
+      margin-top: 7px;
+    }
+
+    .basic-badge {
+      color: #087343;
+      background: #dcf8e8;
+    }
+
+    .acidic-badge {
+      color: #b63636;
+      background: #ffe9e9;
+    }
+
+    /* ---------------- Bunsen Burner ---------------- */
+
+    .burner-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 23px;
+      align-items: center;
+    }
+
+    .burner-scene {
+      min-height: 330px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #effaff, #e8f2f7);
+      border: 1px solid #d3e8f2;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .burner {
+      position: relative;
+      width: 130px;
+      height: 240px;
+    }
+
+    .burner-base {
+      position: absolute;
+      bottom: 10px;
+      left: 3px;
+      width: 125px;
+      height: 26px;
+      background: #667789;
+      border-radius: 50%;
+      box-shadow: inset 0 -7px 0 #44515e;
+    }
+
+    .burner-tube {
+      position: absolute;
+      width: 47px;
+      height: 150px;
+      left: 40px;
+      bottom: 30px;
+      background: linear-gradient(90deg, #a87537, #edc66d, #9b6b2f);
+      border-radius: 9px 9px 4px 4px;
+      border: 3px solid #795124;
+    }
+
+    .burner-neck {
+      position: absolute;
+      width: 68px;
+      height: 25px;
+      left: 30px;
+      bottom: 164px;
+      background: #b68237;
+      border-radius: 7px;
+      border: 3px solid #795124;
+    }
+
+    .burner-flame {
+      width: 65px;
+      height: 115px;
+      position: absolute;
+      left: 33px;
+      bottom: 182px;
+      border-radius: 60% 40% 55% 45%;
+      transform: rotate(45deg);
+      background: radial-gradient(circle at 55% 70%, #c9fbff 0 15%, #1e8fe6 16% 38%, #0d54bb 39% 68%, transparent 69%);
+      transition: 0.35s;
+      animation: flicker 1s infinite alternate;
+    }
+
+    .burner.yellow .burner-flame {
+      background: radial-gradient(circle at 55% 70%, #fff68e 0 18%, #ffce30 19% 42%, #ff852d 43% 63%, #e54038 64% 82%, transparent 83%);
+    }
+
+    .air-panel {
+      display: grid;
+      gap: 13px;
+    }
+
+    .air-readout {
+      border-radius: 15px;
+      padding: 15px;
+      background: #f4fbff;
+      border-inline-start: 5px solid var(--blue);
+      color: #3f5d79;
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    .combustion-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 22px;
+      overflow: hidden;
+      border-radius: 15px;
+      font-size: 0.9rem;
+    }
+
+    .combustion-table th {
+      background: var(--blue);
+      color: white;
+      text-align: start;
+      padding: 13px;
+    }
+
+    .combustion-table td {
+      background: white;
+      border-bottom: 1px solid #dceaf2;
+      padding: 13px;
+      line-height: 1.65;
+      vertical-align: top;
+      color: #486077;
+    }
+
+    .combustion-table tr:nth-child(even) td {
+      background: #f4fbff;
+    }
+
+    /* ---------------- Methane Visual ---------------- */
+
+    .reaction-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .molecule-box {
+      padding: 16px;
+      border-radius: 16px;
+      min-height: 105px;
+      background: #f7fcff;
+      border: 1px solid #d7eaf3;
+      text-align: center;
+      color: #426079;
+      line-height: 1.65;
+    }
+
+    .reaction-arrow {
+      color: var(--red);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .molecule-icons {
+      font-size: 1.6rem;
+      margin: 5px 0;
+      letter-spacing: 3px;
+    }
+
+    /* ---------------- Product Detection ---------------- */
+
+    .detection-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 23px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .apparatus {
+      min-height: 330px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(#fbfdff 0 57%, #e9f4f7 58%);
+      border: 1px solid #d4eaf2;
+    }
+
+    .mini-burner {
+      position: absolute;
+      bottom: 28px;
+      inset-inline-start: 8%;
+      width: 70px;
+      height: 140px;
+    }
+
+    .mini-burner .body {
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      width: 23px;
+      height: 80px;
+      background: #c5903d;
+      border: 2px solid #7a5126;
+      border-radius: 6px;
+    }
+
+    .mini-burner .fire {
+      position: absolute;
+      bottom: 67px;
+      left: 8px;
+      font-size: 3.8rem;
+    }
+
+    .delivery-tube {
+      position: absolute;
+      top: 78px;
+      inset-inline-start: 27%;
+      width: 220px;
+      height: 90px;
+      border-top: 8px solid #69798c;
+      border-right: 8px solid #69798c;
+      border-radius: 0 25px 0 0;
+    }
+
+    .ice-bath {
+      position: absolute;
+      top: 138px;
+      inset-inline-start: 34%;
+      width: 110px;
+      height: 100px;
+      background: linear-gradient(#e8fcff, #84d3ea);
+      border: 5px solid #5c7a8b;
+      border-radius: 10px 10px 30px 30px;
+      text-align: center;
+      padding-top: 43px;
+      color: #215a79;
+      font-weight: 900;
+      font-size: 0.78rem;
+    }
+
+    .ice-bath::before {
+      content: "🧊 🧊";
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 1.4rem;
+    }
+
+    .test-tube {
+      position: absolute;
+      width: 57px;
+      height: 148px;
+      bottom: 30px;
+      inset-inline-end: 12%;
+      border: 5px solid #526d82;
+      border-top: 0;
+      border-radius: 0 0 24px 24px;
+      background: linear-gradient(to bottom, transparent 0 55%, #e9f9ff 56% 100%);
+    }
+
+    .test-tube::after {
+      content: "limewater";
+      position: absolute;
+      bottom: 17px;
+      left: -12px;
+      right: -12px;
+      color: #47748c;
+      font-size: 0.67rem;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .apparatus-label {
+      position: absolute;
+      color: #355a73;
+      font-weight: 900;
+      font-size: 0.76rem;
+      background: white;
+      border: 1px solid #d5e6ef;
+      border-radius: 9px;
+      padding: 5px 7px;
+    }
+
+    .apparatus-label.one {
+      top: 42px;
+      inset-inline-start: 9%;
+    }
+
+    .apparatus-label.two {
+      top: 248px;
+      inset-inline-start: 34%;
+    }
+
+    .apparatus-label.three {
+      top: 15px;
+      inset-inline-end: 7%;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .product-card {
+      border-radius: 17px;
+      padding: 17px;
+      min-height: 225px;
+      border: 1px solid #dceaf2;
+      background: white;
+    }
+
+    .product-card h3 {
+      margin: 9px 0 8px;
+      color: var(--blue);
+      font-size: 1.05rem;
+    }
+
+    .product-card p {
+      color: #4c647b;
+      line-height: 1.68;
+      font-size: 0.89rem;
+    }
+
+    .product-card .symbol {
+      font-size: 2.1rem;
+    }
+
+    /* ---------------- Pollution ---------------- */
+
+    .pollution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .pollution-card {
+      border-radius: 19px;
+      padding: 20px;
+      min-height: 290px;
+      border: 1px solid #d8e8ef;
+      background: linear-gradient(145deg, white, #f6fbfc);
+    }
+
+    .pollution-card h3 {
+      color: var(--navy);
+      margin: 10px 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .pollution-card p,
+    .pollution-card li {
+      color: #4c6379;
+      line-height: 1.68;
+      font-size: 0.89rem;
+    }
+
+    .pollution-visual {
+      min-height: 115px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 4rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .black-cloud-visual {
+      background: linear-gradient(#dfeaf1 0 55%, #d9c496 56%);
+    }
+
+    .black-cloud-visual::after {
+      content: "☁️☁️☁️";
+      filter: grayscale(1);
+      opacity: 0.9;
+      letter-spacing: -27px;
+      color: #555;
+    }
+
+    .car-visual {
+      background: linear-gradient(#e4f8ff 0 66%, #8fbf74 67%);
+    }
+
+    .car-visual::after {
+      content: "🚗💨";
+      font-size: 4rem;
+    }
+
+    .factory-visual {
+      background: linear-gradient(#dfeefa 0 65%, #d4d9dd 66%);
+    }
+
+    .factory-visual::after {
+      content: "🏭";
+      font-size: 4.3rem;
+    }
+
+    /* ---------------- Converter & Scrubber ---------------- */
+
+    .technology-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 21px;
+      margin-top: 22px;
+    }
+
+    .tech-card {
+      background: #f7fcff;
+      border: 1px solid #dcebf3;
+      border-radius: 19px;
+      padding: 20px;
+    }
+
+    .tech-card h3 {
+      color: var(--blue);
+      margin: 0 0 9px;
+    }
+
+    .tech-card p,
+    .tech-card li {
+      color: #4d647a;
+      line-height: 1.7;
+      font-size: 0.9rem;
+    }
+
+    .converter-visual {
+      height: 135px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #ecf6fb, #d5e5ed);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .pipe {
+      position: absolute;
+      width: 88%;
+      height: 48px;
+      inset-inline-start: 6%;
+      top: 42px;
+      border-radius: 28px;
+      background: linear-gradient(#9baab7, #e5edf2 45%, #7f919e);
+    }
+
+    .converter-core {
+      position: absolute;
+      width: 100px;
+      height: 75px;
+      top: 29px;
+      left: calc(50% - 50px);
+      border-radius: 25px;
+      background: repeating-linear-gradient(90deg, #c59a45 0 7px, #795c25 8px 11px);
+      border: 7px solid #6c7f8e;
+      z-index: 2;
+    }
+
+    .scrubber-visual {
+      height: 180px;
+      margin-bottom: 14px;
+      position: relative;
+      border-radius: 14px;
+      background: linear-gradient(#e8f7ff 0 70%, #cfe7f1 71%);
+      overflow: hidden;
+    }
+
+    .scrubber-tower {
+      position: absolute;
+      width: 110px;
+      height: 160px;
+      bottom: 0;
+      left: calc(50% - 55px);
+      border: 6px solid #637a8b;
+      border-radius: 20px 20px 10px 10px;
+      background: linear-gradient(#eefeff 0 25%, #bcefff 26% 70%, #6dc5e0 71%);
+    }
+
+    .scrubber-tower::before {
+      content: "↑  alkaline spray  ↓";
+      position: absolute;
+      font-size: 0.7rem;
+      text-align: center;
+      color: #166783;
+      font-weight: 900;
+      left: 10px;
+      right: 10px;
+      top: 43px;
+    }
+
+    .scrubber-smoke {
+      position: absolute;
+      top: 13px;
+      left: calc(50% - 75px);
+      font-size: 3rem;
+      filter: grayscale(1);
+      opacity: 0.7;
+    }
+
+    /* ---------------- Study ---------------- */
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .term-card {
+      min-height: 150px;
+      border-radius: 16px;
+      padding: 16px;
+      background: linear-gradient(145deg, white, #f4fbff);
+      border: 1px solid #d9eaf3;
+      transition: 0.2s;
+    }
+
+    .term-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 18px rgba(16, 33, 63, 0.1);
+    }
+
+    .term-card .number {
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .term-card h3 {
+      color: var(--blue);
+      margin: 6px 0 7px;
+      font-size: 1rem;
+    }
+
+    .term-card p {
+      margin: 0;
+      color: #50677e;
+      font-size: 0.84rem;
+      line-height: 1.62;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+      margin-top: 20px;
+    }
+
+    .quiz-card {
+      background: white;
+      border: 1px solid #dcebf3;
+      border-radius: 18px;
+      padding: 19px;
+      box-shadow: 0 6px 14px rgba(16, 33, 63, 0.05);
+    }
+
+    .quiz-card h3 {
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 6px 0 14px;
+    }
+
+    .quiz-number {
+      color: var(--orange);
+      font-weight: 900;
+      font-size: 0.78rem;
+    }
+
+    .choices {
+      display: grid;
+      gap: 8px;
+    }
+
+    .choice {
+      cursor: pointer;
+      border: 1px solid #d5e6ef;
+      border-radius: 10px;
+      padding: 10px 11px;
+      text-align: start;
+      color: #45627c;
+      background: #f8fcff;
+      font: inherit;
+      font-size: 0.87rem;
+      transition: 0.2s;
+    }
+
+    .choice:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateX(3px);
+    }
+
+    html[lang="ar"] .choice:hover {
+      transform: translateX(-3px);
+    }
+
+    .choice.correct {
+      background: #e0fae9;
+      border-color: #2cba6f;
+      color: #087242;
+      font-weight: 900;
+    }
+
+    .choice.wrong {
+      background: #ffebeb;
+      border-color: #ec7777;
+      color: #ae3434;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 11px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #eef8ff;
+      color: #235c85;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .revision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 25px;
+    }
+
+    details {
+      border-radius: 13px;
+      border: 1px solid #dceaf2;
+      background: #fbfdff;
+      padding: 11px 14px;
+      margin-bottom: 9px;
+    }
+
+    details[open] {
+      background: #f1faff;
+      border-color: #b8deed;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--blue);
+      font-weight: 800;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    details p {
+      color: #4c647b;
+      font-size: 0.86rem;
+      line-height: 1.65;
+      margin: 10px 0 2px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .summary-item {
+      padding: 16px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #ffffff, #f2fbff);
+      border: 1px solid #d9eaf3;
+    }
+
+    .summary-item .emoji {
+      font-size: 1.65rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .summary-item b {
+      color: var(--blue);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.93rem;
+    }
+
+    .summary-item small {
+      color: #526a81;
+      line-height: 1.52;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #657c91;
+      padding: 34px 0 105px;
+      font-size: 0.88rem;
+    }
+
+    /* ---------------- Bottom Buttons ---------------- */
+
+    .bottom-tools {
+      position: fixed;
+      z-index: 200;
+      bottom: 16px;
+      inset-inline-end: 16px;
+      display: flex;
+      gap: 7px;
+      background: rgba(16, 33, 63, 0.92);
+      padding: 8px;
+      border-radius: 17px;
+      box-shadow: 0 12px 25px rgba(16, 33, 63, 0.28);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .tool-btn {
+      cursor: pointer;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: white;
+      background: rgba(255,255,255,0.12);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .tool-btn:hover,
+    .tool-btn.active {
+      color: #07315b;
+      background: var(--sky);
+      transform: translateY(-2px);
+    }
+
+    .tool-btn.print {
+      color: #efffc8;
+      background: rgba(168, 216, 106, 0.19);
+    }
+
+    /* ---------------- Responsive ---------------- */
+
+    @media (max-width: 930px) {
+      .hero-grid,
+      .experiment-layout,
+      .match-layout,
+      .burner-layout,
+      .detection-layout,
+      .technology-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 310px;
+      }
+
+      .pollution-grid,
+      .product-grid,
+      .term-grid,
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      .top-note {
+        display: none;
+      }
+
+      .grid-2,
+      .grid-3,
+      .burning-showcase,
+      .pollution-grid,
+      .technology-layout,
+      .revision-grid,
+      .quiz-grid,
+      .product-grid,
+      .term-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reaction-row {
+        grid-template-columns: 1fr;
+      }
+
+      .reaction-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+
+      .combustion-table {
+        font-size: 0.75rem;
+      }
+
+      .combustion-table th,
+      .combustion-table td {
+        padding: 9px 7px;
+      }
+
+      .triangle-wrap {
+        transform: scale(0.86);
+      }
+
+      .bottom-tools {
+        bottom: 9px;
+        inset-inline-end: 9px;
+      }
+
+      .tool-btn {
+        padding: 9px 9px;
+        font-size: 0.76rem;
+      }
+    }
+
+    @media print {
+      .topbar,
+      .bottom-tools,
+      .lesson-nav {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      .panel,
+      .info-card,
+      .quiz-card {
+        box-shadow: none;
+      }
+
+      section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= TOP BAR ========================= -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-icon">🔥</div>
+        <span class="en">Integrated Science Lab</span>
+        <span class="ar">مختبر العلوم المتكاملة</span>
+      </div>
+
+      <div class="top-note">
+        <span class="en">Visual lesson: Combustion Reactions & Environmental Pollution</span>
+        <span class="ar">درس مرئي: تفاعلات الاحتراق والتلوث البيئي</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================= HERO ========================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">
+            <span>⚗️</span>
+            <span class="en">Lesson 2 — Chemistry and Environment</span>
+            <span class="ar">الدرس الثاني — الكيمياء والبيئة</span>
+          </div>
+
+          <h1>
+            <span class="en">Combustion Reactions<br>and Environmental Pollution</span>
+            <span class="ar">تفاعلات الاحتراق<br>والتلوث البيئي</span>
+          </h1>
+
+          <p>
+            <span class="en">
+              Learn how fuels burn, why flame colors change, how complete and incomplete
+              combustion differ, and how combustion can affect air quality and the environment.
+            </span>
+            <span class="ar">
+              تعلم كيف تحترق أنواع الوقود، ولماذا يتغير لون اللهب، والفرق بين الاحتراق الكامل
+              وغير الكامل، وكيف يمكن أن تؤثر تفاعلات الاحتراق في جودة الهواء والبيئة.
+            </span>
+          </p>
+
+          <div class="hero-tags">
+            <div class="hero-tag">🔥 <span class="en">Fire Triangle</span><span class="ar">مثلث الاحتراق</span></div>
+            <div class="hero-tag">🧪 <span class="en">Hydrocarbons</span><span class="ar">الهيدروكربونات</span></div>
+            <div class="hero-tag">💨 <span class="en">Air Pollution</span><span class="ar">تلوث الهواء</span></div>
+            <div class="hero-tag">🌱 <span class="en">Clean Energy</span><span class="ar">الطاقة النظيفة</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="floating-note one">
+            <span class="en">Remove one side → fire stops</span>
+            <span class="ar">إزالة ضلع واحد ← يتوقف الحريق</span>
+          </div>
+
+          <div class="triangle-wrap">
+            <div class="triangle-line one"></div>
+            <div class="triangle-line two"></div>
+            <div class="triangle-line three"></div>
+
+            <div class="fire-center">🔥</div>
+
+            <div class="tri-label fuel-label">
+              <span class="en">Fuel</span>
+              <span class="ar">وقود</span>
+            </div>
+
+            <div class="tri-label oxygen-label">
+              <span class="en">Oxygen</span>
+              <span class="ar">الأكسجين</span>
+            </div>
+
+            <div class="tri-label heat-label">
+              <span class="en">Heat</span>
+              <span class="ar">حرارة</span>
+            </div>
+          </div>
+
+          <div class="floating-note two">
+            <span class="en">Combustion needs all 3</span>
+            <span class="ar">الاحتراق يحتاج للعناصر الثلاثة</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================= NAVIGATION ========================= -->
+    <div class="container">
+      <nav class="lesson-nav">
+        <a href="#triangle">
+          <span class="en">🔥 Fire Triangle</span>
+          <span class="ar">🔥 مثلث الاحتراق</span>
+        </a>
+        <a href="#matches">
+          <span class="en">🕯️ Matches</span>
+          <span class="ar">🕯️ أعواد الثقاب</span>
+        </a>
+        <a href="#metals">
+          <span class="en">⚛️ Metals & Nonmetals</span>
+          <span class="ar">⚛️ الفلزات واللافلزات</span>
+        </a>
+        <a href="#hydrocarbons">
+          <span class="en">🔵 Flame & Hydrocarbons</span>
+          <span class="ar">🔵 اللهب والهيدروكربونات</span>
+        </a>
+        <a href="#products">
+          <span class="en">🧪 Combustion Products</span>
+          <span class="ar">🧪 نواتج الاحتراق</span>
+        </a>
+        <a href="#pollution">
+          <span class="en">🏭 Pollution Solutions</span>
+          <span class="ar">🏭 حلول التلوث</span>
+        </a>
+        <a href="#study">
+          <span class="en">🎯 Study & Quiz</span>
+          <span class="ar">🎯 مراجعة واختبار</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- ========================= FIRE TRIANGLE ========================= -->
+    <section id="triangle">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 1</span>
+            <span class="ar">الجزء الأول</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">The Combustion Triangle</span>
+            <span class="ar">مثلث الاحتراق</span>
+          </h2>
+
+          <p class="section-subtitle">
+            <span class="en">
+              For combustion to occur, three essential requirements must be present:
+              a fuel, oxygen, and thermal energy from an ignition source.
+            </span>
+            <span class="ar">
+              لكي يحدث الاحتراق، يجب توافر ثلاثة عناصر أساسية:
+              الوقود والأكسجين والطاقة الحرارية الناتجة من مصدر اشتعال.
+            </span>
+          </p>
+
+          <div class="grid-2">
+            <div class="mini-triangle">
+              <div class="triangle-wrap">
+                <div class="triangle-line one"></div>
+                <div class="triangle-line two"></div>
+                <div class="triangle-line three"></div>
+
+                <div class="fire-center">🔥</div>
+
+                <div class="tri-label fuel-label">
+                  <span class="en">Fuel</span>
+                  <span class="ar">وقود</span>
+                </div>
+
+                <div class="tri-label oxygen-label">
+                  <span class="en">Oxygen</span>
+                  <span class="ar">الأكسجين</span>
+                </div>
+
+                <div class="tri-label heat-label">
+                  <span class="en">Heat</span>
+                  <span class="ar">حرارة</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="triangle-facts">
+              <div class="triangle-fact">
+                <span class="emoji">🪵</span>
+                <div>
+                  <b>
+                    <span class="en">Fuel / Combustible material</span>
+                    <span class="ar">الوقود / المادة القابلة للاحتراق</span>
+                  </b><br>
+                  <span class="en">The substance that burns, such as wood, paper, methane, gasoline, or coal.</span>
+                  <span class="ar">المادة التي تحترق مثل الخشب والورق والميثان والبنزين والفحم.</span>
+                </div>
+              </div>
+
+              <div class="triangle-fact">
+                <span class="emoji">💨</span>
+                <div>
+                  <b>
+                    <span class="en">Oxygen</span>
+                    <span class="ar">الأكسجين</span>
+                  </b><br>
+                  <span class="en">The gas that supports combustion. It is supplied mainly from air.</span>
+                  <span class="ar">الغاز الذي يدعم الاحتراق، ويوجد أساسًا في الهواء.</span>
+                </div>
+              </div>
+
+              <div class="triangle-fact">
+                <span class="emoji">⚡</span>
+                <div>
+                  <b>
+                    <span class="en">Thermal energy / ignition source</span>
+                    <span class="ar">الطاقة الحرارية / مصدر الاشتعال</span>
+                  </b><br>
+                  <span class="en">Heat, a spark, a flame, or friction that raises fuel to its ignition temperature.</span>
+                  <span class="ar">حرارة أو شرارة أو لهب أو احتكاك يرفع الوقود إلى درجة الاشتعال.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:22px">
+            <article class="info-card">
+              <div class="icon-circle">🌡️</div>
+              <h3>
+                <span class="en">Ignition Point / Ignition Temperature</span>
+                <span class="ar">درجة الاشتعال</span>
+              </h3>
+              <p>
+                <span class="en">
+                  The lowest temperature at which a substance begins to ignite and continues burning by itself.
+                </span>
+                <span class="ar">
+                  أقل درجة حرارة تبدأ عندها المادة في الاشتعال وتستمر في الاحتراق تلقائيًا.
+                </span>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-circle">🔥</div>
+              <h3>
+                <span class="en">Flammability</span>
+                <span class="ar">قابلية الاشتعال</span>
+              </h3>
+              <p>
+                <span class="en">
+                  A property that describes how easily and quickly a substance catches fire.
+                  Gasoline and alcohol are examples of flammable substances.
+                </span>
+                <span class="ar">
+                  خاصية توضح مدى سهولة وسرعة اشتعال المادة.
+                  ومن أمثلة المواد القابلة للاشتعال: البنزين والكحول.
+                </span>
+              </p>
+            </article>
+          </div>
+
+          <div class="experiment-layout">
+            <div class="cup-scene">
+              <div class="cup-unit empty">
+                <div class="paper-cup"></div>
+                <div class="tripod"></div>
+                <div class="flame"></div>
+                <div class="cup-label">
+                  <span class="en">Empty paper cup</span>
+                  <span class="ar">كوب ورقي فارغ</span>
+                </div>
+              </div>
+
+              <div class="cup-unit water">
+                <div class="paper-cup with-water"></div>
+                <div class="tripod"></div>
+                <div class="flame"></div>
+                <div class="cup-label">
+                  <span class="en">Paper cup with water</span>
+                  <span class="ar">كوب ورقي يحتوي ماء</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="color:var(--blue); margin-top:0">
+                <span class="en">Activity: Why does water delay burning?</span>
+                <span class="ar">نشاط: لماذا يؤخر الماء احتراق الورق؟</span>
+              </h3>
+
+              <div class="activity-steps">
+                <div class="step">
+                  <span class="step-num">1</span>
+                  <span class="en">Compare two paper cups: one empty and one containing water.</span>
+                  <span class="ar">قارن بين كوبين ورقيين: أحدهما فارغ والآخر يحتوي على ماء.</span>
+                </div>
+
+                <div class="step">
+                  <span class="step-num">2</span>
+                  <span class="en">The empty cup reaches its ignition temperature more quickly.</span>
+                  <span class="ar">يصل الكوب الفارغ إلى درجة الاشتعال بسرعة أكبر.</span>
+                </div>
+
+                <div class="step">
+                  <span class="step-num">3</span>
+                  <span class="en">Water absorbs much of the heat energy and keeps the paper cooler.</span>
+                  <span class="ar">يمتص الماء جزءًا كبيرًا من الطاقة الحرارية ويحافظ على برودة الورق.</span>
+                </div>
+
+                <div class="step">
+                  <span class="step-num">4</span>
+                  <span class="en">Therefore, the paper containing water stays below its ignition temperature for longer.</span>
+                  <span class="ar">لذلك يبقى الورق الذي يحتوي على ماء أقل من درجة اشتعاله لمدة أطول.</span>
+                </div>
+              </div>
+
+              <div class="callout warning">
+                <strong>
+                  <span class="en">Safety:</span>
+                  <span class="ar">الأمان:</span>
+                </strong>
+                <span class="en">
+                  This is a teacher-supervised laboratory demonstration only. Wear safety glasses,
+                  keep flammable materials away, and use suitable fire-extinguishing equipment.
+                </span>
+                <span class="ar">
+                  هذا نشاط عملي يتم فقط تحت إشراف المعلم. ارتدِ نظارات الأمان،
+                  وأبعد المواد القابلة للاشتعال، وجهز معدات إطفاء مناسبة.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout success">
+            <strong>
+              <span class="en">Important idea:</span>
+              <span class="ar">فكرة مهمة:</span>
+            </strong>
+            <span class="en">
+              If fuel, oxygen, or heat is removed, combustion stops. This is the scientific basis of fire control.
+            </span>
+            <span class="ar">
+              إذا تمت إزالة الوقود أو الأكسجين أو الحرارة، يتوقف الاحتراق.
+              وهذا هو الأساس العلمي للتحكم في الحرائق.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= MATCHES ========================= -->
+    <section id="matches">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 2</span>
+            <span class="ar">الجزء الثاني</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Lighting Matches and Combustion Reactions</span>
+            <span class="ar">إشعال أعواد الثقاب وتفاعلات الاحتراق</span>
+          </h2>
+
+          <div class="match-layout">
+            <div class="match-scene">
+              <div class="match-stick">
+                <div class="match-head"></div>
+                <div class="match-fire">🔥</div>
+              </div>
+
+              <div class="match-box">
+                <small>
+                  <span class="en">Rough striking surface</span>
+                  <span class="ar">سطح خشن للاحتكاك</span>
+                </small>
+              </div>
+            </div>
+
+            <div>
+              <div class="grid-2">
+                <article class="info-card">
+                  <div class="icon-circle">🧪</div>
+                  <h3>
+                    <span class="en">Match head contains</span>
+                    <span class="ar">رأس عود الثقاب يحتوي على</span>
+                  </h3>
+                  <ul>
+                    <li>
+                      <span class="en">An oxidizing agent such as potassium chlorate, KClO₃.</span>
+                      <span class="ar">عامل مؤكسد مثل كلورات البوتاسيوم KClO₃.</span>
+                    </li>
+                    <li>
+                      <span class="en">Flammable materials.</span>
+                      <span class="ar">مواد قابلة للاشتعال.</span>
+                    </li>
+                    <li>
+                      <span class="en">Adhesives and powdered glass or sand.</span>
+                      <span class="ar">مواد لاصقة ومسحوق زجاج أو رمل.</span>
+                    </li>
+                  </ul>
+                </article>
+
+                <article class="info-card">
+                  <div class="icon-circle">🟥</div>
+                  <h3>
+                    <span class="en">Side of the matchbox</span>
+                    <span class="ar">جانب علبة الثقاب</span>
+                  </h3>
+                  <p>
+                    <span class="en">
+                      It contains red phosphorus, adhesive materials, and abrasive particles.
+                    </span>
+                    <span class="ar">
+                      يحتوي على الفوسفور الأحمر ومواد لاصقة وجسيمات خشنة للاحتكاك.
+                    </span>
+                  </p>
+                </article>
+              </div>
+
+              <div class="callout">
+                <strong>
+                  <span class="en">How a safety match lights:</span>
+                  <span class="ar">كيف يشتعل عود الثقاب الآمن؟</span>
+                </strong>
+                <br>
+                <span class="en">
+                  Friction produces heat. A small amount of red phosphorus changes into more reactive white phosphorus,
+                  which ignites in air. Heat causes potassium chlorate to release oxygen, helping the match head and wood burn rapidly.
+                </span>
+                <span class="ar">
+                  يولد الاحتكاك حرارة. يتحول جزء صغير من الفوسفور الأحمر إلى الفوسفور الأبيض الأكثر نشاطًا،
+                  فيشتعل في الهواء. ثم تساعد الحرارة على تحلل كلورات البوتاسيوم وإطلاق الأكسجين،
+                  فيزداد احتراق رأس العود والخشب سرعة.
+                </span>
+              </div>
+
+              <div class="equation-box">
+                <span class="reaction">2KClO<sub>3</sub>(s) → 2KCl(s) + 3O<sub>2</sub>(g)</span>
+                <br>
+                <small>
+                  <span class="en">Thermal decomposition of potassium chlorate</span>
+                  <span class="ar">التحلل الحراري لكلورات البوتاسيوم</span>
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout danger">
+            <strong>
+              <span class="en">Combustion:</span>
+              <span class="ar">الاحتراق:</span>
+            </strong>
+            <span class="en">
+              is a chemical reaction between a substance and oxygen that releases heat, light, or both, and forms new substances.
+            </span>
+            <span class="ar">
+              هو تفاعل كيميائي بين مادة والأكسجين ينتج عنه حرارة أو ضوء أو كلاهما، وتتكون فيه مواد جديدة.
+            </span>
+          </div>
+
+          <div class="callout warning">
+            <strong>
+              <span class="en">Scientific correction:</span>
+              <span class="ar">تصحيح علمي:</span>
+            </strong>
+            <span class="en">
+              The correct chemical formula for potassium chlorate is KClO₃, not KCl₃.
+            </span>
+            <span class="ar">
+              الصيغة الكيميائية الصحيحة لكلورات البوتاسيوم هي KClO₃ وليست KCl₃.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= METALS & NONMETALS ========================= -->
+    <section id="metals">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 3</span>
+            <span class="ar">الجزء الثالث</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Combustion of Metals and Nonmetals</span>
+            <span class="ar">احتراق الفلزات واللافلزات</span>
+          </h2>
+
+          <p class="section-subtitle">
+            <span class="en">
+              Combustion products depend on the chemical nature of the burning material.
+              Metals commonly form basic oxides, while nonmetals commonly form acidic oxides.
+            </span>
+            <span class="ar">
+              تعتمد نواتج الاحتراق على الطبيعة الكيميائية للمادة المحترقة.
+              فالفلزات تكون غالبًا أكاسيد قاعدية، بينما تكون اللافلزات غالبًا أكاسيد حمضية.
+            </span>
+          </p>
+
+          <div class="burning-showcase">
+
+            <article class="metal-card">
+              <h3>
+                <span class="en">Magnesium burns in oxygen</span>
+                <span class="ar">احتراق الماغنسيوم في الأكسجين</span>
+              </h3>
+
+              <div class="mg-visual">
+                <div class="mg-strip"></div>
+                <div class="white-glow"></div>
+              </div>
+
+              <p>
+                <span class="en">
+                  Magnesium burns with a dazzling bright white light and forms a white powder of magnesium oxide.
+                </span>
+                <span class="ar">
+                  يحترق الماغنسيوم بلهب أبيض شديد اللمعان وينتج مسحوقًا أبيض من أكسيد الماغنسيوم.
+                </span>
+              </p>
+
+              <div class="equation-box">
+                <span class="reaction">2Mg(s) + O<sub>2</sub>(g) → 2MgO(s)</span>
+              </div>
+
+              <span class="oxide-badge basic-badge">
+                <span class="en">MgO = Basic metal oxide</span>
+                <span class="ar">MgO = أكسيد فلزي قاعدي</span>
+              </span>
+
+              <div class="callout danger">
+                <span class="en">
+                  Never stare directly at burning magnesium. Its intense light and ultraviolet radiation may damage the eyes.
+                </span>
+                <span class="ar">
+                  لا تنظر مباشرة إلى الماغنسيوم أثناء احتراقه. فالضوء الشديد والأشعة فوق البنفسجية قد تضر العين.
+                </span>
+              </div>
+            </article>
+
+            <article class="nonmetal-card">
+              <h3>
+                <span class="en">Carbon burns in oxygen</span>
+                <span class="ar">احتراق الكربون في الأكسجين</span>
+              </h3>
+
+              <div class="carbon-visual">
+                <div class="coal"></div>
+              </div>
+
+              <p>
+                <span class="en">
+                  Carbon in charcoal glows during combustion and forms carbon dioxide gas when oxygen is sufficient.
+                </span>
+                <span class="ar">
+                  يتوهج الكربون الموجود في الفحم أثناء الاحتراق، ويتكون غاز ثاني أكسيد الكربون عند توافر الأكسجين.
+                </span>
+              </p>
+
+              <div class="equation-box">
+                <span class="reaction">C(s) + O<sub>2</sub>(g) → CO<sub>2</sub>(g)</span>
+              </div>
+
+              <span class="oxide-badge acidic-badge">
+                <span class="en">CO₂ = Acidic nonmetal oxide</span>
+                <span class="ar">CO₂ = أكسيد لافلزي حمضي</span>
+              </span>
+
+              <div class="callout">
+                <span class="reaction">CO<sub>2</sub> + H<sub>2</sub>O ⇌ H<sub>2</sub>CO<sub>3</sub></span>
+                <br>
+                <span class="en">
+                  Carbon dioxide dissolves in water to form carbonic acid, so it has an acidic effect.
+                </span>
+                <span class="ar">
+                  يذوب ثاني أكسيد الكربون في الماء مكونًا حمض الكربونيك، ولذلك يكون له تأثير حمضي.
+                </span>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="grid-2" style="margin-top:20px">
+            <div class="callout success">
+              <strong>
+                <span class="en">Metal oxides:</span>
+                <span class="ar">أكاسيد الفلزات:</span>
+              </strong>
+              <span class="en">
+                many metal oxides are basic. Some react with water to produce alkaline solutions that turn red litmus blue.
+              </span>
+              <span class="ar">
+                كثير من أكاسيد الفلزات قاعدية. وبعضها يتفاعل مع الماء ليكون محاليل قلوية تحول ورق تباع الشمس الأحمر إلى الأزرق.
+              </span>
+            </div>
+
+            <div class="callout danger">
+              <strong>
+                <span class="en">Nonmetal oxides:</span>
+                <span class="ar">أكاسيد اللافلزات:</span>
+              </strong>
+              <span class="en">
+                many nonmetal oxides are acidic. They may dissolve in water to form acids that turn blue litmus red.
+              </span>
+              <span class="ar">
+                كثير من أكاسيد اللافلزات حمضية. وقد تذوب في الماء لتكوّن أحماضًا تحول ورق تباع الشمس الأزرق إلى الأحمر.
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= HYDROCARBONS ========================= -->
+    <section id="hydrocarbons">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 4</span>
+            <span class="ar">الجزء الرابع</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Hydrocarbons, Flame Color, and Combustion Efficiency</span>
+            <span class="ar">الهيدروكربونات ولون اللهب وكفاءة الاحتراق</span>
+          </h2>
+
+          <div class="grid-3">
+            <article class="info-card">
+              <div class="icon-circle">🧬</div>
+              <h3>
+                <span class="en">Hydrocarbons</span>
+                <span class="ar">الهيدروكربونات</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Compounds made mainly of carbon and hydrogen. Examples include methane, propane, and butane.
+                </span>
+                <span class="ar">
+                  مركبات تتكون أساسًا من الكربون والهيدروجين. ومن أمثلتها الميثان والبروبان والبيوتان.
+                </span>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-circle">🔥</div>
+              <h3>
+                <span class="en">Natural Gas</span>
+                <span class="ar">الغاز الطبيعي</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Natural gas consists mainly of methane, CH₄.
+                </span>
+                <span class="ar">
+                  يتكون الغاز الطبيعي أساسًا من غاز الميثان CH₄.
+                </span>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-circle">🟠</div>
+              <h3>
+                <span class="en">LPG</span>
+                <span class="ar">غاز البترول المسال LPG</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Liquefied petroleum gas is mainly a mixture of propane and butane.
+                </span>
+                <span class="ar">
+                  غاز البترول المسال يتكون غالبًا من خليط من البروبان والبيوتان.
+                </span>
+              </p>
+            </article>
+          </div>
+
+          <div class="burner-layout" style="margin-top:25px">
+
+            <div class="burner-scene">
+              <div class="burner" id="burnerVisual">
+                <div class="burner-flame"></div>
+                <div class="burner-neck"></div>
+                <div class="burner-tube"></div>
+                <div class="burner-base"></div>
+              </div>
+            </div>
+
+            <div class="air-panel">
+              <h3 style="color:var(--blue); margin:0">
+                <span class="en">Interactive Bunsen Burner Simulator</span>
+                <span class="ar">محاكاة تفاعلية لموقد بنسن</span>
+              </h3>
+
+              <p style="color:var(--muted); line-height:1.75; margin:0">
+                <span class="en">
+                  Move the air control to see the relation between oxygen supply, flame color, and combustion type.
+                </span>
+                <span class="ar">
+                  حرّك مؤشر الهواء لمشاهدة العلاقة بين كمية الأكسجين ولون اللهب ونوع الاحتراق.
+                </span>
+              </p>
+
+              <input type="range" min="0" max="100" value="90" id="airSlider">
+
+              <div class="air-readout" id="airReadout"></div>
+
+              <div class="callout warning">
+                <strong>
+                  <span class="en">Laboratory rule:</span>
+                  <span class="ar">قاعدة معملية:</span>
+                </strong>
+                <span class="en">
+                  This is a visual simulation. Real Bunsen burners should only be used with teacher supervision.
+                </span>
+                <span class="ar">
+                  هذه محاكاة مرئية. يجب استخدام موقد بنسن الحقيقي فقط تحت إشراف المعلم.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <table class="combustion-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="en">Feature</span>
+                  <span class="ar">الخاصية</span>
+                </th>
+                <th>
+                  <span class="en">Complete Combustion</span>
+                  <span class="ar">الاحتراق الكامل</span>
+                </th>
+                <th>
+                  <span class="en">Incomplete Combustion</span>
+                  <span class="ar">الاحتراق غير الكامل</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                  <span class="en">Oxygen amount</span>
+                  <span class="ar">كمية الأكسجين</span>
+                </td>
+                <td>
+                  <span class="en">Sufficient or abundant oxygen.</span>
+                  <span class="ar">أكسجين كافٍ أو وفير.</span>
+                </td>
+                <td>
+                  <span class="en">Insufficient oxygen.</span>
+                  <span class="ar">أكسجين غير كافٍ.</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span class="en">Flame color</span>
+                  <span class="ar">لون اللهب</span>
+                </td>
+                <td>
+                  <span class="en">Blue flame.</span>
+                  <span class="ar">لهب أزرق.</span>
+                </td>
+                <td>
+                  <span class="en">Yellow or orange flame.</span>
+                  <span class="ar">لهب أصفر أو برتقالي.</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span class="en">Main products</span>
+                  <span class="ar">النواتج الأساسية</span>
+                </td>
+                <td>
+                  <span class="formula">CO₂ + H₂O + energy</span>
+                </td>
+                <td>
+                  <span class="formula">CO and/or C (soot) + H₂O + less energy</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span class="en">Heating efficiency</span>
+                  <span class="ar">كفاءة التسخين</span>
+                </td>
+                <td>
+                  <span class="en">Higher efficiency and more heat energy.</span>
+                  <span class="ar">كفاءة أعلى وطاقة حرارية أكبر.</span>
+                </td>
+                <td>
+                  <span class="en">Lower efficiency and more pollution.</span>
+                  <span class="ar">كفاءة أقل وتلوث أكبر.</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span class="en">Soot on pans</span>
+                  <span class="ar">السناج على الأواني</span>
+                </td>
+                <td>
+                  <span class="en">No black soot deposit.</span>
+                  <span class="ar">لا يترسب سناج أسود.</span>
+                </td>
+                <td>
+                  <span class="en">Black soot may form on pots and test tubes.</span>
+                  <span class="ar">قد يتكون سناج أسود على الأواني وأنابيب الاختبار.</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="grid-3" style="margin-top:22px">
+
+            <article class="info-card">
+              <div class="icon-circle">🔵</div>
+              <h3>
+                <span class="en">Complete combustion of methane</span>
+                <span class="ar">الاحتراق الكامل للميثان</span>
+              </h3>
+
+              <div class="equation-box">
+                <span class="reaction">CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O + energy</span>
+              </div>
+
+              <p>
+                <span class="en">Occurs when sufficient oxygen is available.</span>
+                <span class="ar">يحدث عند توافر كمية كافية من الأكسجين.</span>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-circle">🟡</div>
+              <h3>
+                <span class="en">Incomplete combustion: carbon monoxide</span>
+                <span class="ar">الاحتراق غير الكامل: أول أكسيد الكربون</span>
+              </h3>
+
+              <div class="equation-box">
+                <span class="reaction">2CH<sub>4</sub> + 3O<sub>2</sub> → 2CO + 4H<sub>2</sub>O + energy</span>
+              </div>
+
+              <p>
+                <span class="en">Produces poisonous carbon monoxide when oxygen is limited.</span>
+                <span class="ar">ينتج أول أكسيد الكربون السام عندما يكون الأكسجين محدودًا.</span>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-circle">⚫</div>
+              <h3>
+                <span class="en">Incomplete combustion: soot</span>
+                <span class="ar">الاحتراق غير الكامل: السناج</span>
+              </h3>
+
+              <div class="equation-box">
+                <span class="reaction">CH<sub>4</sub> + O<sub>2</sub> → C(s) + 2H<sub>2</sub>O + energy</span>
+              </div>
+
+              <p>
+                <span class="en">Produces solid black carbon particles called soot.</span>
+                <span class="ar">ينتج جسيمات سوداء صلبة من الكربون تسمى السناج.</span>
+              </p>
+            </article>
+
+          </div>
+
+          <div class="reaction-row">
+            <div class="molecule-box">
+              <b>
+                <span class="en">For two methane molecules</span>
+                <span class="ar">لجزيئين من الميثان</span>
+              </b>
+              <div class="molecule-icons">⚫⚪⚪⚪⚪ &nbsp; ⚫⚪⚪⚪⚪</div>
+              <span class="formula">2CH₄</span>
+            </div>
+
+            <div class="reaction-arrow">→</div>
+
+            <div class="molecule-box">
+              <b>
+                <span class="en">Required oxygen molecules</span>
+                <span class="ar">عدد جزيئات الأكسجين المطلوبة</span>
+              </b>
+              <br>
+              <span class="formula">Complete: 4 O₂</span><br>
+              <span class="formula">CO product: 3 O₂</span><br>
+              <span class="formula">Soot product: 1 O₂</span>
+            </div>
+          </div>
+
+          <div class="callout success">
+            <strong>
+              <span class="en">Life application: domestic gas stove</span>
+              <span class="ar">تطبيق حياتي: موقد الغاز المنزلي</span>
+            </strong>
+            <br>
+            <span class="en">
+              A blue flame means efficient complete combustion. A yellow/orange flame suggests insufficient air,
+              incomplete combustion, soot formation, lower heating efficiency, and possible carbon monoxide production.
+              Burner openings should be cleaned and air intake adjusted by a trained adult or technician.
+            </span>
+            <span class="ar">
+              اللهب الأزرق يدل على احتراق كامل وكفاءة عالية. أما اللهب الأصفر أو البرتقالي فيشير إلى نقص الهواء
+              واحتراق غير كامل وتكوّن السناج وانخفاض كفاءة التسخين واحتمال تكون أول أكسيد الكربون.
+              يجب تنظيف فتحات الموقد وضبط دخول الهواء بواسطة شخص بالغ أو فني مختص.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PRODUCTS ========================= -->
+    <section id="products">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 5</span>
+            <span class="ar">الجزء الخامس</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Combustion Products and Their Detection</span>
+            <span class="ar">نواتج الاحتراق والكشف عنها</span>
+          </h2>
+
+          <p class="section-subtitle">
+            <span class="en">
+              Combustion products vary according to the chemical composition of the fuel
+              and the amount of oxygen available during burning.
+            </span>
+            <span class="ar">
+              تختلف نواتج الاحتراق حسب التركيب الكيميائي للوقود
+              وكمية الأكسجين المتاحة أثناء الاحتراق.
+            </span>
+          </p>
+
+          <div class="detection-layout">
+
+            <div class="apparatus">
+              <div class="mini-burner">
+                <div class="body"></div>
+                <div class="fire">🔥</div>
+              </div>
+
+              <div class="delivery-tube"></div>
+              <div class="ice-bath">
+                <span class="en">ice bath</span>
+                <span class="ar">حمام ثلجي</span>
+              </div>
+
+              <div class="test-tube"></div>
+
+              <div class="apparatus-label one">
+                <span class="en">burning hydrocarbon</span>
+                <span class="ar">هيدروكربون محترق</span>
+              </div>
+
+              <div class="apparatus-label two">
+                <span class="en">CoCl₂ paper</span>
+                <span class="ar">ورق CoCl₂</span>
+              </div>
+
+              <div class="apparatus-label three">
+                <span class="en">CO₂ test</span>
+                <span class="ar">اختبار CO₂</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="color:var(--blue); margin-top:0">
+                <span class="en">Detecting products of complete hydrocarbon combustion</span>
+                <span class="ar">الكشف عن نواتج الاحتراق الكامل للهيدروكربونات</span>
+              </h3>
+
+              <div class="callout">
+                <strong>
+                  <span class="en">Water vapor test:</span>
+                  <span class="ar">اختبار بخار الماء:</span>
+                </strong>
+                <br>
+                <span class="en">
+                  Ice cools the gases and condenses water vapor into liquid water.
+                  Anhydrous cobalt chloride paper changes from pale blue to pink when water is present.
+                </span>
+                <span class="ar">
+                  يعمل الثلج على تبريد الغازات وتكثيف بخار الماء إلى ماء سائل.
+                  يتحول ورق كلوريد الكوبالت اللامائي من الأزرق الباهت إلى الوردي عند وجود الماء.
+                </span>
+              </div>
+
+              <div class="equation-box">
+                <span class="reaction">CoCl<sub>2</sub>(blue) + H<sub>2</sub>O → hydrated CoCl<sub>2</sub>(pink)</span>
+              </div>
+
+              <div class="callout success">
+                <strong>
+                  <span class="en">Carbon dioxide test:</span>
+                  <span class="ar">اختبار ثاني أكسيد الكربون:</span>
+                </strong>
+                <br>
+                <span class="en">
+                  Clear limewater turns milky or turbid when carbon dioxide passes through it because solid calcium carbonate forms.
+                </span>
+                <span class="ar">
+                  يتحول ماء الجير الرائق إلى معكر أو لبني عند مرور ثاني أكسيد الكربون فيه بسبب تكون كربونات الكالسيوم الصلبة.
+                </span>
+              </div>
+
+              <div class="equation-box">
+                <span class="reaction">Ca(OH)<sub>2</sub>(aq) + CO<sub>2</sub>(g) → CaCO<sub>3</sub>(s)↓ + H<sub>2</sub>O(l)</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="product-grid">
+
+            <article class="product-card">
+              <div class="symbol">🌫️</div>
+              <h3>Carbon Dioxide — CO₂</h3>
+              <p>
+                <span class="en">
+                  Produced during complete combustion of carbon-containing fuels.
+                  It is colorless and odorless, does not support combustion, and forms carbonic acid in water.
+                </span>
+                <span class="ar">
+                  ينتج من الاحتراق الكامل للوقود المحتوي على الكربون.
+                  وهو غاز عديم اللون والرائحة، لا يدعم الاحتراق، ويكون حمض الكربونيك في الماء.
+                </span>
+              </p>
+              <p class="reaction">CO₂ + H₂O ⇌ H₂CO₃</p>
+            </article>
+
+            <article class="product-card">
+              <div class="symbol">☠️</div>
+              <h3>Carbon Monoxide — CO</h3>
+              <p>
+                <span class="en">
+                  Produced during incomplete combustion. It is colorless, odorless, and very toxic because it reduces blood oxygen transport.
+                </span>
+                <span class="ar">
+                  ينتج أثناء الاحتراق غير الكامل. وهو غاز عديم اللون والرائحة وشديد السمية لأنه يقلل نقل الأكسجين في الدم.
+                </span>
+              </p>
+            </article>
+
+            <article class="product-card">
+              <div class="symbol">💧</div>
+              <h3>
+                <span class="en">Water Vapor — H₂O</span>
+                <span class="ar">بخار الماء — H₂O</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Produced when hydrogen or hydrogen-containing fuels burn. It condenses into droplets when cooled.
+                </span>
+                <span class="ar">
+                  ينتج من احتراق الهيدروجين أو الوقود الذي يحتوي على الهيدروجين. ويتكثف إلى قطرات ماء عند التبريد.
+                </span>
+              </p>
+            </article>
+
+            <article class="product-card">
+              <div class="symbol">⚫</div>
+              <h3>
+                <span class="en">Soot — Carbon particles</span>
+                <span class="ar">السناج — جسيمات كربون</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Fine, solid, black particles formed in incomplete combustion. They settle on surfaces and pollute air.
+                </span>
+                <span class="ar">
+                  جسيمات سوداء دقيقة وصلبة تتكون في الاحتراق غير الكامل. تترسب على الأسطح وتلوث الهواء.
+                </span>
+              </p>
+            </article>
+
+            <article class="product-card">
+              <div class="symbol">🟨</div>
+              <h3>Sulfur Dioxide — SO₂</h3>
+              <p>
+                <span class="en">
+                  Produced when sulfur-containing fuels burn. It is colorless with a pungent odor and forms sulfurous acid in water.
+                </span>
+                <span class="ar">
+                  ينتج عند احتراق الوقود المحتوي على الكبريت. وهو غاز عديم اللون ذو رائحة نفاذة ويكون حمض الكبريتوز في الماء.
+                </span>
+              </p>
+              <p class="reaction">SO₂ + H₂O ⇌ H₂SO₃</p>
+            </article>
+
+            <article class="product-card">
+              <div class="symbol">🟤</div>
+              <h3>Nitrogen Oxides — NO and NO₂</h3>
+              <p>
+                <span class="en">
+                  High-temperature combustion can form colorless nitric oxide, NO. It reacts with oxygen to form reddish-brown nitrogen dioxide, NO₂.
+                </span>
+                <span class="ar">
+                  يمكن للاحتراق عند درجات الحرارة العالية أن يكون أول أكسيد النيتروجين NO عديم اللون.
+                  ويتفاعل مع الأكسجين مكونًا ثاني أكسيد النيتروجين NO₂ ذي اللون البني المحمر.
+                </span>
+              </p>
+              <p class="reaction">2NO + O₂ → 2NO₂</p>
+            </article>
+
+          </div>
+
+          <div class="grid-2" style="margin-top:22px">
+            <div class="callout danger">
+              <strong>
+                <span class="en">Nitrogen dioxide and acid rain:</span>
+                <span class="ar">ثاني أكسيد النيتروجين والأمطار الحمضية:</span>
+              </strong>
+              <br>
+              <span class="reaction">2NO₂ + H₂O → HNO₂ + HNO₃</span>
+              <br>
+              <span class="en">
+                Nitrogen dioxide can dissolve in water to produce nitrous acid and nitric acid.
+              </span>
+              <span class="ar">
+                يمكن أن يذوب ثاني أكسيد النيتروجين في الماء مكونًا حمض النيتروز وحمض النيتريك.
+              </span>
+            </div>
+
+            <div class="callout warning">
+              <strong>
+                <span class="en">Scientific correction:</span>
+                <span class="ar">تصحيح علمي:</span>
+              </strong>
+              <span class="en">
+                Sulfur dioxide dissolves in water mainly to form sulfurous acid, H₂SO₃.
+                Sulfuric acid, H₂SO₄, can form later after further oxidation in the atmosphere.
+              </span>
+              <span class="ar">
+                يذوب ثاني أكسيد الكبريت في الماء ليكون أساسًا حمض الكبريتوز H₂SO₃.
+                ويمكن أن يتكون حمض الكبريتيك H₂SO₄ لاحقًا بعد أكسدة إضافية في الغلاف الجوي.
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= POLLUTION ========================= -->
+    <section id="pollution">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 6</span>
+            <span class="ar">الجزء السادس</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Combustion Reactions and Environmental Pollution</span>
+            <span class="ar">تفاعلات الاحتراق والتلوث البيئي</span>
+          </h2>
+
+          <p class="section-subtitle">
+            <span class="en">
+              Incomplete combustion and uncontrolled burning release harmful gases and particles.
+              These emissions can cause health problems, smog, acid rain, and ecological imbalance.
+            </span>
+            <span class="ar">
+              يؤدي الاحتراق غير الكامل والحرق غير المنظم إلى إطلاق غازات وجسيمات ضارة.
+              وقد تسبب هذه الانبعاثات مشكلات صحية وضبابًا دخانيًا وأمطارًا حمضية واختلالًا بيئيًا.
+            </span>
+          </p>
+
+          <div class="pollution-grid">
+
+            <article class="pollution-card">
+              <div class="pollution-visual black-cloud-visual"></div>
+              <h3>
+                <span class="en">1. Burning Agricultural Waste</span>
+                <span class="ar">1. حرق المخلفات الزراعية</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Burning rice straw in large piles may have insufficient oxygen. This causes incomplete combustion and releases smoke, soot, CO, and CO₂.
+                </span>
+                <span class="ar">
+                  حرق قش الأرز في أكوام كبيرة قد يؤدي إلى نقص الأكسجين. فيحدث احتراق غير كامل وينتج دخان وسناج وCO وCO₂.
+                </span>
+              </p>
+              <p>
+                <span class="en">
+                  This dense smoke is called the “Black Cloud.” It can reduce visibility and increase breathing difficulties, asthma, and chest allergies.
+                </span>
+                <span class="ar">
+                  يسمى هذا الدخان الكثيف «السحابة السوداء». وقد يقلل الرؤية ويزيد صعوبة التنفس والربو وحساسية الصدر.
+                </span>
+              </p>
+            </article>
+
+            <article class="pollution-card">
+              <div class="pollution-visual car-visual"></div>
+              <h3>
+                <span class="en">2. Combustion in Car Engines</span>
+                <span class="ar">2. الاحتراق في محركات السيارات</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Fuel combustion produces thermal energy that is converted into mechanical energy to move cars.
+                </span>
+                <span class="ar">
+                  ينتج احتراق الوقود طاقة حرارية تتحول إلى طاقة ميكانيكية لتحريك السيارات.
+                </span>
+              </p>
+              <p>
+                <span class="en">
+                  Car exhaust can contain carbon monoxide, carbon dioxide, soot, and nitrogen oxides.
+                </span>
+                <span class="ar">
+                  قد يحتوي عادم السيارات على أول أكسيد الكربون وثاني أكسيد الكربون والسناج وأكاسيد النيتروجين.
+                </span>
+              </p>
+            </article>
+
+            <article class="pollution-card">
+              <div class="pollution-visual factory-visual"></div>
+              <h3>
+                <span class="en">3. Combustion in Industry</span>
+                <span class="ar">3. الاحتراق في الصناعة</span>
+              </h3>
+              <p>
+                <span class="en">
+                  Industries such as metal smelting, cement, glass production, and petroleum refining use large amounts of thermal energy.
+                </span>
+                <span class="ar">
+                  تستخدم صناعات مثل صهر المعادن وصناعة الأسمنت والزجاج وتكرير البترول كميات كبيرة من الطاقة الحرارية.
+                </span>
+              </p>
+              <p>
+                <span class="en">
+                  Power stations often burn fossil fuels to heat water, produce steam, and drive turbines connected to generators.
+                </span>
+                <span class="ar">
+                  تحرق محطات الطاقة غالبًا الوقود الأحفوري لتسخين الماء وإنتاج البخار وتشغيل التوربينات المتصلة بالمولدات.
+                </span>
+              </p>
+            </article>
+
+          </div>
+
+          <div class="technology-layout">
+
+            <article class="tech-card">
+              <div class="converter-visual">
+                <div class="pipe"></div>
+                <div class="converter-core"></div>
+              </div>
+
+              <h3>
+                <span class="en">Catalytic Converter in Cars</span>
+                <span class="ar">المحول الحفاز في السيارات</span>
+              </h3>
+
+              <p>
+                <span class="en">
+                  A catalytic converter reduces pollution from car exhaust. It contains catalysts that speed up chemical reactions without being consumed.
+                </span>
+                <span class="ar">
+                  يقلل المحول الحفاز من تلوث عادم السيارات. ويحتوي على عوامل حفازة تزيد سرعة التفاعلات الكيميائية دون أن تستهلك.
+                </span>
+              </p>
+
+              <p>
+                <span class="en">
+                  It changes harmful gases such as carbon monoxide and nitrogen oxides into safer substances such as carbon dioxide and nitrogen.
+                </span>
+                <span class="ar">
+                  يحول الغازات الضارة مثل أول أكسيد الكربون وأكاسيد النيتروجين إلى مواد أكثر أمانًا مثل ثاني أكسيد الكربون والنيتروجين.
+                </span>
+              </p>
+
+              <div class="equation-box">
+                <span class="reaction">2CO + O₂ → 2CO₂</span><br>
+                <span class="reaction">2CO + 2NO → 2CO₂ + N₂</span>
+              </div>
+            </article>
+
+            <article class="tech-card">
+              <div class="scrubber-visual">
+                <div class="scrubber-smoke">☁️</div>
+                <div class="scrubber-tower"></div>
+              </div>
+
+              <h3>
+                <span class="en">Acid Gas Scrubbers in Factories</span>
+                <span class="ar">أجهزة تنقية الغازات الحمضية في المصانع</span>
+              </h3>
+
+              <p>
+                <span class="en">
+                  Acid gas scrubbers pass factory gases through alkaline sprays. Acidic gases such as sulfur dioxide react with the alkaline solution.
+                </span>
+                <span class="ar">
+                  تمرر أجهزة تنقية الغازات الحمضية غازات المصانع خلال رذاذ قلوي.
+                  فتتفاعل الغازات الحمضية مثل ثاني أكسيد الكبريت مع المحلول القلوي.
+                </span>
+              </p>
+
+              <p class="reaction">SO₂ + Ca(OH)₂ → CaSO₃ + H₂O</p>
+
+              <p>
+                <span class="en">
+                  This neutralization reduces acid rain, smog, and harmful emissions.
+                </span>
+                <span class="ar">
+                  يقلل هذا التعادل من الأمطار الحمضية والضباب الدخاني والانبعاثات الضارة.
+                </span>
+              </p>
+            </article>
+
+          </div>
+
+          <div class="grid-2" style="margin-top:20px">
+            <div class="callout success">
+              <strong>
+                <span class="en">Ways to reduce car exhaust pollution:</span>
+                <span class="ar">طرق تقليل تلوث عادم السيارات:</span>
+              </strong>
+              <ul>
+                <li>
+                  <span class="en">Maintain engines regularly to improve combustion efficiency.</span>
+                  <span class="ar">صيانة المحركات بانتظام لتحسين كفاءة الاحتراق.</span>
+                </li>
+                <li>
+                  <span class="en">Use cleaner fuels such as natural gas where appropriate.</span>
+                  <span class="ar">استخدام وقود أنظف مثل الغاز الطبيعي عند الإمكان.</span>
+                </li>
+                <li>
+                  <span class="en">Use electric vehicles and environmentally friendly public transportation.</span>
+                  <span class="ar">استخدام السيارات الكهربائية ووسائل النقل العامة الصديقة للبيئة.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="callout success">
+              <strong>
+                <span class="en">Why is natural gas preferred over coal?</span>
+                <span class="ar">لماذا يفضل الغاز الطبيعي على الفحم؟</span>
+              </strong>
+              <br>
+              <span class="en">
+                Natural gas generally produces less carbon dioxide per unit of energy than coal,
+                and much lower sulfur oxide and particulate emissions. However, it is still a fossil fuel and still releases CO₂.
+              </span>
+              <span class="ar">
+                ينتج الغاز الطبيعي عادة كمية أقل من ثاني أكسيد الكربون لكل وحدة طاقة مقارنة بالفحم،
+                كما ينتج كميات أقل بكثير من أكاسيد الكبريت والجسيمات. لكنه ما زال وقودًا أحفوريًا وينتج CO₂.
+              </span>
+            </div>
+          </div>
+
+          <div class="callout warning">
+            <strong>
+              <span class="en">Cause and effect:</span>
+              <span class="ar">السبب والنتيجة:</span>
+            </strong>
+            <span class="en">
+              Increasing combustion processes → more harmful emissions → air pollution and ecological imbalance.
+              Replacing fossil fuels with solar and wind energy helps reduce pollution.
+            </span>
+            <span class="ar">
+              زيادة عمليات الاحتراق ← زيادة الانبعاثات الضارة ← تلوث الهواء واختلال بيئي.
+              يساعد استبدال الوقود الأحفوري بالطاقة الشمسية وطاقة الرياح على تقليل التلوث.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= STUDY ========================= -->
+    <section id="study">
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Part 7</span>
+            <span class="ar">الجزء السابع</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Study Zone: Terms, Questions, and Revision</span>
+            <span class="ar">منطقة المذاكرة: المصطلحات والأسئلة والمراجعة</span>
+          </h2>
+
+          <p class="section-subtitle">
+            <span class="en">
+              Review important scientific terms, answer multiple-choice questions,
+              and practice “Give reason” and “What happens when?” questions.
+            </span>
+            <span class="ar">
+              راجع المصطلحات العلمية المهمة، وأجب عن أسئلة الاختيار من متعدد،
+              وتدرب على أسئلة «علل» و«ماذا يحدث عندما؟».
+            </span>
+          </p>
+
+          <h3 style="color:var(--blue)">
+            <span class="en">Important Scientific Terms</span>
+            <span class="ar">أهم المصطلحات العلمية</span>
+          </h3>
+
+          <div class="term-grid" id="termGrid"></div>
+
+          <h3 style="color:var(--blue); margin-top:32px">
+            <span class="en">Interactive Multiple-Choice Quiz</span>
+            <span class="ar">اختبار اختيار من متعدد تفاعلي</span>
+          </h3>
+
+          <div class="quiz-grid" id="quizGrid"></div>
+
+          <div class="revision-grid">
+            <div>
+              <h3 style="color:var(--blue)">
+                <span class="en">Give Reason — Answer Bank</span>
+                <span class="ar">علل — بنك الإجابات</span>
+              </h3>
+              <div id="reasonList"></div>
+            </div>
+
+            <div>
+              <h3 style="color:var(--blue)">
+                <span class="en">What Happens When...? — Answer Bank</span>
+                <span class="ar">ماذا يحدث عندما؟ — بنك الإجابات</span>
+              </h3>
+              <div id="effectList"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= SUMMARY ========================= -->
+    <section>
+      <div class="container">
+        <div class="panel">
+
+          <div class="section-label">
+            <span class="en">Final Revision</span>
+            <span class="ar">مراجعة نهائية</span>
+          </div>
+
+          <h2 class="section-title">
+            <span class="en">Quick Lesson Summary</span>
+            <span class="ar">ملخص الدرس السريع</span>
+          </h2>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="emoji">🔥</span>
+              <b>
+                <span class="en">Fire Triangle</span>
+                <span class="ar">مثلث الاحتراق</span>
+              </b>
+              <small>
+                <span class="en">Fuel + oxygen + heat are essential for combustion.</span>
+                <span class="ar">الوقود والأكسجين والحرارة عناصر أساسية للاحتراق.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">🔵</span>
+              <b>
+                <span class="en">Blue Flame</span>
+                <span class="ar">اللهب الأزرق</span>
+              </b>
+              <small>
+                <span class="en">Means sufficient oxygen and complete combustion.</span>
+                <span class="ar">يدل على وجود أكسجين كافٍ واحتراق كامل.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">🟡</span>
+              <b>
+                <span class="en">Yellow Flame</span>
+                <span class="ar">اللهب الأصفر</span>
+              </b>
+              <small>
+                <span class="en">Means insufficient oxygen and possible soot/CO formation.</span>
+                <span class="ar">يدل على نقص الأكسجين واحتمال تكون السناج وCO.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">☠️</span>
+              <b>
+                <span class="en">Carbon Monoxide</span>
+                <span class="ar">أول أكسيد الكربون</span>
+              </b>
+              <small>
+                <span class="en">Colorless, odorless, and toxic gas from incomplete combustion.</span>
+                <span class="ar">غاز سام عديم اللون والرائحة ينتج من الاحتراق غير الكامل.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">🧪</span>
+              <b>
+                <span class="en">CO₂ Test</span>
+                <span class="ar">اختبار CO₂</span>
+              </b>
+              <small>
+                <span class="en">Carbon dioxide turns limewater milky.</span>
+                <span class="ar">ثاني أكسيد الكربون يحول ماء الجير إلى لبني.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">💧</span>
+              <b>
+                <span class="en">Water Test</span>
+                <span class="ar">اختبار الماء</span>
+              </b>
+              <small>
+                <span class="en">Cobalt chloride paper changes pale blue to pink.</span>
+                <span class="ar">يتحول ورق كلوريد الكوبالت من الأزرق الباهت إلى الوردي.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">🚗</span>
+              <b>
+                <span class="en">Catalytic Converter</span>
+                <span class="ar">المحول الحفاز</span>
+              </b>
+              <small>
+                <span class="en">Converts harmful exhaust gases into safer gases.</span>
+                <span class="ar">يحول غازات العادم الضارة إلى غازات أكثر أمانًا.</span>
+              </small>
+            </div>
+
+            <div class="summary-item">
+              <span class="emoji">🌞</span>
+              <b>
+                <span class="en">Clean Future</span>
+                <span class="ar">مستقبل أنظف</span>
+              </b>
+              <small>
+                <span class="en">Use renewable energy and reduce incomplete combustion.</span>
+                <span class="ar">استخدم الطاقة المتجددة وقلل الاحتراق غير الكامل.</span>
+              </small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <span class="en">🔥 Combustion Reactions & Environmental Pollution — Bilingual Visual Study Lesson</span>
+        <span class="ar">🔥 تفاعلات الاحتراق والتلوث البيئي — درس مراجعة مرئي ثنائي اللغة</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========================= BOTTOM BUTTONS ========================= -->
+  <div class="bottom-tools">
+    <button class="tool-btn active" id="englishBtn" onclick="switchLanguage('en')">English</button>
+    <button class="tool-btn" id="arabicBtn" onclick="switchLanguage('ar')">العربية</button>
+    <button class="tool-btn print" onclick="window.print()">🖨️</button>
+  </div>
+
+  <script>
+    /* ---------------- Language ---------------- */
+
+    function currentLang() {
+      return document.documentElement.lang === "ar" ? "ar" : "en";
+    }
+
+    function switchLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.getElementById("englishBtn").classList.toggle("active", lang === "en");
+      document.getElementById("arabicBtn").classList.toggle("active", lang === "ar");
+
+      document.title = lang === "ar"
+        ? "تفاعلات الاحتراق والتلوث البيئي"
+        : "Combustion Reactions and Environmental Pollution";
+
+      localStorage.setItem("combustionLanguage", lang);
+
+      renderStudyMaterials();
+      updateAirSimulation();
+    }
+
+    /* ---------------- Bunsen Simulator ---------------- */
+
+    const airSlider = document.getElementById("airSlider");
+    const burnerVisual = document.getElementById("burnerVisual");
+    const airReadout = document.getElementById("airReadout");
+
+    function updateAirSimulation() {
+      const air = Number(airSlider.value);
+      const ar = currentLang() === "ar";
+
+      if (air >= 55) {
+        burnerVisual.classList.remove("yellow");
+        airReadout.innerHTML = ar
+          ? "<b>🔵 كمية هواء كبيرة:</b><br>لهب أزرق — احتراق كامل — يتكون CO₂ وبخار الماء — حرارة أكبر — لا يتكون سناج غالبًا."
+          : "<b>🔵 High air supply:</b><br>Blue flame — complete combustion — CO₂ and water vapor form — more heat — usually no soot.";
+        airReadout.style.borderColor = "#1f68bb";
+      } else {
+        burnerVisual.classList.add("yellow");
+        airReadout.innerHTML = ar
+          ? "<b>🟡 كمية هواء قليلة:</b><br>لهب أصفر/برتقالي — احتراق غير كامل — قد يتكون CO والسناج — حرارة أقل — تلوث أكبر."
+          : "<b>🟡 Low air supply:</b><br>Yellow/orange flame — incomplete combustion — CO and soot may form — less heat — more pollution.";
+        airReadout.style.borderColor = "#ff922b";
+      }
+    }
+
+    airSlider.addEventListener("input", updateAirSimulation);
+
+    /* ---------------- Vocabulary ---------------- */
+
+    const vocabulary = [
+      ["Combustion Triangle", "مثلث الاحتراق", "Fuel + oxygen + heat required for combustion.", "الوقود + الأكسجين + الحرارة عناصر لازمة للاحتراق."],
+      ["Ignition Temperature", "درجة الاشتعال", "Lowest temperature at which a substance starts and continues burning.", "أقل درجة حرارة تبدأ عندها المادة في الاحتراق وتستمر فيه."],
+      ["Flammability", "قابلية الاشتعال", "How easily and quickly a substance catches fire.", "مدى سهولة وسرعة اشتعال المادة."],
+      ["Combustion", "الاحتراق", "Reaction with oxygen that releases heat/light and forms new substances.", "تفاعل مع الأكسجين ينتج حرارة أو ضوءًا ويكون مواد جديدة."],
+      ["Fuel", "الوقود", "The combustible material that burns.", "المادة القابلة للاحتراق التي تحترق."],
+      ["Ignition Source", "مصدر الاشتعال", "Heat, flame, spark, or friction that starts combustion.", "حرارة أو لهب أو شرارة أو احتكاك يبدأ الاحتراق."],
+      ["Oxygen", "الأكسجين", "Gas needed to support most combustion reactions.", "غاز لازم لدعم معظم تفاعلات الاحتراق."],
+      ["Complete Combustion", "الاحتراق الكامل", "Burning fuel with sufficient oxygen.", "احتراق الوقود في وجود أكسجين كافٍ."],
+      ["Incomplete Combustion", "الاحتراق غير الكامل", "Burning fuel with insufficient oxygen.", "احتراق الوقود في وجود أكسجين غير كافٍ."],
+      ["Carbon Monoxide (CO)", "أول أكسيد الكربون", "Colorless, odorless, toxic gas from incomplete combustion.", "غاز سام عديم اللون والرائحة ينتج من الاحتراق غير الكامل."],
+      ["Carbon Dioxide (CO₂)", "ثاني أكسيد الكربون", "Gas produced during complete combustion of carbon fuels.", "غاز ينتج من الاحتراق الكامل للوقود المحتوي على الكربون."],
+      ["Soot", "السناج", "Fine black particles of unburned carbon.", "جسيمات سوداء دقيقة من الكربون غير المحترق."],
+      ["Sulfur Dioxide (SO₂)", "ثاني أكسيد الكبريت", "Pungent gas produced when sulfur-containing fuels burn.", "غاز نفاذ ينتج عند احتراق الوقود المحتوي على الكبريت."],
+      ["Nitrogen Dioxide (NO₂)", "ثاني أكسيد النيتروجين", "Reddish-brown nitrogen oxide pollutant.", "غاز بني محمر من أكاسيد النيتروجين الملوثة."],
+      ["Nitric Oxide (NO)", "أول أكسيد النيتروجين", "Colorless gas that reacts with oxygen to form NO₂.", "غاز عديم اللون يتفاعل مع الأكسجين مكونًا NO₂."],
+      ["Carbonic Acid", "حمض الكربونيك", "H₂CO₃ formed when CO₂ dissolves in water.", "H₂CO₃ ويتكون عند ذوبان CO₂ في الماء."],
+      ["Sulfurous Acid", "حمض الكبريتوز", "H₂SO₃ formed when SO₂ dissolves in water.", "H₂SO₃ ويتكون عند ذوبان SO₂ في الماء."],
+      ["Nitrous & Nitric Acids", "حمضا النيتروز والنيتريك", "Acids formed when NO₂ dissolves in water.", "أحماض تتكون عند ذوبان NO₂ في الماء."],
+      ["Catalytic Converter", "المحول الحفاز", "Car device that converts harmful exhaust gases into safer substances.", "جهاز في السيارة يحول غازات العادم الضارة إلى مواد أكثر أمانًا."],
+      ["Catalyst", "العامل الحفاز", "Material that increases reaction rate without being consumed.", "مادة تزيد سرعة التفاعل دون أن تستهلك."],
+      ["Acid Gas Scrubber", "جهاز تنقية الغازات الحمضية", "Industrial device that removes acidic gases from emissions.", "جهاز صناعي يزيل الغازات الحمضية من الانبعاثات."],
+      ["Black Cloud", "السحابة السوداء", "Dense smoke from burning agricultural waste such as rice straw.", "دخان كثيف ينتج من حرق المخلفات الزراعية مثل قش الأرز."],
+      ["Car Exhaust", "عادم السيارات", "Mixture of gases and particles released from engines.", "خليط من الغازات والجسيمات الناتجة من محركات السيارات."],
+      ["Hydrocarbons", "الهيدروكربونات", "Compounds made mainly of carbon and hydrogen.", "مركبات تتكون أساسًا من الكربون والهيدروجين."],
+      ["Methane (CH₄)", "الميثان", "Main component of natural gas.", "المكون الرئيسي للغاز الطبيعي."],
+      ["Natural Gas", "الغاز الطبيعي", "A relatively cleaner fossil fuel made mainly of methane.", "وقود أحفوري أنظف نسبيًا ويتكون أساسًا من الميثان."],
+      ["LPG", "غاز البترول المسال", "Fuel mainly containing propane and butane.", "وقود يتكون غالبًا من البروبان والبيوتان."],
+      ["Magnesium Oxide (MgO)", "أكسيد الماغنسيوم", "White basic oxide formed when magnesium burns.", "أكسيد قاعدي أبيض يتكون عند احتراق الماغنسيوم."],
+      ["Water Vapor", "بخار الماء", "Gaseous water produced in hydrocarbon combustion.", "ماء في الحالة الغازية ينتج من احتراق الهيدروكربونات."],
+      ["Acid Rain", "الأمطار الحمضية", "Rain made acidic by gases such as SO₂ and NO₂.", "أمطار تصبح حمضية بسبب غازات مثل SO₂ وNO₂."]
+    ];
+
+    /* ---------------- Quiz ---------------- */
+
+    const quiz = [
+      {
+        en: "The combustion triangle consists of fuel, oxygen, and _____.",
+        ar: "يتكون مثلث الاحتراق من الوقود والأكسجين و_____.",
+        optionsEn: ["water", "heat", "carbon dioxide", "nitrogen"],
+        optionsAr: ["الماء", "الحرارة", "ثاني أكسيد الكربون", "النيتروجين"],
+        correct: 1,
+        explainEn: "Heat or an ignition source is the third side of the combustion triangle.",
+        explainAr: "الحرارة أو مصدر الاشتعال هو الضلع الثالث في مثلث الاحتراق."
+      },
+      {
+        en: "Water delays the burning of a paper cup because it _____.",
+        ar: "يؤخر الماء احتراق الكوب الورقي لأنه _____.",
+        optionsEn: ["produces oxygen", "absorbs heat", "burns quickly", "forms soot"],
+        optionsAr: ["ينتج الأكسجين", "يمتص الحرارة", "يحترق بسرعة", "يكون سناجًا"],
+        correct: 1,
+        explainEn: "Water absorbs heat and keeps paper below its ignition temperature.",
+        explainAr: "يمتص الماء الحرارة ويحافظ على الورق أقل من درجة اشتعاله."
+      },
+      {
+        en: "The oxidizing agent commonly found in a match head is:",
+        ar: "العامل المؤكسد الموجود غالبًا في رأس عود الثقاب هو:",
+        optionsEn: ["potassium chlorate", "sodium chloride", "carbon", "sand"],
+        optionsAr: ["كلورات البوتاسيوم", "كلوريد الصوديوم", "الكربون", "الرمل"],
+        correct: 0,
+        explainEn: "Potassium chlorate, KClO₃, releases oxygen when heated.",
+        explainAr: "تطلق كلورات البوتاسيوم KClO₃ الأكسجين عند التسخين."
+      },
+      {
+        en: "The blue flame of a Bunsen burner indicates:",
+        ar: "يدل اللهب الأزرق في موقد بنسن على:",
+        optionsEn: ["complete combustion", "incomplete combustion", "no combustion", "neutralization"],
+        optionsAr: ["احتراق كامل", "احتراق غير كامل", "عدم حدوث احتراق", "تعادل"],
+        correct: 0,
+        explainEn: "A blue flame appears when enough oxygen is available for complete combustion.",
+        explainAr: "يظهر اللهب الأزرق عند توافر أكسجين كافٍ لحدوث الاحتراق الكامل."
+      },
+      {
+        en: "The yellow flame usually forms because of:",
+        ar: "يتكون اللهب الأصفر غالبًا بسبب:",
+        optionsEn: ["excess oxygen", "lack of oxygen", "freezing", "high pressure"],
+        optionsAr: ["زيادة الأكسجين", "نقص الأكسجين", "التجمد", "الضغط العالي"],
+        correct: 1,
+        explainEn: "Insufficient oxygen causes incomplete combustion.",
+        explainAr: "يؤدي نقص الأكسجين إلى الاحتراق غير الكامل."
+      },
+      {
+        en: "Complete combustion of methane produces:",
+        ar: "ينتج عن الاحتراق الكامل للميثان:",
+        optionsEn: ["CO and H₂O", "CO₂ and H₂O", "C and H₂", "CO₂ and CO"],
+        optionsAr: ["CO وH₂O", "CO₂ وH₂O", "C وH₂", "CO₂ وCO"],
+        correct: 1,
+        explainEn: "CH₄ + 2O₂ → CO₂ + 2H₂O + energy.",
+        explainAr: "CH₄ + 2O₂ → CO₂ + 2H₂O + طاقة."
+      },
+      {
+        en: "How many oxygen molecules are required to completely burn two methane molecules?",
+        ar: "كم جزيئًا من الأكسجين يلزم للاحتراق الكامل لجزيئين من الميثان؟",
+        optionsEn: ["1", "2", "3", "4"],
+        optionsAr: ["1", "2", "3", "4"],
+        correct: 3,
+        explainEn: "2CH₄ + 4O₂ → 2CO₂ + 4H₂O.",
+        explainAr: "2CH₄ + 4O₂ → 2CO₂ + 4H₂O."
+      },
+      {
+        en: "Carbon monoxide is dangerous because it is:",
+        ar: "يعد أول أكسيد الكربون خطيرًا لأنه:",
+        optionsEn: ["colorless and toxic", "blue and harmless", "a liquid", "a metal"],
+        optionsAr: ["عديم اللون وسام", "أزرق وغير ضار", "سائل", "فلز"],
+        correct: 0,
+        explainEn: "CO is colorless, odorless, and toxic.",
+        explainAr: "غاز CO عديم اللون والرائحة وسام."
+      },
+      {
+        en: "Carbon dioxide turns limewater:",
+        ar: "يحول ثاني أكسيد الكربون ماء الجير إلى:",
+        optionsEn: ["milky", "blue", "green", "yellow"],
+        optionsAr: ["لبني", "أزرق", "أخضر", "أصفر"],
+        correct: 0,
+        explainEn: "Calcium carbonate precipitate makes limewater milky.",
+        explainAr: "يتكون راسب كربونات الكالسيوم فيجعل ماء الجير لبنيًا."
+      },
+      {
+        en: "Anhydrous cobalt chloride paper changes from pale blue to:",
+        ar: "يتحول ورق كلوريد الكوبالت اللامائي من الأزرق الباهت إلى:",
+        optionsEn: ["pink", "black", "green", "yellow"],
+        optionsAr: ["وردي", "أسود", "أخضر", "أصفر"],
+        correct: 0,
+        explainEn: "Water changes anhydrous cobalt chloride paper from blue to pink.",
+        explainAr: "يغير الماء ورق كلوريد الكوبالت اللامائي من الأزرق إلى الوردي."
+      },
+      {
+        en: "Sulfur dioxide dissolves in water to form:",
+        ar: "يذوب ثاني أكسيد الكبريت في الماء ليكون:",
+        optionsEn: ["carbonic acid", "sulfurous acid", "nitric acid", "hydrochloric acid"],
+        optionsAr: ["حمض الكربونيك", "حمض الكبريتوز", "حمض النيتريك", "حمض الهيدروكلوريك"],
+        correct: 1,
+        explainEn: "SO₂ + H₂O ⇌ H₂SO₃.",
+        explainAr: "SO₂ + H₂O ⇌ H₂SO₃."
+      },
+      {
+        en: "Nitrogen dioxide, NO₂, has which color?",
+        ar: "ما لون ثاني أكسيد النيتروجين NO₂؟",
+        optionsEn: ["reddish-brown", "white", "blue", "green"],
+        optionsAr: ["بني محمر", "أبيض", "أزرق", "أخضر"],
+        correct: 0,
+        explainEn: "NO₂ is a reddish-brown gas with an unpleasant odor.",
+        explainAr: "غاز NO₂ لونه بني محمر وله رائحة غير محببة."
+      },
+      {
+        en: "The main component of natural gas is:",
+        ar: "المكون الرئيسي للغاز الطبيعي هو:",
+        optionsEn: ["methane", "propane", "butane", "ethane"],
+        optionsAr: ["الميثان", "البروبان", "البيوتان", "الإيثان"],
+        correct: 0,
+        explainEn: "Natural gas is mainly methane, CH₄.",
+        explainAr: "يتكون الغاز الطبيعي أساسًا من الميثان CH₄."
+      },
+      {
+        en: "A catalytic converter changes harmful exhaust gases into:",
+        ar: "يحول المحول الحفاز غازات العادم الضارة إلى:",
+        optionsEn: ["safer substances", "more soot", "coal", "metals"],
+        optionsAr: ["مواد أكثر أمانًا", "مزيد من السناج", "فحم", "فلزات"],
+        correct: 0,
+        explainEn: "It converts gases such as CO and NOx into safer products.",
+        explainAr: "يحول غازات مثل CO وNOx إلى نواتج أكثر أمانًا."
+      },
+      {
+        en: "Which of the following is renewable energy?",
+        ar: "أي مما يلي مصدر للطاقة المتجددة؟",
+        optionsEn: ["solar energy", "coal", "diesel", "petroleum"],
+        optionsAr: ["الطاقة الشمسية", "الفحم", "الديزل", "البترول"],
+        correct: 0,
+        explainEn: "Solar and wind energy are renewable energy sources.",
+        explainAr: "الطاقة الشمسية وطاقة الرياح من مصادر الطاقة المتجددة."
+      }
+    ];
+
+    /* ---------------- Give Reason ---------------- */
+
+    const reasons = [
+      ["Why does water delay ignition of a paper cup?", "Because water absorbs heat energy and keeps the paper below its ignition temperature.", "لماذا يؤخر الماء اشتعال الكوب الورقي؟", "لأن الماء يمتص الطاقة الحرارية ويبقي الورق أقل من درجة اشتعاله."],
+      ["Why should goggles be worn when burning magnesium?", "Burning magnesium emits intense light and ultraviolet radiation that may damage the eyes.", "لماذا يجب ارتداء نظارات واقية عند حرق الماغنسيوم؟", "لأن احتراق الماغنسيوم ينتج ضوءًا شديدًا وأشعة فوق بنفسجية قد تضر العين."],
+      ["Why does magnesium burn with a dazzling white light?", "It is a highly exothermic reaction that releases much energy as heat and bright light.", "لماذا يحترق الماغنسيوم بلهب أبيض مبهر؟", "لأنه تفاعل طارد للحرارة جدًا يطلق طاقة كبيرة في صورة حرارة وضوء شديد."],
+      ["Why does a Bunsen burner flame turn blue when the air hole is open?", "More oxygen mixes with the gas, causing complete combustion.", "لماذا يصبح لهب موقد بنسن أزرق عند فتح فتحة الهواء؟", "لأن كمية أكبر من الأكسجين تختلط بالغاز فيحدث احتراق كامل."],
+      ["Why does a yellow flame produce soot?", "Insufficient oxygen causes incomplete combustion and leaves carbon particles.", "لماذا ينتج اللهب الأصفر سناجًا؟", "لأن نقص الأكسجين يؤدي إلى احتراق غير كامل ويترك جسيمات كربون."],
+      ["Why does complete combustion produce more heat than incomplete combustion?", "The fuel is oxidized more completely to CO₂ and H₂O, releasing more energy.", "لماذا ينتج الاحتراق الكامل حرارة أكبر من الاحتراق غير الكامل؟", "لأن الوقود يتأكسد بصورة أكثر اكتمالًا إلى CO₂ وH₂O فيطلق طاقة أكبر."],
+      ["Why is carbon monoxide dangerous?", "It is toxic and reduces the ability of blood to transport oxygen.", "لماذا يعد أول أكسيد الكربون خطيرًا؟", "لأنه سام ويقلل قدرة الدم على نقل الأكسجين."],
+      ["Why does limewater turn milky with carbon dioxide?", "Insoluble calcium carbonate precipitate forms.", "لماذا يتحول ماء الجير إلى لبني عند مرور ثاني أكسيد الكربون؟", "لأن راسب كربونات الكالسيوم غير الذائب يتكون."],
+      ["Why is ice placed around the delivery tube in combustion experiments?", "To cool gases and condense water vapor into liquid water.", "لماذا يوضع الثلج حول أنبوب التوصيل في تجارب الاحتراق؟", "لتبريد الغازات وتكثيف بخار الماء إلى ماء سائل."],
+      ["Why does cobalt chloride paper change from blue to pink?", "It reacts with water and becomes hydrated.", "لماذا يتحول ورق كلوريد الكوبالت من الأزرق إلى الوردي؟", "لأنه يتفاعل مع الماء ويصبح مميهًا."],
+      ["Why does burning rice straw cause the Black Cloud?", "Large piles have limited oxygen, so incomplete combustion releases soot, CO, and smoke.", "لماذا يسبب حرق قش الأرز السحابة السوداء؟", "لأن الأكوام الكبيرة تعاني من نقص الأكسجين فيحدث احتراق غير كامل وينتج سناج وCO ودخان."],
+      ["Why does car exhaust pollute the environment?", "It can contain CO, CO₂, soot, and nitrogen oxides.", "لماذا يلوث عادم السيارات البيئة؟", "لأنه قد يحتوي على CO وCO₂ والسناج وأكاسيد النيتروجين."],
+      ["Why should car engines be maintained regularly?", "Maintenance improves combustion efficiency and reduces harmful emissions.", "لماذا يجب صيانة محركات السيارات بانتظام؟", "لأن الصيانة تحسن كفاءة الاحتراق وتقلل الانبعاثات الضارة."],
+      ["Why is natural gas preferred over coal?", "It generally produces less CO₂ per energy unit and much lower sulfur oxides and particles.", "لماذا يفضل الغاز الطبيعي على الفحم؟", "لأنه ينتج غالبًا CO₂ أقل لكل وحدة طاقة وكميات أقل من أكاسيد الكبريت والجسيمات."],
+      ["Why are catalytic converters installed in cars?", "They convert harmful exhaust gases into safer products.", "لماذا يتم تركيب المحولات الحفازة في السيارات؟", "لأنها تحول غازات العادم الضارة إلى نواتج أكثر أمانًا."],
+      ["Why are acid gas scrubbers installed in factories?", "They remove acidic gases such as SO₂ and reduce acid rain and pollution.", "لماذا تركب أجهزة تنقية الغازات الحمضية في المصانع؟", "لأنها تزيل الغازات الحمضية مثل SO₂ وتقلل الأمطار الحمضية والتلوث."],
+      ["Why does sulfur dioxide contribute to acid rain?", "It dissolves in water to form sulfurous acid and can be further oxidized in air.", "لماذا يساهم ثاني أكسيد الكبريت في الأمطار الحمضية؟", "لأنه يذوب في الماء مكونًا حمض الكبريتوز ويمكن أن يتأكسد أكثر في الهواء."],
+      ["Why are nitrogen oxides harmful pollutants?", "They contribute to smog, acid rain, and respiratory problems.", "لماذا تعد أكاسيد النيتروجين ملوثات ضارة؟", "لأنها تساهم في الضباب الدخاني والأمطار الحمضية ومشكلات التنفس."],
+      ["Why should incomplete combustion be avoided?", "It produces toxic CO, soot, less heat, and more pollution.", "لماذا يجب تجنب الاحتراق غير الكامل؟", "لأنه ينتج CO السام والسناج وحرارة أقل وتلوثًا أكبر."],
+      ["Why do renewable energy sources reduce pollution?", "They reduce the need to burn fossil fuels and lower harmful emissions.", "لماذا تقلل مصادر الطاقة المتجددة التلوث؟", "لأنها تقلل الحاجة لحرق الوقود الأحفوري وتخفض الانبعاثات الضارة."]
+    ];
+
+    /* ---------------- What Happens ---------------- */
+
+    const effects = [
+      ["One side of the combustion triangle is removed.", "Combustion stops because fuel, oxygen, or heat is missing.", "يتم إزالة ضلع واحد من مثلث الاحتراق.", "يتوقف الاحتراق لأن الوقود أو الأكسجين أو الحرارة غير موجود."],
+      ["A paper cup contains water before heating.", "The water absorbs heat, so the paper reaches ignition temperature more slowly.", "يحتوي الكوب الورقي على ماء قبل التسخين.", "يمتص الماء الحرارة فيصل الورق إلى درجة الاشتعال ببطء أكبر."],
+      ["A match is struck against the rough surface.", "Friction produces heat, phosphorus ignites, and potassium chlorate helps release oxygen.", "يتم حك عود ثقاب في السطح الخشن.", "ينتج الاحتكاك حرارة ويشتعل الفوسفور وتساعد كلورات البوتاسيوم في إطلاق الأكسجين."],
+      ["Magnesium burns in oxygen.", "A bright white flame appears and white magnesium oxide forms.", "يحترق الماغنسيوم في الأكسجين.", "يظهر لهب أبيض شديد ويتكون أكسيد الماغنسيوم الأبيض."],
+      ["Carbon burns in sufficient oxygen.", "Carbon dioxide gas forms.", "يحترق الكربون في أكسجين كافٍ.", "يتكون غاز ثاني أكسيد الكربون."],
+      ["Methane burns in sufficient oxygen.", "CO₂, water vapor, and a large amount of heat are produced.", "يحترق الميثان في أكسجين كافٍ.", "يتكون CO₂ وبخار ماء وكمية كبيرة من الحرارة."],
+      ["Methane burns with insufficient oxygen.", "CO and/or soot forms with water vapor, and less heat is released.", "يحترق الميثان مع نقص الأكسجين.", "يتكون CO و/أو سناج مع بخار ماء وتنتج حرارة أقل."],
+      ["The Bunsen burner air hole is fully opened.", "A blue flame appears and combustion is more complete.", "تفتح فتحة هواء موقد بنسن بالكامل.", "يظهر لهب أزرق ويكون الاحتراق أكثر اكتمالًا."],
+      ["The Bunsen burner air hole is partially closed.", "A yellow flame appears and soot may form.", "تغلق فتحة هواء موقد بنسن جزئيًا.", "يظهر لهب أصفر وقد يتكون السناج."],
+      ["Carbon dioxide passes through limewater.", "Limewater becomes milky because CaCO₃ precipitate forms.", "يمر ثاني أكسيد الكربون خلال ماء الجير.", "يتحول ماء الجير إلى لبني بسبب تكوّن راسب CaCO₃."],
+      ["Water vapor passes over anhydrous cobalt chloride paper.", "The paper changes from pale blue to pink.", "يمر بخار الماء فوق ورق كلوريد الكوبالت اللامائي.", "يتحول الورق من الأزرق الباهت إلى الوردي."],
+      ["Rice straw is burned in large piles.", "Incomplete combustion may release dense smoke, soot, CO, and CO₂, forming the Black Cloud.", "يحرق قش الأرز في أكوام كبيرة.", "قد يحدث احتراق غير كامل وينتج دخان كثيف وسناج وCO وCO₂ مكونًا السحابة السوداء."],
+      ["Car engines operate inefficiently.", "Incomplete combustion increases harmful exhaust emissions.", "تعمل محركات السيارات بكفاءة منخفضة.", "يزداد الاحتراق غير الكامل والانبعاثات الضارة."],
+      ["A catalytic converter is installed in a car.", "CO and nitrogen oxides are converted into safer substances.", "يتم تركيب محول حفاز في سيارة.", "يتحول CO وأكاسيد النيتروجين إلى مواد أكثر أمانًا."],
+      ["Factory gases pass through acid gas scrubbers.", "Acidic gases react with alkaline solutions, reducing pollution and acid rain.", "تمر غازات المصنع خلال أجهزة تنقية الغازات الحمضية.", "تتفاعل الغازات الحمضية مع المحاليل القلوية فيقل التلوث والأمطار الحمضية."],
+      ["Sulfur-containing fuel burns.", "Sulfur dioxide, SO₂, may be produced.", "يحترق وقود يحتوي على الكبريت.", "قد ينتج ثاني أكسيد الكبريت SO₂."],
+      ["Nitrogen reacts during high-temperature combustion.", "NO may form, then react with oxygen to form NO₂.", "يتفاعل النيتروجين أثناء الاحتراق عند درجة حرارة مرتفعة.", "قد يتكون NO ثم يتفاعل مع الأكسجين ليكون NO₂."],
+      ["Coal is replaced with natural gas in factories.", "Sulfur oxide and particulate emissions decrease, and CO₂ emissions per energy unit are often lower.", "يستبدل الفحم بالغاز الطبيعي في المصانع.", "تقل أكاسيد الكبريت والجسيمات وتكون انبعاثات CO₂ لكل وحدة طاقة أقل غالبًا."],
+      ["Renewable energy replaces fossil fuels.", "Combustion emissions and air pollution decrease.", "تستبدل الطاقة المتجددة بالوقود الأحفوري.", "تقل انبعاثات الاحتراق وتلوث الهواء."],
+      ["Incomplete combustion is replaced by complete combustion.", "Less CO and soot form, while heat efficiency increases.", "يستبدل الاحتراق غير الكامل بالاحتراق الكامل.", "يتكون CO وسناج أقل وتزداد كفاءة الحرارة."]
+    ];
+
+    /* ---------------- Render Study Materials ---------------- */
+
+    function renderStudyMaterials() {
+      const ar = currentLang() === "ar";
+
+      const termGrid = document.getElementById("termGrid");
+      termGrid.innerHTML = vocabulary.map((item, index) => `
+        <article class="term-card">
+          <div class="number">${index + 1}</div>
+          <h3>${ar ? item[1] : item[0]}</h3>
+          <p>${ar ? item[3] : item[2]}</p>
+        </article>
+      `).join("");
+
+      const quizGrid = document.getElementById("quizGrid");
+      quizGrid.innerHTML = quiz.map((q, index) => {
+        const options = ar ? q.optionsAr : q.optionsEn;
+        return `
+          <article class="quiz-card" data-question="${index}">
+            <div class="quiz-number">${ar ? "السؤال" : "Question"} ${index + 1}</div>
+            <h3>${ar ? q.ar : q.en}</h3>
+            <div class="choices">
+              ${options.map((option, optionIndex) => `
+                <button class="choice" data-option="${optionIndex}" ${optionIndex === q.correct ? 'data-correct="true"' : ''}>
+                  ${String.fromCharCode(65 + optionIndex)}. ${option}
+                </button>
+              `).join("")}
+            </div>
+            <div class="feedback">
+              ${ar ? q.explainAr : q.explainEn}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      const reasonList = document.getElementById("reasonList");
+      reasonList.innerHTML = reasons.map((item, index) => `
+        <details>
+          <summary>${index + 1}. ${ar ? item[2] : item[0]}</summary>
+          <p><b>${ar ? "الإجابة:" : "Answer:"}</b> ${ar ? item[3] : item[1]}</p>
+        </details>
+      `).join("");
+
+      const effectList = document.getElementById("effectList");
+      effectList.innerHTML = effects.map((item, index) => `
+        <details>
+          <summary>${index + 1}. ${ar ? item[2] : item[0]}</summary>
+          <p><b>${ar ? "النتيجة:" : "Result:"}</b> ${ar ? item[3] : item[1]}</p>
+        </details>
+      `).join("");
+    }
+
+    /* ---------------- Quiz Events ---------------- */
+
+    document.addEventListener("click", function(event) {
+      const button = event.target.closest(".choice");
+      if (!button) return;
+
+      const card = button.closest(".quiz-card");
+      const buttons = card.querySelectorAll(".choice");
+      const feedback = card.querySelector(".feedback");
+
+      if (card.dataset.answered === "true") return;
+
+      card.dataset.answered = "true";
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = "default";
+
+        if (btn.dataset.correct === "true") {
+          btn.classList.add("correct");
+        }
+      });
+
+      if (button.dataset.correct !== "true") {
+        button.classList.add("wrong");
+      }
+
+      feedback.classList.add("show");
+    });
+
+    /* ---------------- Start ---------------- */
+
+    const savedLanguage = localStorage.getItem("combustionLanguage");
+    if (savedLanguage === "ar") {
+      document.documentElement.lang = "ar";
+      document.documentElement.dir = "rtl";
+      document.getElementById("englishBtn").classList.remove("active");
+      document.getElementById("arabicBtn").classList.add("active");
+    }
+
+    renderStudyMaterials();
+    updateAirSimulation();
+  </script>
+
+</body>
+</html>

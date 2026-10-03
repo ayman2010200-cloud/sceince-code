@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Types of Chemical Reactions | أنواع التفاعلات الكيميائية</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1565c0;--dark:#0d3b66;--red:#d32f2f;--green:#2e7d32;--amber:#ff8f00;
+--purple:#6a1b9a;--teal:#00838f;--bg:#eef4fb;--card:#fff;--line:#cfd8dc}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:#123;line-height:1.8;padding-bottom:70px}
+body.ar{direction:rtl;font-family:"Tajawal","Cairo","Segoe UI",Tahoma,Arial,sans-serif}
+body.ar .eq,body.ar table.ltr,body.ar .series{direction:ltr}
+.wrap{max-width:1150px;margin:auto;padding:12px}
+
+header{background:linear-gradient(135deg,#0d3b66,#1565c0 45%,#00acc1);color:#fff;padding:32px 20px;
+text-align:center;border-bottom:8px solid var(--amber);position:relative;overflow:hidden}
+header h1{font-size:2rem;text-shadow:2px 3px 6px #0006}
+header h2{font-size:1.2rem;margin-top:8px;color:#ffe082}
+.badge{display:inline-block;margin-top:12px;background:#fff;color:var(--dark);padding:6px 18px;
+border-radius:30px;font-weight:bold;box-shadow:0 4px 10px #0004}
+.bubbles span{position:absolute;bottom:-40px;background:#ffffff55;border-radius:50%;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-320px);opacity:0}}
+
+/* LANG BUTTONS */
+#langTop{position:absolute;top:14px;inset-inline-end:16px;z-index:9}
+#langFloat{position:fixed;bottom:18px;inset-inline-end:18px;z-index:99}
+.langbtn{background:#ffca28;color:#000;border:3px solid #fff;border-radius:40px;padding:10px 20px;
+font-weight:bold;font-size:1rem;cursor:pointer;box-shadow:0 5px 14px #0005;transition:.2s}
+.langbtn:hover{background:#fff;transform:scale(1.06)}
+
+nav{background:var(--dark);position:sticky;top:0;z-index:50;box-shadow:0 3px 8px #0005}
+nav ul{display:flex;flex-wrap:wrap;justify-content:center;list-style:none}
+nav a{display:block;color:#fff;text-decoration:none;padding:10px 13px;font-size:.88rem;font-weight:600}
+nav a:hover{background:var(--amber);color:#000}
+
+section{background:var(--card);margin:24px 0;border-radius:16px;padding:20px;box-shadow:0 6px 18px #0002;border-top:6px solid var(--blue)}
+.t-green{border-top-color:var(--green)}.t-amber{border-top-color:var(--amber)}
+.t-purple{border-top-color:var(--purple)}.t-red{border-top-color:var(--red)}.t-teal{border-top-color:var(--teal)}
+h3.title{font-size:1.4rem;color:var(--dark);border-bottom:3px dashed var(--amber);padding-bottom:8px;margin-bottom:14px}
+h4{color:var(--red);margin:14px 0 8px;font-size:1.1rem}
+h5{color:var(--purple);margin:12px 0 6px}
+ul.bul,ol.bul{margin:8px 0 8px 26px}body.ar ul.bul,body.ar ol.bul{margin:8px 26px 8px 0}
+ul.bul li,ol.bul li{margin:5px 0}
+.def{background:#fffde7;border-inline-start:8px solid var(--amber);padding:13px 15px;border-radius:10px;margin:12px 0}
+.note{background:#e3f2fd;border-inline-start:8px solid var(--blue);padding:12px 15px;border-radius:10px;margin:12px 0}
+.warn{background:#ffebee;border-inline-start:8px solid var(--red);padding:12px 15px;border-radius:10px;margin:12px 0}
+.ok{background:#e8f5e9;border-inline-start:8px solid var(--green);padding:12px 15px;border-radius:10px;margin:12px 0}
+.life{background:#f3e5f5;border-inline-start:8px solid var(--purple);padding:12px 15px;border-radius:10px;margin:12px 0}
+.eq{font-family:Consolas,monospace;font-size:1.1rem;background:#0d3b66;color:#fff;padding:11px 14px;
+border-radius:10px;margin:10px 0;text-align:center;overflow-x:auto}
+.eq .r{color:#ff8a80}.eq .p{color:#a5d6a7}.eq .a{color:#ffd54f}
+sub,sup{font-size:.72em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.94rem;background:#fff}
+th{background:var(--dark);color:#fff;padding:9px;border:1px solid #90a4ae}
+td{padding:8px;border:1px solid #b0bec5;vertical-align:top}
+tr:nth-child(even) td{background:#f3f8fd}
+.activity{border:3px solid var(--teal);border-radius:14px;padding:15px;margin:16px 0;background:#e0f7fa55}
+.activity h4{color:var(--teal);margin-top:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.mini{background:#fff;border:2px solid var(--line);border-radius:12px;padding:11px;text-align:center}
+.mini b{display:block;color:var(--blue);margin-bottom:5px}
+.typecard{border-radius:14px;padding:14px;color:#fff;text-align:center;font-weight:bold;box-shadow:0 5px 12px #0003}
+.tc1{background:linear-gradient(135deg,#43a047,#1b5e20)}.tc2{background:linear-gradient(135deg,#fb8c00,#e65100)}
+.tc3{background:linear-gradient(135deg,#1e88e5,#0d47a1)}.tc4{background:linear-gradient(135deg,#8e24aa,#4a148c)}
+.tc5{background:linear-gradient(135deg,#d81b60,#880e4f)}
+.typecard small{display:block;font-weight:normal;margin-top:6px;font-family:monospace;font-size:.95rem;direction:ltr}
+.flipwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px;margin:14px 0}
+.flip{perspective:900px;height:155px;cursor:pointer}
+.flipin{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.flip.on .flipin{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;
+justify-content:center;padding:12px;text-align:center;font-weight:bold;box-shadow:0 4px 10px #0003}
+.front{background:linear-gradient(135deg,#1565c0,#0d3b66);color:#fff}
+.back{background:linear-gradient(135deg,#ffca28,#ff8f00);color:#000;transform:rotateY(180deg);font-size:.9rem}
+.series{display:flex;flex-direction:column;gap:3px;max-width:430px;margin:14px auto}
+.series div{padding:6px 12px;border-radius:6px;color:#fff;font-weight:bold;display:flex;justify-content:space-between;font-size:.92rem}
+.hy{background:#000!important;border:3px solid #ffd54f}
+.q{background:#fafafa;border:2px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.opt{display:block;background:#fff;border:2px solid #b0bec5;border-radius:8px;padding:8px 10px;margin:6px 0;cursor:pointer}
+.opt:hover{background:#e3f2fd}.opt.right{background:#c8e6c9;border-color:#2e7d32}.opt.wrong{background:#ffcdd2;border-color:#c62828}
+details{background:#fff8e1;border:2px solid var(--amber);border-radius:10px;padding:10px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:bold;color:var(--dark)}
+.chip{display:inline-block;background:#e0f7fa;border:2px solid var(--teal);border-radius:20px;padding:3px 12px;margin:3px;font-size:.85rem;font-weight:bold;color:var(--dark)}
+@keyframes bub{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-70px);opacity:0}}
+.bcircle{animation:bub 2s linear infinite}
+@keyframes flick{0%,100%{opacity:1}50%{opacity:.55}}.flame{animation:flick .5s infinite}
+footer{text-align:center;background:var(--dark);color:#fff;padding:22px;margin-top:26px}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="bubbles">
+  <span style="left:8%;width:18px;height:18px;animation-duration:6s"></span>
+  <span style="left:25%;width:12px;height:12px;animation-duration:8s"></span>
+  <span style="left:50%;width:22px;height:22px;animation-duration:7s"></span>
+  <span style="left:72%;width:14px;height:14px;animation-duration:9s"></span>
+  <span style="left:88%;width:20px;height:20px;animation-duration:6.5s"></span>
+ </div>
+ <div id="langTop"><button class="langbtn" onclick="toggleLang()" id="btn1">🌐 العربية</button></div>
+ <h1 data-en="⚗️ UNIT 1 — Chemical Reactions and Their Environmental Effects"
+     data-ar="⚗️ الوحدة الأولى — التفاعلات الكيميائية وتأثيراتها البيئية"></h1>
+ <h2 data-en="Lesson 1 : The Types of Chemical Reaction"
+     data-ar="الدرس الأول : أنواع التفاعل الكيميائي"></h2>
+ <div class="badge" data-en="3rd Prep • Science • Mr / Ayman Mansour"
+      data-ar="الصف الثالث الإعدادي • علوم • بروف / ايمن منصور"></div>
+</header>
+
+<div id="langFloat"><button class="langbtn" onclick="toggleLang()" id="btn2">🌐 العربية</button></div>
+
+<nav><ul>
+ <li><a href="#intro" data-en="Intro" data-ar="مقدمة"></a></li>
+ <li><a href="#def" data-en="Chemical Reaction" data-ar="التفاعل الكيميائي"></a></li>
+ <li><a href="#types" data-en="Main Types" data-ar="أنواع التفاعلات"></a></li>
+ <li><a href="#comb" data-en="1• Combination" data-ar="١• الاتحاد المباشر"></a></li>
+ <li><a href="#dec" data-en="2• Decomposition" data-ar="٢• التحلل"></a></li>
+ <li><a href="#sing" data-en="3• Single Sub." data-ar="٣• الإحلال البسيط"></a></li>
+ <li><a href="#series" data-en="Activity Series" data-ar="متسلسلة النشاط"></a></li>
+ <li><a href="#water" data-en="Metal + Water" data-ar="فلز + ماء"></a></li>
+ <li><a href="#salt" data-en="Metal + Salt" data-ar="فلز + محلول ملح"></a></li>
+ <li><a href="#doub" data-en="4• Double Sub." data-ar="٤• الإحلال المزدوج"></a></li>
+ <li><a href="#redox" data-en="5• Redox" data-ar="٥• الأكسدة والاختزال"></a></li>
+ <li><a href="#summary" data-en="Summary" data-ar="الملخص"></a></li>
+ <li><a href="#bank" data-en="Question Bank" data-ar="بنك الأسئلة"></a></li>
+ <li><a href="#quiz" data-en="Self Quiz" data-ar="اختبر نفسك"></a></li>
+</ul></nav>
+
+<div class="wrap">
+
+<!-- ================= INTRO ================= -->
+<section id="intro" class="t-teal">
+ <h3 class="title" data-en="🔍 Opening Observation — Two Test Tubes, One Question"
+     data-ar="🔍 الملاحظة الافتتاحية — أنبوبتان اختبار وسؤال واحد"></h3>
+ <div class="grid2">
+  <div>
+   <p data-en="The figure opposite shows <b>two experiments in which a clear effervescence occurs:</b>"
+      data-ar="يوضح الشكل المقابل <b>تجربتين يحدث فيهما فوران واضح:</b>"></p>
+   <ul class="bul">
+    <li data-en="One when <b>dilute hydrochloric acid</b> is added to a piece of <b>marble</b> (CaCO<sub>3</sub>)."
+        data-ar="إحداهما عند إضافة <b>حمض الهيدروكلوريك المخفف</b> إلى قطعة من <b>الرخام</b> (CaCO<sub>3</sub>)."></li>
+    <li data-en="The other when it is added to <b>zinc (Zn)</b>."
+        data-ar="والأخرى عند إضافته إلى <b>الخارصين (Zn)</b>."></li>
+   </ul>
+   <div class="note">
+    <b data-en="This lesson explores ideas that answer these questions:" data-ar="يستكشف هذا الدرس أفكارًا تساعد على الإجابة عن هذه الأسئلة:"></b>
+    <ul class="bul">
+     <li data-en="Does what we observe mean that the reaction is <b>the same</b>?" data-ar="هل ما نلاحظه يعني أن التفاعل <b>واحد</b>؟"></li>
+     <li data-en="Is the gas released in both experiments the <b>same gas</b>?" data-ar="هل الغاز المتصاعد في التجربتين هو <b>نفس الغاز</b>؟"></li>
+     <li data-en="Do the two reactions occur in the <b>same way</b>? Do they belong to the <b>same type</b>?" data-ar="هل يحدث التفاعلان <b>بنفس الطريقة</b>؟ وهل ينتميان إلى <b>نفس النوع</b>؟"></li>
+     <li data-en="Does <b>every</b> reaction of dilute HCl produce a gas?" data-ar="هل <b>كل</b> تفاعل لحمض الهيدروكلوريك المخفف ينتج غازًا؟"></li>
+    </ul>
+   </div>
+   <div class="ok">
+    <b data-en="Quick answer (proved later in the lesson):" data-ar="إجابة سريعة (سنثبتها خلال الدرس):"></b>
+    <table>
+     <tr><th data-en="Tube" data-ar="الأنبوبة"></th><th data-en="Equation" data-ar="المعادلة"></th>
+     <th data-en="Gas" data-ar="الغاز"></th><th data-en="Type" data-ar="النوع"></th></tr>
+     <tr><td>Zn + HCl</td><td>Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub>↑</td>
+     <td data-en="<b>Hydrogen</b> (pops)" data-ar="<b>هيدروجين</b> (يشتعل بفرقعة)"></td>
+     <td data-en="Single substitution" data-ar="إحلال بسيط"></td></tr>
+     <tr><td data-en="Marble + HCl" data-ar="رخام + HCl"></td><td>CaCO<sub>3</sub> + 2HCl → CaCl<sub>2</sub> + H<sub>2</sub>O + CO<sub>2</sub>↑</td>
+     <td data-en="<b>Carbon dioxide</b> (milky lime water)" data-ar="<b>ثاني أكسيد الكربون</b> (يعكر ماء الجير)"></td>
+     <td data-en="Double substitution" data-ar="إحلال مزدوج"></td></tr>
+    </table>
+    <span data-en="➜ Same <i>appearance</i> (effervescence) ✦ <b>different gas, different mechanism, different type!</b>"
+          data-ar="➜ نفس <i>المظهر</i> (فوران) ✦ <b>لكن غاز مختلف وآلية مختلفة ونوع مختلف!</b>"></span>
+   </div>
+  </div>
+
+  <div style="text-align:center">
+  <svg viewBox="0 0 320 260" width="100%" style="max-width:340px">
+   <rect width="320" height="260" fill="#f5fbff" rx="12"/>
+   <rect x="55" y="40" width="52" height="170" rx="24" fill="#e0f7fa" stroke="#0288d1" stroke-width="3"/>
+   <rect x="58" y="110" width="46" height="97" rx="20" fill="#b3e5fc"/>
+   <rect x="70" y="185" width="22" height="14" fill="#616161" rx="3"/>
+   <circle class="bcircle" cx="72" cy="180" r="5" fill="#fff"/>
+   <circle class="bcircle" cx="88" cy="175" r="4" fill="#fff" style="animation-delay:.6s"/>
+   <circle class="bcircle" cx="80" cy="170" r="6" fill="#fff" style="animation-delay:1.1s"/>
+   <text x="81" y="232" font-size="14" text-anchor="middle" font-weight="bold" fill="#0d3b66">Zn + HCl</text>
+   <text x="81" y="248" font-size="14" text-anchor="middle" fill="#c62828">H₂ ↑</text>
+   <rect x="210" y="40" width="52" height="170" rx="24" fill="#fff3e0" stroke="#ef6c00" stroke-width="3"/>
+   <rect x="213" y="110" width="46" height="97" rx="20" fill="#ffe0b2"/>
+   <rect x="224" y="188" width="24" height="12" fill="#9e9e9e" rx="4"/>
+   <circle class="bcircle" cx="226" cy="182" r="5" fill="#fff" style="animation-delay:.3s"/>
+   <circle class="bcircle" cx="244" cy="176" r="4" fill="#fff" style="animation-delay:.9s"/>
+   <circle class="bcircle" cx="236" cy="170" r="6" fill="#fff" style="animation-delay:1.4s"/>
+   <text x="236" y="232" font-size="12" text-anchor="middle" font-weight="bold" fill="#0d3b66">CaCO₃ + HCl</text>
+   <text x="236" y="248" font-size="12" text-anchor="middle" fill="#ef6c00">CO₂ ↑</text>
+  </svg>
+  </div>
+ </div>
+</section>
+
+<!-- ================= DEFINITION ================= -->
+<section id="def" class="t-green">
+ <h3 class="title" data-en="💡 What Is a Chemical Reaction?" data-ar="💡 ما هو التفاعل الكيميائي؟"></h3>
+ <div class="def"
+  data-en="<b>Chemical reaction:</b> <span style='color:#c62828'><b>Breaking of bonds</b></span> in the molecules of the <b>reactants</b> and <span style='color:#2e7d32'><b>forming new bonds</b></span> in the molecules of the <b>products</b>, leading to the formation of <b>new substances with different properties</b>."
+  data-ar="<b>التفاعل الكيميائي:</b> <span style='color:#c62828'><b>كسر الروابط</b></span> في جزيئات <b>المتفاعلات</b> و<span style='color:#2e7d32'><b>تكوين روابط جديدة</b></span> في جزيئات <b>النواتج</b>، مما يؤدي إلى تكوين <b>مواد جديدة لها خواص مختلفة</b>."></div>
+
+ <div style="text-align:center">
+ <svg viewBox="0 0 620 150" width="100%" style="max-width:640px">
+  <rect width="620" height="150" fill="#f9fff7" rx="12"/>
+  <circle cx="60" cy="70" r="20" fill="#42a5f5"/><text x="60" y="76" font-size="15" text-anchor="middle" fill="#fff">A</text>
+  <circle cx="112" cy="70" r="20" fill="#42a5f5"/><text x="112" y="76" font-size="15" text-anchor="middle" fill="#fff">A</text>
+  <line x1="80" y1="70" x2="92" y2="70" stroke="#c62828" stroke-width="5"/>
+  <circle cx="60" cy="118" r="18" fill="#66bb6a"/><text x="60" y="124" font-size="14" text-anchor="middle" fill="#fff">B</text>
+  <circle cx="110" cy="118" r="18" fill="#66bb6a"/><text x="110" y="124" font-size="14" text-anchor="middle" fill="#fff">B</text>
+  <line x1="78" y1="118" x2="92" y2="118" stroke="#c62828" stroke-width="5"/>
+  <text x="210" y="66" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold">✂ break bonds</text>
+  <path d="M160 92 h100" stroke="#555" stroke-width="3" marker-end="url(#ar1)"/>
+  <text x="210" y="116" font-size="13" text-anchor="middle" fill="#2e7d32" font-weight="bold">form new bonds</text>
+  <defs><marker id="ar1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#555"/></marker></defs>
+  <circle cx="380" cy="90" r="20" fill="#42a5f5"/><text x="380" y="96" font-size="15" text-anchor="middle" fill="#fff">A</text>
+  <circle cx="428" cy="90" r="18" fill="#66bb6a"/><text x="428" y="96" font-size="14" text-anchor="middle" fill="#fff">B</text>
+  <line x1="398" y1="90" x2="412" y2="90" stroke="#2e7d32" stroke-width="5"/>
+  <circle cx="500" cy="90" r="20" fill="#42a5f5"/><text x="500" y="96" font-size="15" text-anchor="middle" fill="#fff">A</text>
+  <circle cx="548" cy="90" r="18" fill="#66bb6a"/><text x="548" y="96" font-size="14" text-anchor="middle" fill="#fff">B</text>
+  <line x1="518" y1="90" x2="532" y2="90" stroke="#2e7d32" stroke-width="5"/>
+ </svg>
+ </div>
+
+ <h4 data-en="🧐 How do we KNOW a chemical reaction has occurred?" data-ar="🧐 كيف نعرف أن تفاعلًا كيميائيًا قد حدث؟"></h4>
+ <p data-en="Through one or more of the <b>observations that take place</b> in the reaction:"
+    data-ar="من خلال واحدة أو أكثر من <b>المشاهدات التي تحدث</b> في التفاعل، مثل:"></p>
+ <div class="grid3">
+  <div class="mini" data-en="<b>🎨 Change in colour or odour</b>CuSO₄ blue → colourless"
+       data-ar="<b>🎨 تغير في اللون أو الرائحة</b>كبريتات النحاس الزرقاء ← عديمة اللون"></div>
+  <div class="mini" data-en="<b>💨 Release of a gas</b>Zn + HCl → H₂↑" data-ar="<b>💨 تصاعد غاز</b>Zn + HCl ← H₂↑"></div>
+  <div class="mini" data-en="<b>⬇️ Formation of a precipitate</b>white AgCl precipitate" data-ar="<b>⬇️ تكوين راسب</b>راسب أبيض من AgCl"></div>
+  <div class="mini" data-en="<b>🔥 Emission of light &amp; heat</b>Burning Mg ribbon" data-ar="<b>🔥 انبعاث ضوء وحرارة</b>احتراق شريط الماغنسيوم"></div>
+ </div>
+</section>
+
+<!-- ================= TYPES ================= -->
+<section id="types" class="t-purple">
+ <h3 class="title" data-en="🗂️ Main Types of Chemical Reactions" data-ar="🗂️ الأنواع الرئيسية للتفاعلات الكيميائية"></h3>
+ <p data-en="Chemical reactions are classified into several main types <b>based on how atoms or ions recombine</b> during the reaction. This classification helps in <b>understanding how the reaction occurs</b> and <b>predicting the products</b> of other chemical reactions."
+    data-ar="تُصنَّف التفاعلات الكيميائية إلى عدة أنواع رئيسية <b>بناءً على كيفية إعادة ترتيب الذرات أو الأيونات</b> أثناء التفاعل، ويساعد هذا التصنيف في <b>فهم كيفية حدوث التفاعل</b> و<b>التنبؤ بنواتج</b> تفاعلات كيميائية أخرى."></p>
+ <div class="grid3" style="margin-top:14px">
+  <div class="typecard tc1" data-en="1 • DIRECT COMBINATION<small>A + B → AB</small>" data-ar="١ • الاتحاد المباشر<small>A + B → AB</small>"></div>
+  <div class="typecard tc2" data-en="2 • DECOMPOSITION<small>AB → A + B</small>" data-ar="٢ • التحلل<small>AB → A + B</small>"></div>
+  <div class="typecard tc3" data-en="3 • SINGLE DISPLACEMENT<small>A + BC → AC + B</small>" data-ar="٣ • الإحلال البسيط<small>A + BC → AC + B</small>"></div>
+  <div class="typecard tc4" data-en="4 • DOUBLE DISPLACEMENT<small>AB + CD → AD + CB</small>" data-ar="٤ • الإحلال المزدوج<small>AB + CD → AD + CB</small>"></div>
+  <div class="typecard tc5" data-en="5 • OXIDATION–REDUCTION<small>e⁻ transfer</small>" data-ar="٥ • الأكسدة والاختزال<small>انتقال إلكترونات</small>"></div>
+ </div>
+ <div class="note" style="margin-top:14px"
+  data-en="<b>Cross-Concepts: Patterns</b><br>1️⃣ Chemists look for <b>patterns</b> in chemical reactions.<br>2️⃣ Chemical reactions are <b>not random</b> but follow <b>predictable patterns</b>, such as combination, decomposition, or displacement."
+  data-ar="<b>المفاهيم المتشابكة: الأنماط</b><br>١️⃣ يبحث الكيميائيون عن <b>أنماط</b> في التفاعلات الكيميائية.<br>٢️⃣ التفاعلات الكيميائية <b>ليست عشوائية</b> بل تتبع <b>أنماطًا يمكن التنبؤ بها</b> مثل الاتحاد أو التحلل أو الإحلال."></div>
+</section>
+
+<!-- ================= 1 COMBINATION ================= -->
+<section id="comb" class="t-green">
+ <h3 class="title" data-en="1️⃣ First — Direct Combination Reactions" data-ar="1️⃣ أولًا — تفاعلات الاتحاد المباشر"></h3>
+ <div class="def" data-en="Reactions in which <b>two or more substances combine to form a new (single) compound</b>."
+      data-ar="تفاعلات <b>تتحد فيها مادتان أو أكثر لتكوين مركب جديد واحد</b>."></div>
+ <div class="eq"><span class="r">A + B</span> ⟶ <span class="p">AB</span></div>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 1 : Experiment and Conclude — Reaction of a metal with oxygen"
+      data-ar="🔬 النشاط الأول : جرّب واستنتج — تفاعل فلز مع الأكسجين"></h4>
+  <b data-en="Materials and tools used:" data-ar="المواد والأدوات المستخدمة:"></b>
+  <div>
+   <span class="chip" data-en="Bunsen burner" data-ar="موقد بنزن"></span>
+   <span class="chip" data-en="Metal holder" data-ar="ماسك معدني"></span>
+   <span class="chip" data-en="Magnesium (Mg) strip" data-ar="شريط ماغنسيوم (Mg)"></span>
+   <span class="chip" data-en="Steel wool (Fe)" data-ar="سلك تنظيف الأواني – حديد (Fe)"></span>
+   <span class="chip" data-en="Copper wire (Cu)" data-ar="سلك نحاس (Cu)"></span>
+  </div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Using the holders, expose the <b>magnesium strip</b> to the Bunsen burner flame for two minutes."
+       data-ar="باستخدام الماسك، عرّض <b>شريط الماغنسيوم</b> للهب موقد بنزن لمدة دقيقتين."></li>
+   <li data-en="Expose both the <b>steel wool</b> and the <b>copper wire</b> to the same flame for the same amount of time."
+       data-ar="عرّض كلًا من <b>سلك الحديد</b> و<b>سلك النحاس</b> لنفس اللهب ولنفس المدة."></li>
+  </ol>
+
+  <h5 data-en="👁️ What do you observe?" data-ar="👁️ ماذا تلاحظ؟"></h5>
+  <div class="grid3">
+   <div class="mini" style="border-color:#43a047">
+    <b data-en="1 • Magnesium (Mg)" data-ar="١ • الماغنسيوم (Mg)"></b>
+    <svg viewBox="0 0 120 90" width="110"><rect x="20" y="55" width="80" height="8" fill="#bdbdbd"/>
+     <ellipse class="flame" cx="60" cy="40" rx="20" ry="26" fill="#fff59d"/>
+     <ellipse class="flame" cx="60" cy="45" rx="11" ry="16" fill="#fff"/></svg>
+    <span data-en="Ignites rapidly, burns with a <b>bright white flame</b>, producing a <b>white substance</b> = magnesium oxide (MgO)"
+          data-ar="يشتعل بسرعة ويحترق بلهب <b>أبيض وهّاج</b> منتجًا <b>مادة بيضاء</b> هي أكسيد الماغنسيوم (MgO)"></span>
+   </div>
+   <div class="mini" style="border-color:#fb8c00">
+    <b data-en="2 • Steel wool (Fe)" data-ar="٢ • سلك الحديد (Fe)"></b>
+    <svg viewBox="0 0 120 90" width="110"><circle cx="60" cy="55" r="26" fill="#757575"/>
+     <g stroke="#ffb300" stroke-width="2"><line x1="60" y1="55" x2="95" y2="25"/><line x1="60" y1="55" x2="25" y2="28"/>
+     <line x1="60" y1="55" x2="100" y2="60"/><line x1="60" y1="55" x2="20" y2="62"/></g>
+     <circle class="flame" cx="60" cy="55" r="12" fill="#ff7043"/></svg>
+    <span data-en="Burns producing <b>bright sparks</b>, mainly producing <b>magnetite Fe₃O₄</b>"
+          data-ar="يحترق منتجًا <b>شررًا لامعًا</b>، وينتج أساسًا <b>أكسيد الحديد المغناطيسي Fe₃O₄</b>"></span>
+   </div>
+   <div class="mini" style="border-color:#5d4037">
+    <b data-en="3 • Copper (Cu)" data-ar="٣ • النحاس (Cu)"></b>
+    <svg viewBox="0 0 120 90" width="110"><rect x="15" y="50" width="90" height="10" rx="5" fill="#c87137"/>
+     <rect x="35" y="50" width="50" height="10" rx="5" fill="#212121"/>
+     <ellipse class="flame" cx="60" cy="32" rx="12" ry="18" fill="#ffa726" opacity=".8"/></svg>
+    <span data-en="<b>Does NOT burn with a visible flame</b>, but a <b>black layer</b> of copper oxide (CuO) forms on its surface"
+          data-ar="<b>لا يحترق بلهب مرئي</b>، لكن تتكوّن <b>طبقة سوداء</b> من أكسيد النحاس (CuO) على سطحه"></span>
+   </div>
+  </div>
+
+  <div class="eq"><span class="r">2Mg(s) + O<sub>2</sub></span> —<span class="a">Δ</span>→ <span class="p">2MgO(s)</span></div>
+  <div class="eq"><span class="r">3Fe(s) + 2O<sub>2</sub></span> —<span class="a">Δ</span>→ <span class="p">Fe<sub>3</sub>O<sub>4</sub>(s)</span></div>
+  <div class="eq"><span class="r">2Cu(s) + O<sub>2</sub></span> —<span class="a">Δ</span>→ <span class="p">2CuO(s)</span></div>
+
+  <div class="warn"
+   data-en="<b>⚠️ Safety Precautions:</b> <b>Avoid prolonged staring at the glare</b> — <b>protective eyewear should be worn.</b><br><b>(G.R.?)</b> Because when magnesium burns it produces a <b>very intense light and ultraviolet radiation that can damage the retina</b>."
+   data-ar="<b>⚠️ احتياطات السلامة:</b> <b>تجنب التحديق لفترات طويلة في الوهج</b> — <b>يجب ارتداء نظارات واقية.</b><br><b>(علِّل؟)</b> لأن احتراق الماغنسيوم ينتج <b>ضوءًا شديد السطوع وأشعة فوق بنفسجية تضر بشبكية العين</b>."></div>
+
+  <div class="ok"
+   data-en="<b>✅ We conclude that:</b> Most metals combine with oxygen when heated in atmospheric air, <b>but they differ in their chemical activity</b>.<br><b>Magnesium is more reactive than iron, and iron is more reactive than copper.</b>"
+   data-ar="<b>✅ نستنتج أن:</b> معظم الفلزات تتحد مع الأكسجين عند تسخينها في هواء الجو، <b>لكنها تختلف في نشاطها الكيميائي</b>.<br><b>الماغنسيوم أنشط من الحديد، والحديد أنشط من النحاس.</b>"></div>
+  <div class="eq" style="background:#1b5e20">Mg 🔥🔥🔥 &nbsp;&gt;&nbsp; Fe 🔥🔥 &nbsp;&gt;&nbsp; Cu 🔥</div>
+ </div>
+
+ <h4 data-en="➕ More illustrated examples of direct combination" data-ar="➕ أمثلة توضيحية إضافية على الاتحاد المباشر"></h4>
+ <table>
+  <tr><th data-en="Reaction" data-ar="التفاعل"></th><th data-en="Equation" data-ar="المعادلة"></th><th data-en="Observation" data-ar="الملاحظة"></th></tr>
+  <tr><td data-en="Hydrogen + Oxygen" data-ar="هيدروجين + أكسجين"></td><td>2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O</td><td data-en="Explosive, water formed" data-ar="تفاعل انفجاري وينتج ماء"></td></tr>
+  <tr><td data-en="Sodium + Chlorine" data-ar="صوديوم + كلور"></td><td>2Na + Cl<sub>2</sub> → 2NaCl</td><td data-en="Bright yellow flame, white salt" data-ar="لهب أصفر ساطع وملح أبيض"></td></tr>
+  <tr><td data-en="Magnesium + Bromine" data-ar="ماغنسيوم + بروم"></td><td>Mg + Br<sub>2</sub> → MgBr<sub>2</sub></td><td data-en="White solid (also a redox reaction)" data-ar="صلب أبيض (وهو أيضًا تفاعل أكسدة واختزال)"></td></tr>
+  <tr><td data-en="Carbon + Oxygen" data-ar="كربون + أكسجين"></td><td>C + O<sub>2</sub> → CO<sub>2</sub></td><td data-en="Gas that turns lime water milky" data-ar="غاز يعكّر ماء الجير"></td></tr>
+  <tr><td data-en="CaO + Water (slaking)" data-ar="أكسيد الكالسيوم + ماء (الإطفاء)"></td><td>CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub></td><td data-en="Great heat released" data-ar="ينطلق قدر كبير من الحرارة"></td></tr>
+  <tr><td data-en="Sulphur + Oxygen" data-ar="كبريت + أكسجين"></td><td>S + O<sub>2</sub> → SO<sub>2</sub></td><td data-en="Blue flame, choking smell" data-ar="لهب أزرق ورائحة خانقة"></td></tr>
+ </table>
+</section>
+
+<!-- ================= 2 DECOMPOSITION ================= -->
+<section id="dec" class="t-amber">
+ <h3 class="title" data-en="2️⃣ Second — Decomposition Reactions" data-ar="2️⃣ ثانيًا — تفاعلات التحلل"></h3>
+ <div class="def"
+  data-en="Reactions in which some compounds <b>break down using a type of energy</b> such as <b>heat or light</b> into <b>simpler components</b>."
+  data-ar="تفاعلات <b>تتحلل فيها بعض المركبات بواسطة نوع من الطاقة</b> مثل <b>الحرارة أو الضوء</b> إلى <b>مكونات أبسط</b>."></div>
+ <div class="eq"><span class="r">AB</span> —<span class="a">Energy</span>→ <span class="p">A + B</span></div>
+
+ <div style="text-align:center">
+ <svg viewBox="0 0 560 120" width="100%" style="max-width:600px">
+  <rect width="560" height="120" fill="#fff8e1" rx="12"/>
+  <circle cx="80" cy="60" r="24" fill="#ef5350"/><text x="80" y="66" text-anchor="middle" fill="#fff">A</text>
+  <circle cx="130" cy="60" r="24" fill="#42a5f5"/><text x="130" y="66" text-anchor="middle" fill="#fff">B</text>
+  <path d="M190 60 h130" stroke="#ff6f00" stroke-width="4" marker-end="url(#a2)"/>
+  <text x="255" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#ff6f00">🔥 Δ / light</text>
+  <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ff6f00"/></marker></defs>
+  <circle cx="390" cy="60" r="24" fill="#ef5350"/><text x="390" y="66" text-anchor="middle" fill="#fff">A</text>
+  <text x="440" y="68" font-size="26" text-anchor="middle">+</text>
+  <circle cx="490" cy="60" r="24" fill="#42a5f5"/><text x="490" y="66" text-anchor="middle" fill="#fff">B</text>
+ </svg>
+ </div>
+
+ <h4 data-en="📌 Examples" data-ar="📌 أمثلة"></h4>
+ <div class="grid2">
+  <div class="mini" style="text-align:start">
+   <b data-en="(1) Decomposition of red mercury oxide (HgO)" data-ar="(١) تحلل أكسيد الزئبق الأحمر (HgO)"></b>
+   <span data-en="By heating → silver-coloured <b>mercury (Hg)</b> + <b>oxygen gas (O₂)</b>"
+         data-ar="بالتسخين ← <b>زئبق (Hg)</b> فضي اللون + <b>غاز الأكسجين (O₂)</b>"></span>
+   <div class="eq"><span class="r">2HgO</span> —<span class="a">Δ</span>→ <span class="p">2Hg + O<sub>2</sub>↑</span></div>
+   <svg viewBox="0 0 240 90" width="100%">
+    <rect x="20" y="30" width="150" height="30" rx="15" fill="#ffcdd2" stroke="#b71c1c" stroke-width="2"/>
+    <circle cx="60" cy="45" r="6" fill="#b0bec5"/><circle cx="80" cy="45" r="6" fill="#b0bec5"/><circle cx="100" cy="45" r="6" fill="#b0bec5"/>
+    <text x="190" y="32" font-size="13" fill="#0277bd">O₂ ↑</text>
+    <ellipse class="flame" cx="95" cy="75" rx="14" ry="12" fill="#ffb74d"/>
+   </svg>
+  </div>
+  <div class="mini" style="text-align:start">
+   <b data-en="(2) Decomposition of calcium carbonate (CaCO₃)" data-ar="(٢) تحلل كربونات الكالسيوم (CaCO₃)"></b>
+   <span data-en="By heating → <b>calcium oxide (CaO)</b> + <b>carbon dioxide gas (CO₂)</b>"
+         data-ar="بالتسخين ← <b>أكسيد الكالسيوم (CaO)</b> + <b>غاز ثاني أكسيد الكربون (CO₂)</b>"></span>
+   <div class="eq"><span class="r">CaCO<sub>3</sub></span> —<span class="a">Δ</span>→ <span class="p">CaO + CO<sub>2</sub>↑</span></div>
+   <p style="font-size:.9rem" data-en="💡 This is the industrial reaction used in <b>lime kilns</b> to make quicklime for cement."
+      data-ar="💡 هذا هو التفاعل الصناعي المستخدم في <b>أفران الجير</b> لإنتاج الجير الحي المستخدم في الأسمنت."></p>
+  </div>
+ </div>
+
+ <h4 data-en="➕ Extra decomposition examples" data-ar="➕ أمثلة إضافية على التحلل"></h4>
+ <table>
+  <tr><th data-en="Compound" data-ar="المركب"></th><th data-en="Equation" data-ar="المعادلة"></th><th data-en="Energy used" data-ar="نوع الطاقة"></th></tr>
+  <tr><td data-en="Water (electrolysis)" data-ar="الماء (التحليل الكهربي)"></td><td>2H<sub>2</sub>O → 2H<sub>2</sub>↑ + O<sub>2</sub>↑</td><td data-en="Electric current" data-ar="تيار كهربي"></td></tr>
+  <tr><td data-en="Hydrogen peroxide" data-ar="فوق أكسيد الهيدروجين"></td><td>2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub>↑</td><td data-en="Light / MnO₂ catalyst" data-ar="ضوء / عامل حفاز MnO₂"></td></tr>
+  <tr><td data-en="Silver chloride" data-ar="كلوريد الفضة"></td><td>2AgCl → 2Ag + Cl<sub>2</sub></td><td data-en="Light (photo-decomposition)" data-ar="الضوء (تحلل ضوئي)"></td></tr>
+  <tr><td data-en="Copper carbonate" data-ar="كربونات النحاس"></td><td>CuCO<sub>3</sub> → CuO + CO<sub>2</sub>↑</td><td data-en="Heat (green → black)" data-ar="الحرارة (أخضر ← أسود)"></td></tr>
+ </table>
+
+ <details>
+  <summary data-en="📝 Assess Your Understanding — A chemical reaction occurs when both a magnesium ribbon and red mercury oxide are heated in air"
+           data-ar="📝 قوّم فهمك — يحدث تفاعل كيميائي عند تسخين كل من شريط الماغنسيوم وأكسيد الزئبق الأحمر في الهواء"></summary>
+  <p><b data-en="(1) What type of reaction is each?" data-ar="(١) ما نوع كل تفاعل؟"></b></p>
+  <ul class="bul">
+   <li data-en="<b>Heated magnesium</b> → Direct combination reaction." data-ar="<b>تسخين الماغنسيوم</b> ← تفاعل اتحاد مباشر."></li>
+   <li data-en="<b>Heated mercury oxide</b> → Decomposition reaction." data-ar="<b>تسخين أكسيد الزئبق</b> ← تفاعل تحلل."></li>
+  </ul>
+  <p><b data-en="(2) What are the products of each reaction, stating the physical state and colour?" data-ar="(٢) ما نواتج كل تفاعل مع ذكر الحالة الفيزيائية واللون؟"></b></p>
+  <ul class="bul">
+   <li data-en="<b>Heated magnesium</b> → magnesium oxide (MgO): <b>white solid powder</b>." data-ar="<b>تسخين الماغنسيوم</b> ← أكسيد الماغنسيوم (MgO): <b>مسحوق صلب أبيض</b>."></li>
+   <li data-en="<b>Heated mercury oxide</b> → <b>mercury (Hg): silver liquid</b> + <b>oxygen (O₂): colourless gas</b>." data-ar="<b>تسخين أكسيد الزئبق</b> ← <b>زئبق (Hg): سائل فضي</b> + <b>أكسجين (O₂): غاز عديم اللون</b>."></li>
+  </ul>
+ </details>
+</section>
+
+<!-- ================= 3 SINGLE ================= -->
+<section id="sing" class="t-teal">
+ <h3 class="title" data-en="3️⃣ Third — Simple (Single) Substitution Reactions" data-ar="3️⃣ ثالثًا — تفاعلات الإحلال البسيط"></h3>
+ <div class="def" data-en="Reactions in which <b>one element replaces another element in one of its compounds</b>."
+      data-ar="تفاعلات <b>يحل فيها عنصر محل عنصر آخر في أحد مركباته</b>."></div>
+ <div class="eq"><span class="r">A + BC</span> ⟶ <span class="p">AC + B</span></div>
+
+ <div style="text-align:center">
+ <svg viewBox="0 0 560 140" width="100%" style="max-width:600px">
+  <rect width="560" height="140" fill="#e0f7fa" rx="12"/>
+  <circle cx="60" cy="80" r="24" fill="#26a69a"/><text x="60" y="86" text-anchor="middle" fill="#fff">A</text>
+  <text x="100" y="88" font-size="24">+</text>
+  <circle cx="145" cy="80" r="24" fill="#ffa726"/><text x="145" y="86" text-anchor="middle" fill="#fff">B</text>
+  <circle cx="195" cy="80" r="24" fill="#7e57c2"/><text x="195" y="86" text-anchor="middle" fill="#fff">C</text>
+  <path d="M60 50 q60 -40 120 5" stroke="#c62828" stroke-width="3" fill="none" stroke-dasharray="6 4" marker-end="url(#a3)"/>
+  <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c62828"/></marker></defs>
+  <path d="M240 80 h70" stroke="#00695c" stroke-width="4" marker-end="url(#a4)"/>
+  <defs><marker id="a4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#00695c"/></marker></defs>
+  <circle cx="355" cy="80" r="24" fill="#26a69a"/><text x="355" y="86" text-anchor="middle" fill="#fff">A</text>
+  <circle cx="405" cy="80" r="24" fill="#7e57c2"/><text x="405" y="86" text-anchor="middle" fill="#fff">C</text>
+  <text x="450" y="88" font-size="24">+</text>
+  <circle cx="500" cy="80" r="24" fill="#ffa726"/><text x="500" y="86" text-anchor="middle" fill="#fff">B</text>
+ </svg>
+ </div>
+
+ <div class="note">
+  <b data-en="There are several types of simple displacement reactions, such as:" data-ar="توجد عدة أنواع من تفاعلات الإحلال البسيط، مثل:"></b>
+  <ol class="bul">
+   <li data-en="Metal substitutes the <b>hydrogen of an acid</b>." data-ar="إحلال فلز محل <b>هيدروجين الحمض</b>."></li>
+   <li data-en="Metal substitutes the <b>hydrogen of water</b>." data-ar="إحلال فلز محل <b>هيدروجين الماء</b>."></li>
+   <li data-en="Substitution of one <b>less reactive metal by another in its salt solutions</b>." data-ar="إحلال فلز محل <b>فلز أقل نشاطًا منه في محاليل أملاحه</b>."></li>
+  </ol>
+ </div>
+
+ <h4 data-en="🔹 1 — Metal Substitutes Hydrogen of Acid" data-ar="🔹 ١ — إحلال فلز محل هيدروجين الحمض"></h4>
+ <div class="activity">
+  <h4 data-en="🔬 Activity 2 : Try and Conclude" data-ar="🔬 النشاط الثاني : جرّب واستنتج"></h4>
+  <b data-en="Materials &amp; tools:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Test tube" data-ar="أنبوبة اختبار"></span>
+  <span class="chip" data-en="Dilute HCl" data-ar="حمض هيدروكلوريك مخفف"></span>
+  <span class="chip" data-en="Magnesium strip (Mg)" data-ar="شريط ماغنسيوم (Mg)"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Place the magnesium strip in the test tube." data-ar="ضع شريط الماغنسيوم في أنبوبة الاختبار."></li>
+   <li data-en="Add a quantity (2 ml) of dilute hydrochloric acid to the tube." data-ar="أضف كمية (٢ مل) من حمض الهيدروكلوريك المخفف إلى الأنبوبة."></li>
+   <li data-en="Close the mouth of the tube temporarily for a few seconds." data-ar="اغلق فوهة الأنبوبة مؤقتًا لبضع ثوانٍ."></li>
+   <li data-en="Carefully bring a <b>burning splinter</b> close to the mouth of the tube." data-ar="قرّب بحذر <b>شظية مشتعلة</b> من فوهة الأنبوبة."></li>
+  </ol>
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <ul class="bul">
+   <li data-en="A <b>rapid and immediate reaction</b> occurs and <b>gas bubbles are formed</b>." data-ar="يحدث <b>تفاعل سريع وفوري</b> وتتكون <b>فقاعات غازية</b>."></li>
+   <li data-en="When a burning splinter is brought near the mouth, the released gas <b>ignites with a POP sound</b> (test for hydrogen)."
+       data-ar="عند تقريب الشظية المشتعلة من الفوهة يشتعل الغاز المتصاعد <b>بصوت فرقعة</b> (كشف عن الهيدروجين)."></li>
+  </ul>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <p data-en="Chemically active metals react with dilute HCl → <b>metal chloride</b> is formed and <b>hydrogen gas is released</b>."
+     data-ar="تتفاعل الفلزات النشطة كيميائيًا مع حمض الهيدروكلوريك المخفف فيتكون <b>كلوريد الفلز</b> ويتصاعد <b>غاز الهيدروجين</b>."></p>
+  <div class="eq"><span class="r">Mg(s) + 2HCl(aq)</span> ⟶ <span class="p">MgCl<sub>2</sub>(aq) + H<sub>2</sub>(g)↑</span></div>
+  <div class="warn" data-en="<b>But not all metals</b> react with dilute HCl with the <b>same degree of chemical activity</b>."
+       data-ar="<b>لكن ليست كل الفلزات</b> تتفاعل مع حمض الهيدروكلوريك المخفف <b>بنفس درجة النشاط الكيميائي</b>."></div>
+ </div>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 3 : Try and Conclude — Comparing Zn, Fe, Cu" data-ar="🔬 النشاط الثالث : جرّب واستنتج — مقارنة Zn و Fe و Cu"></h4>
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Three test tubes" data-ar="ثلاث أنابيب اختبار"></span>
+  <span class="chip" data-en="Dilute HCl" data-ar="حمض هيدروكلوريك مخفف"></span>
+  <span class="chip" data-en="Test-tube holder" data-ar="حامل أنابيب"></span>
+  <span class="chip" data-en="Equal masses (1 g) of Zn, Fe, Cu" data-ar="كتل متساوية (١ جم) من Zn و Fe و Cu"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Place an equal volume (2 ml) of dilute HCl into each test tube." data-ar="ضع حجمًا متساويًا (٢ مل) من الحمض المخفف في كل أنبوبة."></li>
+   <li data-en="Add equal masses of zinc, iron and copper to the acid." data-ar="أضف كتلًا متساوية من الخارصين والحديد والنحاس إلى الحمض."></li>
+   <li data-en="Observe the <b>rate of bubble formation</b> in each tube." data-ar="لاحظ <b>معدل تكوّن الفقاعات</b> في كل أنبوبة."></li>
+   <li data-en="Record your observations in the table." data-ar="سجّل ملاحظاتك في الجدول التالي."></li>
+  </ol>
+  <table>
+   <tr><th data-en="Metal" data-ar="الفلز"></th><th data-en="Observation" data-ar="الملاحظة"></th><th data-en="Reaction rate" data-ar="معدل التفاعل"></th></tr>
+   <tr><td data-en="<b>Zinc (Zn)</b>" data-ar="<b>الخارصين (Zn)</b>"></td><td data-en="Fastest bubble evolution" data-ar="أسرع تصاعد للفقاعات"></td><td data-en="Fastest reaction" data-ar="أسرع تفاعل"></td></tr>
+   <tr><td data-en="<b>Iron (Fe)</b>" data-ar="<b>الحديد (Fe)</b>"></td><td data-en="Slower bubble evolution" data-ar="تصاعد أبطأ للفقاعات"></td><td data-en="Slower reaction" data-ar="تفاعل أبطأ"></td></tr>
+   <tr><td data-en="<b>Copper (Cu)</b>" data-ar="<b>النحاس (Cu)</b>"></td><td data-en="No bubble evolution" data-ar="لا يتصاعد فقاعات"></td><td data-en="No reaction" data-ar="لا يحدث تفاعل"></td></tr>
+  </table>
+  <p data-en="<b>Rearrange the three elements compared to magnesium</b> in terms of the rate of reaction with dilute acid:"
+     data-ar="<b>رتّب العناصر الثلاثة مقارنة بالماغنسيوم</b> حسب سرعة تفاعل الفلز مع الحمض المخفف:"></p>
+  <div class="eq" style="background:#00695c">Mg &gt; Zn &gt; Fe &gt; Cu</div>
+ </div>
+</section>
+
+<!-- ================= SERIES ================= -->
+<section id="series" class="t-red">
+ <h3 class="title" data-en="📊 The Chemical Reactivity (Activity) Series" data-ar="📊 متسلسلة النشاط الكيميائي للفلزات"></h3>
+ <div class="def" data-en="<b>Chemical Reactivity Series:</b> an arrangement of metallic elements <b>descending according to their degree of chemical activity</b>."
+      data-ar="<b>متسلسلة النشاط الكيميائي:</b> ترتيب العناصر الفلزية <b>تنازليًا حسب درجة نشاطها الكيميائي</b>."></div>
+
+ <div class="series">
+  <div style="background:#c62828">K — Potassium <span>MOST REACTIVE ⬆</span></div>
+  <div style="background:#d32f2f">Na — Sodium</div>
+  <div style="background:#e53935">Li — Lithium</div>
+  <div style="background:#ef5350">Ba — Barium</div>
+  <div style="background:#f4511e">Ca — Calcium</div>
+  <div style="background:#fb8c00">Mg — Magnesium</div>
+  <div style="background:#fdd835;color:#000">Al — Aluminium</div>
+  <div style="background:#c0ca33;color:#000">Zn — Zinc</div>
+  <div style="background:#7cb342">Fe — Iron</div>
+  <div style="background:#43a047">Sn — Tin</div>
+  <div style="background:#00897b">Pb — Lead</div>
+  <div class="hy">H — HYDROGEN <span>⭐ Reference</span></div>
+  <div style="background:#00838f">Cu — Copper</div>
+  <div style="background:#0277bd">Hg — Mercury</div>
+  <div style="background:#1565c0">Ag — Silver</div>
+  <div style="background:#4527a0">Pt — Platinum</div>
+  <div style="background:#311b92">Au — Gold <span>LEAST REACTIVE ⬇</span></div>
+ </div>
+
+ <div class="ok">
+  <b data-en="Rules:" data-ar="القواعد:"></b>
+  <ul class="bul">
+   <li data-en="<b>Metals that precede hydrogen</b> in the series <b>replace it</b> in dilute acids (H₂ gas is released)."
+       data-ar="<b>الفلزات التي تسبق الهيدروجين</b> في المتسلسلة <b>تحل محله</b> في الأحماض المخففة (يتصاعد غاز H₂)."></li>
+   <li data-en="<b>Metals below hydrogen</b> (Cu, Hg, Ag, Pt, Au) <b>do not react</b> with dilute acids and water — <b>(G.R.?)</b> because they <b>cannot displace the acid's hydrogen</b>."
+       data-ar="<b>الفلزات التي تلي الهيدروجين</b> (النحاس والزئبق والفضة والبلاتين والذهب) <b>لا تتفاعل</b> مع الأحماض المخففة والماء — <b>(علِّل؟)</b> لأنها <b>لا تستطيع إحلال هيدروجين الحمض</b>."></li>
+   <li data-en="A <b>more active metal displaces a less active metal</b> from its salt solution."
+       data-ar="<b>الفلز الأنشط يحل محل الفلز الأقل نشاطًا</b> من محلول ملحه."></li>
+  </ul>
+ </div>
+
+ <div class="warn"
+  data-en="<b>❓ Aluminium (Al) does not react immediately with dilute HCl — (G.R.?)</b><br>Because of a layer of <b>aluminium oxide (Al₂O₃)</b> covering its surface. This layer acts as a <b>barrier</b>, preventing the acid from reaching the metal. It takes some time for this layer to erode, after which <b>effervescence and the release of hydrogen gas bubbles</b> begin."
+  data-ar="<b>❓ الألومنيوم (Al) لا يتفاعل فورًا مع حمض الهيدروكلوريك المخفف — (علِّل؟)</b><br>بسبب طبقة من <b>أكسيد الألومنيوم (Al₂O₃)</b> تغطي سطحه، وتعمل هذه الطبقة <b>كحاجز</b> يمنع وصول الحمض إلى الفلز، ويستغرق تآكل هذه الطبقة بعض الوقت، وبعدها يبدأ <b>الفوران وتصاعد فقاعات غاز الهيدروجين</b>."></div>
+
+ <details>
+  <summary data-en="📝 Assess your understanding — Copper, zinc, silver and iron placed separately in dilute HCl: in which case will hydrogen be released? Why?"
+           data-ar="📝 قوّم فهمك — إذا وُضعت قطع صغيرة من النحاس والخارصين والفضة والحديد كلٌّ على حدة في حمض هيدروكلوريك مخفف، ففي أي حالة يتصاعد الهيدروجين؟ ولماذا؟"></summary>
+  <table>
+   <tr><th data-en="Element" data-ar="العنصر"></th><th data-en="Reaction" data-ar="التفاعل"></th>
+       <th data-en="Gas release" data-ar="تصاعد الغاز"></th><th data-en="Why" data-ar="السبب"></th></tr>
+   <tr><td data-en="Copper" data-ar="النحاس"></td><td data-en="Doesn't react with dilute HCl" data-ar="لا يتفاعل مع الحمض المخفف"></td>
+       <td data-en="No H₂ released" data-ar="لا يتصاعد H₂"></td><td data-en="Not active (below H)" data-ar="غير نشط (يلي الهيدروجين)"></td></tr>
+   <tr><td data-en="Zinc" data-ar="الخارصين"></td><td data-en="Reacts with dilute HCl" data-ar="يتفاعل مع الحمض المخفف"></td>
+       <td data-en="H₂ released" data-ar="يتصاعد H₂"></td><td data-en="Most active (above H)" data-ar="نشط (يسبق الهيدروجين)"></td></tr>
+   <tr><td data-en="Silver" data-ar="الفضة"></td><td data-en="Doesn't react with dilute HCl" data-ar="لا تتفاعل مع الحمض المخفف"></td>
+       <td data-en="No H₂ released" data-ar="لا يتصاعد H₂"></td><td data-en="Not active (below H)" data-ar="غير نشطة (تلي الهيدروجين)"></td></tr>
+   <tr><td data-en="Iron" data-ar="الحديد"></td><td data-en="Reacts with dilute HCl" data-ar="يتفاعل مع الحمض المخفف"></td>
+       <td data-en="H₂ released" data-ar="يتصاعد H₂"></td><td data-en="Most active (above H)" data-ar="نشط (يسبق الهيدروجين)"></td></tr>
+  </table>
+ </details>
+</section>
+
+<!-- ================= METAL + WATER ================= -->
+<section id="water">
+ <h3 class="title" data-en="🌊 2 — Metal Substitutes Hydrogen of Water" data-ar="🌊 ٢ — إحلال فلز محل هيدروجين الماء"></h3>
+ <div class="def"
+  data-en="<b>Very reactive metals</b>, at the beginning of the chemical activity series and therefore <b>preceding hydrogen</b>, react with water (H₂O), <b>displacing hydrogen</b>, which is released as a gas that can <b>ignite with a pop</b>."
+  data-ar="<b>الفلزات شديدة النشاط</b> الموجودة في بداية متسلسلة النشاط الكيميائي وبالتالي <b>تسبق الهيدروجين</b>، تتفاعل مع الماء (H₂O) <b>وتحل محل الهيدروجين</b> الذي يتصاعد كغاز <b>يشتعل بفرقعة</b>."></div>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 4 : Observe and Conclude — Reaction of Sodium with Water"
+      data-ar="🔬 النشاط الرابع : لاحظ واستنتج — تفاعل الصوديوم مع الماء"></h4>
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Glass container" data-ar="حوض زجاجي"></span>
+  <span class="chip" data-en="Water" data-ar="ماء"></span>
+  <span class="chip" data-en="Tweezers" data-ar="ملقط"></span>
+  <span class="chip" data-en="Filter paper" data-ar="ورق ترشيح"></span>
+  <span class="chip" data-en="Sodium (Na) — kept in kerosene" data-ar="صوديوم (Na) محفوظ في الكيروسين"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Fill the basin about halfway with water." data-ar="املأ الحوض إلى منتصفه تقريبًا بالماء."></li>
+   <li data-en="Pick up a very small piece of sodium about the size of a grain of rice." data-ar="التقط قطعة صغيرة جدًا من الصوديوم بحجم حبة الأرز."></li>
+   <li data-en="Use the filter paper to thoroughly <b>dry the sodium</b> to remove any kerosene." data-ar="استخدم ورق الترشيح <b>لتجفيف قطعة الصوديوم</b> جيدًا لإزالة أي كيروسين."></li>
+   <li data-en="Carefully place the piece of sodium on the surface of the water." data-ar="ضع قطعة الصوديوم بحذر على سطح الماء."></li>
+  </ol>
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <ol class="bul">
+   <li data-en="Sodium <b>floats</b> on the water surface — because its <b>density is less than water</b>." data-ar="<b>يطفو</b> الصوديوم على سطح الماء — لأن <b>كثافته أقل من كثافة الماء</b>."></li>
+   <li data-en="The piece <b>moves quickly</b> on the surface — because it reacts <b>immediately and violently</b> with the water." data-ar="<b>تتحرك القطعة بسرعة</b> على سطح الماء — لأنها تتفاعل <b>فورًا وبعنف</b> مع الماء."></li>
+  </ol>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <p data-en="Sodium (Na), the most active element, reacts with water and <b>displaces the hydrogen</b>, producing an alkaline <b>sodium hydroxide (NaOH)</b> solution and releasing <b>hydrogen gas (H₂)</b>, which ignites with a pop."
+     data-ar="الصوديوم (Na) وهو أنشط العناصر يتفاعل مع الماء <b>ويحل محل الهيدروجين</b>، منتجًا محلول <b>هيدروكسيد الصوديوم (NaOH)</b> القلوي ومتصاعدًا <b>غاز الهيدروجين (H₂)</b> الذي يشتعل بفرقعة."></p>
+  <div class="eq"><span class="r">2Na + 2H<sub>2</sub>O</span> ⟶ <span class="p">2NaOH + H<sub>2</sub>↑</span> + <span class="a">heat</span></div>
+
+  <div class="note"
+   data-en="<b>Q: Do all metals react with water with the same degree of chemical reactivity?</b><br><b>No.</b> Only metals which <b>precede hydrogen</b> can react with water, and the degree of chemical reactivity <b>increases with the increase of the activity of the metal</b>."
+   data-ar="<b>س: هل كل الفلزات تتفاعل مع الماء بنفس درجة النشاط الكيميائي؟</b><br><b>لا.</b> فقط الفلزات التي <b>تسبق الهيدروجين</b> يمكنها التفاعل مع الماء، وتزداد درجة النشاط الكيميائي <b>بزيادة نشاط الفلز</b>."></div>
+
+  <div class="warn"
+   data-en="<b>G.R.? Never use water to extinguish sodium fires.</b><br>Because a <b>large amount of heat</b> is generated when sodium reacts with water, which can lead to <b>ignition/explosion</b>.<br>➜ <b>Sodium fires are extinguished by dry sand.</b>"
+   data-ar="<b>علِّل؟ لا تُستخدم المياه أبدًا في إطفاء حرائق الصوديوم.</b><br>لأن <b>كمية كبيرة من الحرارة</b> تتولد عند تفاعل الصوديوم مع الماء مما قد يؤدي إلى <b>الاشتعال أو الانفجار</b>.<br>➜ <b>تُطفأ حرائق الصوديوم بالرمل الجاف.</b>"></div>
+ </div>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 5 : Observe and Conclude — Magnesium with cold &amp; hot water"
+      data-ar="🔬 النشاط الخامس : لاحظ واستنتج — الماغنسيوم مع الماء البارد والساخن"></h4>
+  <ol class="bul">
+   <li data-en="Place a strip of magnesium in <b>cold water</b>. Does a reaction occur? ➜ <b>Very slow / almost no reaction</b>."
+       data-ar="ضع شريطًا من الماغنسيوم في <b>ماء بارد</b>. هل يحدث تفاعل؟ ➜ <b>تفاعل بطيء جدًا / يكاد لا يحدث</b>."></li>
+   <li data-en="Transfer the magnesium strip to <b>hot water</b> ➜ <b>bubbles of hydrogen appear</b>."
+       data-ar="انقل شريط الماغنسيوم إلى <b>ماء ساخن</b> ➜ <b>تظهر فقاعات غاز الهيدروجين</b>."></li>
+  </ol>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <ul class="bul">
+   <li data-en="<b>Sodium (Na)</b> reacts immediately and vigorously with <b>cold water</b>." data-ar="<b>الصوديوم (Na)</b> يتفاعل فورًا وبشدة مع <b>الماء البارد</b>."></li>
+   <li data-en="<b>Magnesium (Mg)</b> needs a quantity of <b>thermal energy</b> to begin its reaction with water." data-ar="<b>الماغنسيوم (Mg)</b> يحتاج إلى قدر من <b>الطاقة الحرارية</b> ليبدأ تفاعله مع الماء."></li>
+   <li data-en="<b>It means that magnesium is less chemically reactive than sodium.</b>" data-ar="<b>وهذا يعني أن الماغنسيوم أقل نشاطًا كيميائيًا من الصوديوم.</b>"></li>
+  </ul>
+  <div class="eq"><span class="r">Mg + 2H<sub>2</sub>O</span> —<span class="a">hot</span>→ <span class="p">Mg(OH)<sub>2</sub> + H<sub>2</sub>↑</span></div>
+ </div>
+</section>
+
+<!-- ================= METAL + SALT ================= -->
+<section id="salt" class="t-purple">
+ <h3 class="title" data-en="🧫 3 — Substitution of One Less Reactive Metal by Another in Its Salt Solutions"
+     data-ar="🧫 ٣ — إحلال فلز محل فلز أقل نشاطًا في محاليل أملاحه"></h3>
+ <p data-en="Some metals can substitute for metals that are <b>next (lower)</b> in the chemical activity series in their <b>salt solutions</b>."
+    data-ar="يمكن لبعض الفلزات أن تحل محل الفلزات <b>التالية لها (الأقل نشاطًا)</b> في متسلسلة النشاط الكيميائي في <b>محاليل أملاحها</b>."></p>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 6 : Observe and Conclude — Zinc rod in copper sulphate"
+      data-ar="🔬 النشاط السادس : لاحظ واستنتج — قضيب خارصين في محلول كبريتات النحاس"></h4>
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Beaker" data-ar="كأس زجاجي"></span>
+  <span class="chip" data-en="Blue CuSO₄ solution" data-ar="محلول كبريتات النحاس الأزرق"></span>
+  <span class="chip" data-en="Zinc (Zn) rod" data-ar="قضيب خارصين (Zn)"></span>
+  <span class="chip" data-en="Sandpaper" data-ar="ورق صنفرة"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Place a suitable amount of <b>blue copper sulphate</b> solution in the beaker." data-ar="ضع كمية مناسبة من محلول <b>كبريتات النحاس الأزرق</b> في الكأس."></li>
+   <li data-en="Use sandpaper to thoroughly clean the surface of the zinc rod." data-ar="استخدم ورق الصنفرة لتنظيف سطح قضيب الخارصين جيدًا."></li>
+   <li data-en="Immerse the zinc rod in the copper sulphate solution for <b>10 minutes</b>." data-ar="اغمر قضيب الخارصين في محلول كبريتات النحاس لمدة <b>١٠ دقائق</b>."></li>
+  </ol>
+
+  <div style="text-align:center">
+  <svg viewBox="0 0 340 180" width="100%" style="max-width:400px">
+   <rect x="30" y="40" width="100" height="110" fill="#4fc3f7" stroke="#01579b" stroke-width="3" rx="5"/>
+   <rect x="72" y="20" width="16" height="110" fill="#9e9e9e" stroke="#424242" stroke-width="2"/>
+   <text x="80" y="170" font-size="11" text-anchor="middle">CuSO₄ (blue) + Zn</text>
+   <rect x="210" y="40" width="100" height="110" fill="#eceff1" stroke="#01579b" stroke-width="3" rx="5"/>
+   <rect x="252" y="20" width="16" height="110" fill="#8d6e63" stroke="#4e342e" stroke-width="2"/>
+   <ellipse cx="260" cy="145" rx="30" ry="8" fill="#a1512b"/>
+   <text x="260" y="170" font-size="11" text-anchor="middle">colourless + Cu↓</text>
+   <path d="M150 95 h45" stroke="#6a1b9a" stroke-width="4" marker-end="url(#a5)"/>
+   <defs><marker id="a5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6a1b9a"/></marker></defs>
+  </svg>
+  </div>
+
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <p data-en="When the zinc (Zn) rod is immersed in copper sulphate (CuSO₄) solution, the <b>blue colour of the solution disappears gradually</b>, and <b>red copper (Cu) precipitates</b>."
+     data-ar="عند غمر قضيب الخارصين (Zn) في محلول كبريتات النحاس (CuSO₄)، <b>يختفي اللون الأزرق للمحلول تدريجيًا</b>، <b>ويترسب النحاس الأحمر (Cu)</b>."></p>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <p data-en="The <b>more reactive zinc replaces the less reactive copper</b> in the copper sulphate solution."
+     data-ar="<b>الخارصين الأنشط يحل محل النحاس الأقل نشاطًا</b> في محلول كبريتات النحاس."></p>
+  <div class="eq"><span class="r">Zn(s) + CuSO<sub>4</sub>(aq)</span> ⟶ <span class="p">ZnSO<sub>4</sub>(aq) + Cu(s)↓</span></div>
+  <div class="ok" data-en="<b>From the above we conclude:</b> according to the chemical activity series, the metal at the <b>top of the series can replace the next metal</b> in the series in its salt solutions."
+       data-ar="<b>مما سبق نستنتج أنه:</b> طبقًا لمتسلسلة النشاط الكيميائي، يمكن للفلز <b>الأعلى في المتسلسلة أن يحل محل الفلز التالي له</b> في محاليل أملاحه."></div>
+ </div>
+
+ <h4 data-en="➕ More illustrated examples" data-ar="➕ أمثلة توضيحية إضافية"></h4>
+ <table>
+  <tr><th data-en="Experiment" data-ar="التجربة"></th><th data-en="Result" data-ar="النتيجة"></th><th data-en="Reason" data-ar="السبب"></th></tr>
+  <tr><td data-en="Fe nail in CuSO₄" data-ar="مسمار حديد في CuSO₄"></td>
+      <td>Fe + CuSO<sub>4</sub> → FeSO<sub>4</sub> + Cu ✔</td>
+      <td data-en="Fe more active than Cu" data-ar="الحديد أنشط من النحاس"></td></tr>
+  <tr><td data-en="Cu wire in ZnSO₄" data-ar="سلك نحاس في ZnSO₄"></td>
+      <td data-en="<b>No reaction ✘</b>" data-ar="<b>لا يحدث تفاعل ✘</b>"></td>
+      <td data-en="Cu less active than Zn" data-ar="النحاس أقل نشاطًا من الخارصين"></td></tr>
+  <tr><td data-en="Cu wire in AgNO₃" data-ar="سلك نحاس في AgNO₃"></td>
+      <td>Cu + 2AgNO<sub>3</sub> → Cu(NO<sub>3</sub>)<sub>2</sub> + 2Ag ✔</td>
+      <td data-en="Cu more active than Ag" data-ar="النحاس أنشط من الفضة"></td></tr>
+  <tr><td data-en="Ag in CuSO₄" data-ar="فضة في CuSO₄"></td>
+      <td data-en="<b>No reaction ✘</b>" data-ar="<b>لا يحدث تفاعل ✘</b>"></td>
+      <td data-en="Ag less active than Cu" data-ar="الفضة أقل نشاطًا من النحاس"></td></tr>
+ </table>
+
+ <div class="life"
+  data-en="<b>🏠 My Life Application — Restoring the Shine of Silver</b><br><b>Silverware may lose its shine over time</b>, and a <b>black layer</b> of <b>silver sulphide</b> may form. <b>These items can be cleaned</b> by placing them in a container of <b>boiling water</b> with added <b>sodium bicarbonate</b> salt and a piece of <b>aluminium foil</b>.<br>➜ Because <b>aluminium is more chemically reactive than silver</b>, it <b>displaces it</b> during the reaction, restoring the silver's shine."
+  data-ar="<b>🏠 تطبيق من حياتي — استعادة لمعان الفضة</b><br><b>قد تفقد الأواني الفضية لمعانها مع الوقت</b> وتتكوّن عليها <b>طبقة سوداء</b> من <b>كبريتيد الفضة</b>. <b>ويمكن تنظيف هذه الأواني</b> بوضعها في إناء به <b>ماء مغلي</b> مضاف إليه ملح <b>بيكربونات الصوديوم</b> وقطعة من <b>رقائق الألومنيوم</b>.<br>➜ لأن <b>الألومنيوم أنشط كيميائيًا من الفضة</b> فإنه <b>يحل محلها</b> أثناء التفاعل فيعيد للفضة لمعانها."></div>
+</section>
+
+<!-- ================= 4 DOUBLE ================= -->
+<section id="doub" class="t-purple">
+ <h3 class="title" data-en="4️⃣ Fourth — Double Substitution (Displacement) Reactions" data-ar="4️⃣ رابعًا — تفاعلات الإحلال المزدوج"></h3>
+ <div class="def"
+  data-en="A reaction between <b>two ionic compounds</b>, often in an <b>aqueous solution</b>, where the <b>anions and cations exchange places</b>, forming <b>two new compounds</b>."
+  data-ar="تفاعل بين <b>مركبين أيونيين</b> غالبًا في <b>محلول مائي</b>، حيث <b>تتبادل الأيونات الموجبة والسالبة أماكنها</b> مكوّنة <b>مركبين جديدين</b>."></div>
+ <div class="eq"><span class="r">AB + CD</span> ⟶ <span class="p">AD + CB</span></div>
+
+ <div class="note">
+  <b data-en="Knowledge Accumulation:" data-ar="تراكم المعرفة:"></b>
+  <span data-en="An ionic compound, such as the salt <b>sodium chloride (NaCl)</b>, consists of two parts:"
+        data-ar="يتكون المركب الأيوني مثل ملح <b>كلوريد الصوديوم (NaCl)</b> من جزأين:"></span>
+  <ol class="bul">
+   <li data-en="<b>A positive ion</b> (or positive atomic group) called a <b>cation</b>, such as the sodium ion (Na⁺)."
+       data-ar="<b>أيون موجب</b> (أو مجموعة ذرية موجبة) يُسمى <b>كاتيون</b>، مثل أيون الصوديوم (Na⁺)."></li>
+   <li data-en="<b>A negative ion</b> (or negative atomic group) called an <b>anion</b>, such as the chloride ion (Cl⁻)."
+       data-ar="<b>أيون سالب</b> (أو مجموعة ذرية سالبة) يُسمى <b>أنيون</b>، مثل أيون الكلوريد (Cl⁻)."></li>
+  </ol>
+ </div>
+
+ <div style="text-align:center">
+ <svg viewBox="0 0 580 150" width="100%" style="max-width:620px">
+  <rect width="580" height="150" fill="#f3e5f5" rx="12"/>
+  <circle cx="60" cy="90" r="22" fill="#ef9a9a"/><text x="60" y="96" text-anchor="middle">A</text>
+  <circle cx="108" cy="90" r="22" fill="#90caf9"/><text x="108" y="96" text-anchor="middle">B</text>
+  <text x="150" y="98" font-size="24">+</text>
+  <circle cx="195" cy="90" r="22" fill="#a5d6a7"/><text x="195" y="96" text-anchor="middle">C</text>
+  <circle cx="243" cy="90" r="22" fill="#f48fb1"/><text x="243" y="96" text-anchor="middle">D</text>
+  <path d="M60 62 q90 -50 183 28" stroke="#6a1b9a" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+  <path d="M108 120 q45 40 87 -8" stroke="#00838f" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+  <defs><marker id="a6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6a1b9a"/></marker>
+  <marker id="a7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#00838f"/></marker></defs>
+  <path d="M285 90 h50" stroke="#333" stroke-width="4" marker-end="url(#a8)"/>
+  <defs><marker id="a8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+  <circle cx="380" cy="90" r="22" fill="#ef9a9a"/><text x="380" y="96" text-anchor="middle">A</text>
+  <circle cx="428" cy="90" r="22" fill="#f48fb1"/><text x="428" y="96" text-anchor="middle">D</text>
+  <text x="465" y="98" font-size="24">+</text>
+  <circle cx="505" cy="90" r="22" fill="#a5d6a7"/><text x="505" y="96" text-anchor="middle">C</text>
+  <circle cx="553" cy="90" r="22" fill="#90caf9"/><text x="553" y="96" text-anchor="middle">B</text>
+ </svg>
+ </div>
+
+ <h4 data-en="🟨 Examples of double displacement reactions include:" data-ar="🟨 من أمثلة تفاعلات الإحلال المزدوج:"></h4>
+
+ <h5 data-en="1 — The reaction of an acid with a base (Neutralization reaction)" data-ar="١ — تفاعل حمض مع قاعدة (تفاعل التعادل)"></h5>
+ <div class="activity">
+  <h4 data-en="🔬 Activity 7 : Observe and Conclude" data-ar="🔬 النشاط السابع : لاحظ واستنتج"></h4>
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Dilute HCl" data-ar="حمض هيدروكلوريك مخفف"></span>
+  <span class="chip" data-en="Test tube" data-ar="أنبوبة اختبار"></span>
+  <span class="chip" data-en="Dilute NaOH" data-ar="محلول هيدروكسيد صوديوم مخفف"></span>
+  <span class="chip" data-en="Universal indicator" data-ar="الدليل العام"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Place a suitable volume (1 ml) of dilute sodium hydroxide solution into the test tube." data-ar="ضع حجمًا مناسبًا (١ مل) من محلول هيدروكسيد الصوديوم المخفف في أنبوبة الاختبار."></li>
+   <li data-en="Add drops of <b>universal indicator</b> to it — what does the colour become? ➜ <b>Purple (alkaline)</b>." data-ar="أضف قطرات من <b>الدليل العام</b> — ماذا يصبح لون المحلول؟ ➜ <b>بنفسجي (قلوي)</b>."></li>
+   <li data-en="Gradually add dilute hydrochloric acid to the solution." data-ar="أضف تدريجيًا حمض الهيدروكلوريك المخفف إلى المحلول."></li>
+  </ol>
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <p data-en="The NaOH solution is <b>purple</b> after adding universal indicator. As HCl is added, the colour changes gradually: <b>Purple → Green → Red</b> (if excess acid is added).<br><b>At the neutralization point</b>, the solution becomes <b>green</b>, indicating a <b>neutral solution (pH = 7)</b>."
+     data-ar="يكون محلول هيدروكسيد الصوديوم <b>بنفسجي اللون</b> بعد إضافة الدليل العام. وبإضافة حمض الهيدروكلوريك يتغير اللون تدريجيًا: <b>بنفسجي ← أخضر ← أحمر</b> (عند زيادة الحمض).<br><b>وعند نقطة التعادل</b> يصبح المحلول <b>أخضر اللون</b> دلالة على <b>محلول متعادل (pH = ٧)</b>."></p>
+
+  <div style="text-align:center">
+  <svg viewBox="0 0 440 90" width="100%" style="max-width:520px">
+   <rect x="10" y="20" width="60" height="40" fill="#1e3a8a"/><text x="40" y="76" font-size="11" text-anchor="middle">pH 1-2</text>
+   <rect x="70" y="20" width="60" height="40" fill="#2563eb"/><text x="100" y="76" font-size="11" text-anchor="middle">3-4</text>
+   <rect x="130" y="20" width="60" height="40" fill="#0f766e"/><text x="160" y="76" font-size="11" text-anchor="middle">5-6</text>
+   <rect x="190" y="20" width="60" height="40" fill="#16a34a"/><text x="220" y="76" font-size="11" text-anchor="middle" font-weight="bold">7</text>
+   <rect x="250" y="20" width="60" height="40" fill="#eab308"/><text x="280" y="76" font-size="11" text-anchor="middle">8-9</text>
+   <rect x="310" y="20" width="60" height="40" fill="#f97316"/><text x="340" y="76" font-size="11" text-anchor="middle">10-11</text>
+   <rect x="370" y="20" width="60" height="40" fill="#dc2626"/><text x="400" y="76" font-size="11" text-anchor="middle">12-14</text>
+  </svg>
+  <p style="font-size:.85rem" data-en="🎨 Universal indicator scale: <b>purple/blue (alkali) → green (neutral) → yellow → orange → red (acid)</b>"
+     data-ar="🎨 تدرج ألوان الدليل العام: <b>بنفسجي/أزرق (قلوي) ← أخضر (متعادل) ← أصفر ← برتقالي ← أحمر (حمضي)</b>"></p>
+  </div>
+
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <ul class="bul">
+   <li data-en="Hydrochloric acid reacts with sodium hydroxide in a <b>neutralization reaction</b> to produce <b>sodium chloride (NaCl)</b> and <b>water (H₂O)</b>."
+       data-ar="يتفاعل حمض الهيدروكلوريك مع هيدروكسيد الصوديوم في <b>تفاعل تعادل</b> لينتج <b>كلوريد الصوديوم (NaCl)</b> و<b>الماء (H₂O)</b>."></li>
+   <li data-en="<b>When a universal indicator is added to a solution</b>, the solution changes colour depending on its <b>alkalinity or acidity</b>."
+       data-ar="<b>عند إضافة الدليل العام إلى محلول</b> يتغير لون المحلول تبعًا لدرجة <b>قلويته أو حموضته</b>."></li>
+   <li data-en="<b>Sodium hydroxide (NaOH) solution</b> is a clear, <b>colourless, strong alkali</b> that often <b>turns purple when a universal indicator</b> is added."
+       data-ar="<b>محلول هيدروكسيد الصوديوم (NaOH)</b> محلول رائق <b>عديم اللون قلوي قوي</b> <b>يتحول إلى اللون البنفسجي عند إضافة الدليل العام</b>."></li>
+   <li data-en="By <b>gradually adding dilute HCl</b>, it changes colour to <b>green</b>; this is called the <b>neutralization point</b>."
+       data-ar="<b>وبالإضافة التدريجية لحمض الهيدروكلوريك المخفف</b> يتحول اللون إلى <b>الأخضر</b> وتسمى هذه <b>نقطة التعادل</b>."></li>
+   <li data-en="<b>With the addition of more dilute HCl</b>, the solution gradually turns <b>yellow</b>, then <b>orange</b>, and may even turn <b>red</b>."
+       data-ar="<b>وبإضافة المزيد من الحمض المخفف</b> يتحول المحلول تدريجيًا إلى <b>الأصفر</b> ثم <b>البرتقالي</b> وقد يصل إلى <b>الأحمر</b>."></li>
+   <li data-en="The reaction of dilute HCl <b>(acid)</b> with NaOH <b>(alkali)</b> is a <b>double displacement reaction</b>, producing sodium chloride <b>salt</b> (neutral) and <b>water</b>."
+       data-ar="تفاعل حمض الهيدروكلوريك المخفف <b>(حمض)</b> مع هيدروكسيد الصوديوم <b>(قلوي)</b> هو <b>تفاعل إحلال مزدوج</b> ينتج <b>ملح</b> كلوريد الصوديوم (متعادل) و<b>الماء</b>."></li>
+   <li data-en="The reaction of an acid with an alkali to produce <b>salt + water</b> is called a <b>“neutralization reaction”</b>."
+       data-ar="يُسمى تفاعل الحمض مع القلوي لإنتاج <b>ملح + ماء</b> بـ<b>«تفاعل التعادل»</b>."></li>
+  </ul>
+  <div class="eq"><span class="r">HCl(aq) + NaOH(aq)</span> ⟶ <span class="p">NaCl(aq) + H<sub>2</sub>O(l)</span></div>
+ </div>
+
+ <h5 data-en="2 — Reaction of a Strong Acid with a Salt of a Weak Acid" data-ar="٢ — تفاعل حمض قوي مع ملح حمض ضعيف"></h5>
+ <div class="note"
+  data-en="<b>A strong acid</b> ionizes (dissociates) <b>almost completely</b> in water.<br><b>A weak acid</b> — only <b>part</b> of it ionizes in water; therefore the solution contains a <b>mixture of ions and unionized acid molecules</b>."
+  data-ar="<b>الحمض القوي</b> يتأين (يتفكك) <b>تأينًا شبه تام</b> في الماء.<br><b>الحمض الضعيف</b> يتأين <b>جزء منه فقط</b> في الماء، ولذلك يحتوي المحلول على <b>خليط من الأيونات وجزيئات حمض غير متأينة</b>."></div>
+
+ <div class="activity">
+  <h4 data-en="🔬 Activity 8 : Observe and Conclude" data-ar="🔬 النشاط الثامن : لاحظ واستنتج"></h4>
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Dilute HCl" data-ar="حمض هيدروكلوريك مخفف"></span>
+  <span class="chip" data-en="Conical flask + stopper" data-ar="دورق مخروطي وسدادة"></span>
+  <span class="chip" data-en="Beaker" data-ar="كأس زجاجي"></span>
+  <span class="chip" data-en="Powdered sodium carbonate Na₂CO₃" data-ar="مسحوق كربونات الصوديوم Na₂CO₃"></span>
+  <span class="chip" data-en="Funnel with tap" data-ar="قمع بحنفية"></span>
+  <span class="chip" data-en="Delivery tube" data-ar="أنبوبة توصيل"></span>
+  <span class="chip" data-en="Clear lime water" data-ar="ماء الجير الرائق"></span></div>
+
+  <div style="text-align:center">
+  <svg viewBox="0 0 380 190" width="100%" style="max-width:420px">
+   <rect width="380" height="190" fill="#f7fbff" rx="10"/>
+   <path d="M60 15 l40 0 -14 30 0 25 -12 0 0-25 z" fill="#81d4fa" stroke="#0277bd" stroke-width="2"/>
+   <text x="112" y="22" font-size="10" fill="#0277bd">HCl</text>
+   <path d="M50 80 l30 0 0 20 25 55 -80 0 25-55 z" fill="#e1f5fe" stroke="#01579b" stroke-width="2.5"/>
+   <rect x="52" y="72" width="26" height="10" fill="#5d4037"/>
+   <circle cx="55" cy="145" r="3" fill="#bdbdbd"/><circle cx="70" cy="148" r="3" fill="#bdbdbd"/><circle cx="85" cy="145" r="3" fill="#bdbdbd"/>
+   <text x="65" y="172" font-size="10" text-anchor="middle">Na₂CO₃</text>
+   <path d="M78 72 q60 -30 120 0 l0 60" stroke="#ff8f00" stroke-width="6" fill="none"/>
+   <rect x="230" y="95" width="90" height="65" fill="#f1f8e9" stroke="#33691e" stroke-width="2.5"/>
+   <rect x="232" y="120" width="86" height="38" fill="#dcedc8"/>
+   <path d="M198 132 h34 v-10" stroke="#ff8f00" stroke-width="6" fill="none"/>
+   <circle class="bcircle" cx="255" cy="150" r="4" fill="#fff"/>
+   <circle class="bcircle" cx="275" cy="150" r="3" fill="#fff" style="animation-delay:.7s"/>
+   <text x="275" y="178" font-size="10" text-anchor="middle">lime water</text>
+  </svg>
+  </div>
+
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Construct the apparatus shown." data-ar="ركّب الجهاز الموضح بالشكل."></li>
+   <li data-en="Place the powdered sodium carbonate in the flask." data-ar="ضع مسحوق كربونات الصوديوم في الدورق."></li>
+   <li data-en="Add a quantity of acid to the powder and close the flask." data-ar="أضف كمية من الحمض إلى المسحوق وأغلق الدورق."></li>
+   <li data-en="Allow the released gas to pass into the clear lime water beaker for a short time." data-ar="اترك الغاز المتصاعد يمر في كأس ماء الجير الرائق لفترة قصيرة."></li>
+  </ol>
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <p data-en="Releasing a gas <b>(CO₂)</b> which <b>turns lime water turbid (milky)</b>."
+     data-ar="يتصاعد غاز <b>(CO₂)</b> <b>يعكّر ماء الجير الرائق</b>."></p>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <p data-en="When HCl reacts with sodium carbonate (Na₂CO₃), <b>the ions exchange positions</b>, producing <b>sodium chloride (NaCl)</b>, and <b>carbonic acid (H₂CO₃)</b> is formed, which <b>decomposes</b> into <b>water (H₂O)</b> and <b>carbon dioxide (CO₂)</b>."
+     data-ar="عند تفاعل حمض الهيدروكلوريك مع كربونات الصوديوم (Na₂CO₃) <b>تتبادل الأيونات أماكنها</b> منتجة <b>كلوريد الصوديوم (NaCl)</b>، ويتكوّن <b>حمض الكربونيك (H₂CO₃)</b> الذي <b>يتحلل</b> إلى <b>ماء (H₂O)</b> و<b>ثاني أكسيد الكربون (CO₂)</b>."></p>
+  <div class="eq"><span class="r">Na<sub>2</sub>CO<sub>3</sub> + 2HCl</span> —<span class="a">dil.</span>→ <span class="p">2NaCl + H<sub>2</sub>O + CO<sub>2</sub>↑</span></div>
+  <p style="font-size:.92rem" data-en="💡 <b>This answers the opening question:</b> marble (CaCO₃) + HCl gives CO₂ in the same way: CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑"
+     data-ar="💡 <b>وهذا يجيب عن سؤال بداية الدرس:</b> الرخام (CaCO₃) + HCl يعطي CO₂ بنفس الطريقة: CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑"></p>
+ </div>
+
+ <h5 data-en="3 — Precipitation Reactions (Between Two Salt Solutions)" data-ar="٣ — تفاعلات الترسيب (بين محلولي ملحين)"></h5>
+ <div class="activity">
+  <b data-en="Materials:" data-ar="المواد والأدوات:"></b>
+  <div><span class="chip" data-en="Sodium chloride solution (NaCl)" data-ar="محلول كلوريد الصوديوم (NaCl)"></span>
+  <span class="chip" data-en="Test tube" data-ar="أنبوبة اختبار"></span>
+  <span class="chip" data-en="Silver nitrate solution (AgNO₃)" data-ar="محلول نترات الفضة (AgNO₃)"></span></div>
+  <h5 data-en="Steps" data-ar="الخطوات"></h5>
+  <ol class="bul">
+   <li data-en="Place some sodium chloride solution in the test tube." data-ar="ضع بعض محلول كلوريد الصوديوم في أنبوبة الاختبار."></li>
+   <li data-en="Add drops of silver nitrate solution to the sodium chloride solution." data-ar="أضف قطرات من محلول نترات الفضة إلى محلول كلوريد الصوديوم."></li>
+  </ol>
+  <h5 data-en="👁️ Observation" data-ar="👁️ الملاحظة"></h5>
+  <p data-en="A <b>white precipitate</b> of silver chloride salt (AgCl) is formed."
+     data-ar="يتكوّن <b>راسب أبيض</b> من ملح كلوريد الفضة (AgCl)."></p>
+  <h5 data-en="✅ Conclusion" data-ar="✅ الاستنتاج"></h5>
+  <p data-en="When silver nitrate solution (AgNO₃) is added to sodium chloride solution (NaCl), a <b>double substitution reaction</b> occurs, forming <b>sodium nitrate solution (NaNO₃)</b> and <b>silver chloride salt (AgCl)</b>, which is <b>insoluble in water</b> and precipitates as a <b>white precipitate that turns purple after exposure to light</b>."
+     data-ar="عند إضافة محلول نترات الفضة (AgNO₃) إلى محلول كلوريد الصوديوم (NaCl) يحدث <b>تفاعل إحلال مزدوج</b> مكوّنًا محلول <b>نترات الصوديوم (NaNO₃)</b> وملح <b>كلوريد الفضة (AgCl)</b> وهو <b>غير ذائب في الماء</b> فيترسب على هيئة <b>راسب أبيض يتحول إلى البنفسجي بالتعرض للضوء</b>."></p>
+  <div class="eq"><span class="r">AgNO<sub>3</sub>(aq) + NaCl(aq)</span> ⟶ <span class="p">NaNO<sub>3</sub>(aq) + AgCl(s)↓</span></div>
+ </div>
+
+ <div class="life"
+  data-en="<b>💧 Evaluate your Understanding — Hard Water Treatment</b><br>Some groundwater contains a high percentage of <b>calcium and magnesium salts</b>. This water is known as <b>“hard water,”</b> which causes <b>hard deposits</b> inside water heaters and washing machines, leading to their damage.<br><b>In water treatment plants, sodium carbonate is added</b> to the water to <b>remove these salts</b>. Precipitation reactions occur where <b>calcium and magnesium ions bind to carbonate ions</b> forming <b>solid deposits insoluble in water</b>, which then precipitate and are easily removed."
+  data-ar="<b>💧 قوّم فهمك — معالجة المياه العسرة</b><br>تحتوي بعض المياه الجوفية على نسبة عالية من <b>أملاح الكالسيوم والماغنسيوم</b>، وتُعرف هذه المياه بـ<b>«المياه العسرة»</b> التي تسبب <b>ترسبات صلبة</b> داخل سخانات المياه والغسالات مما يؤدي إلى تلفها.<br><b>وفي محطات معالجة المياه تُضاف كربونات الصوديوم</b> إلى الماء <b>لإزالة هذه الأملاح</b>، حيث تحدث تفاعلات ترسيب <b>ترتبط فيها أيونات الكالسيوم والماغنسيوم بأيونات الكربونات</b> مكوّنة <b>ترسبات صلبة غير ذائبة في الماء</b> تترسب ويسهل إزالتها."></div>
+
+ <div class="note"
+  data-en="<b>🧩 Designing Models of Some Reactions:</b> Work with your classmates to design models showing the <b>rearrangement of atoms</b> in different types of reactions <b>using paper clips</b> — e.g. NaOH + HCl → NaCl + H₂O."
+  data-ar="<b>🧩 تصميم نماذج لبعض التفاعلات:</b> تعاون مع زملائك في تصميم نماذج توضح <b>إعادة ترتيب الذرات</b> في أنواع التفاعلات المختلفة <b>باستخدام مشابك الورق</b> — مثال: NaOH + HCl → NaCl + H₂O."></div>
+</section>
+
+<!-- ================= REDOX ================= -->
+<section id="redox" class="t-red">
+ <h3 class="title" data-en="5️⃣ Oxidation – Reduction (Redox) Reactions" data-ar="5️⃣ تفاعلات الأكسدة والاختزال"></h3>
+ <div class="grid2">
+  <div class="def" style="border-color:#d32f2f"
+   data-en="<b>Oxidation (classic):</b> a chemical process that leads to an <b>increase in the percentage of oxygen</b> in a substance <b>or a decrease in the percentage of hydrogen</b> in it."
+   data-ar="<b>الأكسدة (التعريف التقليدي):</b> عملية كيميائية تؤدي إلى <b>زيادة نسبة الأكسجين</b> في مادة <b>أو نقص نسبة الهيدروجين</b> فيها."></div>
+  <div class="def" style="border-color:#1565c0"
+   data-en="<b>Reduction (classic):</b> a chemical process that leads to a <b>decrease in the percentage of oxygen</b> in a substance <b>or an increase in the percentage of hydrogen</b> in it."
+   data-ar="<b>الاختزال (التعريف التقليدي):</b> عملية كيميائية تؤدي إلى <b>نقص نسبة الأكسجين</b> في مادة <b>أو زيادة نسبة الهيدروجين</b> فيها."></div>
+ </div>
+
+ <div class="note"
+  data-en="<b>❓ Are there chemical reactions in which oxidation–reduction processes occur and do NOT depend on a decrease or increase in the percentage of oxygen or hydrogen in the reactants?</b> ➜ <b>Yes — electron-transfer reactions.</b>"
+  data-ar="<b>❓ هل توجد تفاعلات كيميائية تحدث فيها عمليتا الأكسدة والاختزال ولا تعتمد على نقص أو زيادة نسبة الأكسجين أو الهيدروجين في المتفاعلات؟</b> ➜ <b>نعم — تفاعلات انتقال الإلكترونات.</b>"></div>
+
+ <h4 data-en="🔎 Back to Activity (6): Zn + CuSO₄" data-ar="🔎 بالعودة إلى النشاط (٦): Zn + CuSO₄"></h4>
+ <p data-en="<b>Before the reaction began</b>, zinc was an <b>electrically neutral atom</b>, while copper was a <b>positive cation</b> in the solution."
+    data-ar="<b>قبل بدء التفاعل</b> كان الخارصين <b>ذرة متعادلة كهربيًا</b>، بينما كان النحاس <b>أيونًا موجبًا</b> في المحلول."></p>
+ <div class="eq">
+  Zn<sup>0</sup> + Cu<sup>2+</sup>SO<sub>4</sub><sup>2−</sup> ⟶ Zn<sup>2+</sup>SO<sub>4</sub><sup>2−</sup> + Cu<sup>0</sup>↓<br>
+  <small>↑ Zn : OXIDATION &nbsp;|&nbsp; Cu²⁺ : REDUCTION</small>
+ </div>
+
+ <div class="grid2">
+  <div class="mini" style="border-color:#d32f2f;text-align:start">
+   <b data-en="(1) During the reaction" data-ar="(١) أثناء التفاعل"></b>
+   <span data-en="the zinc atom <b>loses two electrons</b> and becomes a positive zinc ion (Zn²⁺):"
+         data-ar="تفقد ذرة الخارصين <b>إلكترونين</b> وتتحول إلى أيون خارصين موجب (Zn²⁺):"></span>
+   <div class="eq" style="background:#b71c1c">Zn ⟶ Zn<sup>2+</sup> + 2e<sup>−</sup></div>
+   <span data-en="<b>Half-reaction: “Oxidation”</b> — the process of <b>zinc atoms losing electrons</b> is known as <b>oxidation</b>, and <b>zinc acts as the reducing agent</b>."
+         data-ar="<b>نصف تفاعل: «أكسدة»</b> — عملية <b>فقد ذرات الخارصين للإلكترونات</b> تُعرف بـ<b>الأكسدة</b>، ويعمل <b>الخارصين كعامل مختزل</b>."></span>
+  </div>
+  <div class="mini" style="border-color:#1565c0;text-align:start">
+   <b data-en="(2) While the positive copper ion gains these two electrons" data-ar="(٢) بينما يكتسب أيون النحاس الموجب هذين الإلكترونين"></b>
+   <span data-en="to become a <b>neutral copper atom</b>:" data-ar="ليصبح <b>ذرة نحاس متعادلة</b>:"></span>
+   <div class="eq" style="background:#0d47a1">Cu<sup>2+</sup> + 2e<sup>−</sup> ⟶ Cu</div>
+   <span data-en="<b>Half-reaction: “Reduction”</b> — the process of <b>copper ions gaining electrons</b> is known as <b>reduction</b>, and <b>copper sulphate is the oxidizing agent</b>."
+         data-ar="<b>نصف تفاعل: «اختزال»</b> — عملية <b>اكتساب أيونات النحاس للإلكترونات</b> تُعرف بـ<b>الاختزال</b>، و<b>كبريتات النحاس هي العامل المؤكسد</b>."></span>
+  </div>
+ </div>
+
+ <div style="text-align:center">
+ <svg viewBox="0 0 480 140" width="100%" style="max-width:520px">
+  <rect width="480" height="140" fill="#fff5f5" rx="12"/>
+  <circle cx="90" cy="80" r="34" fill="#42a5f5"/><text x="90" y="86" text-anchor="middle" fill="#fff" font-weight="bold">Zn</text>
+  <circle cx="122" cy="52" r="7" fill="#ffeb3b" stroke="#f57f17"/>
+  <circle cx="330" cy="80" r="34" fill="#ff7043"/><text x="330" y="86" text-anchor="middle" fill="#fff" font-weight="bold">Cu²⁺</text>
+  <path d="M130 55 q100 -45 195 15" stroke="#c62828" stroke-width="3" fill="none" stroke-dasharray="7 5" marker-end="url(#a9)"/>
+  <defs><marker id="a9" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#c62828"/></marker></defs>
+  <text x="220" y="24" font-size="14" font-weight="bold" fill="#c62828">2e⁻</text>
+  <text x="90" y="130" font-size="12" text-anchor="middle" font-weight="bold" fill="#0d47a1">e⁻ LOSS = Oxidation</text>
+  <text x="350" y="130" font-size="12" text-anchor="middle" font-weight="bold" fill="#bf360c">e⁻ GAIN = Reduction</text>
+ </svg>
+ </div>
+
+ <h4 data-en="📋 From the above, we conclude the following:" data-ar="📋 مما سبق نستنتج ما يلي:"></h4>
+ <table>
+  <tr><th data-en="Oxidation" data-ar="الأكسدة"></th><th data-en="Reduction" data-ar="الاختزال"></th></tr>
+  <tr><td data-en="A chemical process in which an atom or ion <b>loses</b> one or more electrons" data-ar="عملية كيميائية <b>تفقد</b> فيها الذرة أو الأيون إلكترونًا أو أكثر"></td>
+      <td data-en="A chemical process in which an atom or ion <b>gains</b> one or more electrons" data-ar="عملية كيميائية <b>تكتسب</b> فيها الذرة أو الأيون إلكترونًا أو أكثر"></td></tr>
+  <tr><th data-en="Oxidizing agent" data-ar="العامل المؤكسد"></th><th data-en="Reducing agent" data-ar="العامل المختزل"></th></tr>
+  <tr><td data-en="The substance that <b>gains</b> one or more electrons during a chemical reaction (it is itself <b>reduced</b>)" data-ar="المادة التي <b>تكتسب</b> إلكترونًا أو أكثر أثناء التفاعل الكيميائي (وهي نفسها <b>تُختزل</b>)"></td>
+      <td data-en="The substance that <b>loses</b> one or more electrons during a chemical reaction (it is itself <b>oxidized</b>)" data-ar="المادة التي <b>تفقد</b> إلكترونًا أو أكثر أثناء التفاعل الكيميائي (وهي نفسها <b>تتأكسد</b>)"></td></tr>
+ </table>
+ <div class="ok"
+  data-en="<b>📌 Note</b> that <b>oxidation and reduction are concomitant processes</b>; i.e., they always <b>occur together</b>.<br>🧠 Memory trick: <b>OIL RIG</b> — Oxidation Is Loss, Reduction Is Gain (of electrons)."
+  data-ar="<b>📌 لاحظ</b> أن <b>الأكسدة والاختزال عمليتان متلازمتان</b>؛ أي أنهما <b>يحدثان معًا دائمًا</b>.<br>🧠 قاعدة للحفظ: <b>الأكسدة = فقد إلكترونات — الاختزال = اكتساب إلكترونات</b>."></div>
+
+ <details>
+  <summary data-en="📝 Evaluate your understanding — Mg(s) + Br₂(l) → MgBr₂(s). Which substance…"
+           data-ar="📝 قوّم فهمك — يتفاعل الماغنسيوم مباشرة مع البروم: Mg + Br₂ → MgBr₂ — أي المواد…"></summary>
+  <table>
+   <tr><th data-en="Question" data-ar="السؤال"></th><th data-en="Answer" data-ar="الإجابة"></th><th data-en="Why" data-ar="السبب"></th></tr>
+   <tr><td data-en="1 • Undergoes oxidation" data-ar="١ • تتأكسد"></td><td data-en="<b>Magnesium (Mg)</b>" data-ar="<b>الماغنسيوم (Mg)</b>"></td><td>Mg → Mg<sup>2+</sup> + 2e⁻</td></tr>
+   <tr><td data-en="2 • Undergoes reduction" data-ar="٢ • تُختزل"></td><td data-en="<b>Bromine (Br₂)</b>" data-ar="<b>البروم (Br₂)</b>"></td><td>Br<sub>2</sub> + 2e⁻ → 2Br⁻</td></tr>
+   <tr><td data-en="3 • Acts as an oxidizing agent" data-ar="٣ • تعمل كعامل مؤكسد"></td><td data-en="<b>Bromine (Br₂)</b>" data-ar="<b>البروم (Br₂)</b>"></td><td data-en="It gains electrons" data-ar="لأنه يكتسب الإلكترونات"></td></tr>
+   <tr><td data-en="4 • Acts as a reducing agent" data-ar="٤ • تعمل كعامل مختزل"></td><td data-en="<b>Magnesium (Mg)</b>" data-ar="<b>الماغنسيوم (Mg)</b>"></td><td data-en="It loses electrons" data-ar="لأنه يفقد الإلكترونات"></td></tr>
+  </table>
+ </details>
+
+ <h4 data-en="➕ Extra redox examples" data-ar="➕ أمثلة إضافية على الأكسدة والاختزال"></h4>
+ <table>
+  <tr><th data-en="Equation" data-ar="المعادلة"></th><th data-en="Oxidized (reducing agent)" data-ar="المادة المتأكسدة (عامل مختزل)"></th><th data-en="Reduced (oxidizing agent)" data-ar="المادة المختزلة (عامل مؤكسد)"></th></tr>
+  <tr><td>Fe + CuSO<sub>4</sub> → FeSO<sub>4</sub> + Cu</td><td>Fe</td><td>Cu<sup>2+</sup></td></tr>
+  <tr><td>2Mg + O<sub>2</sub> → 2MgO</td><td>Mg</td><td>O<sub>2</sub></td></tr>
+  <tr><td>2Na + Cl<sub>2</sub> → 2NaCl</td><td>Na</td><td>Cl<sub>2</sub></td></tr>
+  <tr><td>CuO + H<sub>2</sub> → Cu + H<sub>2</sub>O</td><td>H<sub>2</sub></td><td>CuO</td></tr>
+ </table>
+</section>
+
+<!-- ================= SUMMARY ================= -->
+<section id="summary" class="t-amber">
+ <h3 class="title" data-en="⭐ Summary of All Lesson Equations with Type of Reaction"
+     data-ar="⭐ ملخص جميع معادلات الدرس مع نوع التفاعل"></h3>
+ <table>
+  <tr><th data-en="Quick Observation" data-ar="ملاحظة سريعة"></th><th data-en="Chemical Equation" data-ar="المعادلة الكيميائية"></th><th data-en="Type of Reaction" data-ar="نوع التفاعل"></th></tr>
+  <tr><td data-en="★ A bright white substance is formed" data-ar="★ يتكون سطح/مادة بيضاء لامعة"></td><td>2Mg + O<sub>2</sub> → 2MgO</td>
+      <td rowspan="3" data-en="<b>1 • Combination (Synthesis)</b><br>A + B → AB" data-ar="<b>١ • الاتحاد المباشر</b><br>A + B → AB"></td></tr>
+  <tr><td data-en="★ Sparks form and iron turns black" data-ar="★ يتكون شرر ويتحول الحديد للأسود"></td><td>3Fe + 2O<sub>2</sub> → Fe<sub>3</sub>O<sub>4</sub></td></tr>
+  <tr><td data-en="★ Copper changes to dark black" data-ar="★ يتحول النحاس إلى اللون الأسود الداكن"></td><td>2Cu + O<sub>2</sub> → 2CuO</td></tr>
+  <tr><td data-en="★ Red mercury oxide breaks into mercury and oxygen" data-ar="★ يتحلل أكسيد الزئبق الأحمر إلى زئبق وأكسجين"></td><td>2HgO —Δ→ 2Hg + O<sub>2</sub></td>
+      <td rowspan="2" data-en="<b>2 • Decomposition</b><br>AB → A + B" data-ar="<b>٢ • التحلل</b><br>AB → A + B"></td></tr>
+  <tr><td data-en="★ Calcium carbonate breaks into CaO and CO₂" data-ar="★ تتحلل كربونات الكالسيوم إلى CaO و CO₂"></td><td>CaCO<sub>3</sub> —Δ→ CaO + CO<sub>2</sub></td></tr>
+  <tr><td data-en="★ Hydrogen released and a new salt forms" data-ar="★ يتصاعد الهيدروجين ويتكون ملح جديد"></td><td>Mg + 2HCl → MgCl<sub>2</sub> + H<sub>2</sub>↑</td>
+      <td rowspan="3" data-en="<b>3 • Single Displacement</b><br>A + BC → AC + B" data-ar="<b>٣ • الإحلال البسيط</b><br>A + BC → AC + B"></td></tr>
+  <tr><td data-en="★ Hydrogen released and sodium hydroxide formed" data-ar="★ يتصاعد الهيدروجين ويتكون هيدروكسيد الصوديوم"></td><td>2Na + 2H<sub>2</sub>O → 2NaOH + H<sub>2</sub>↑</td></tr>
+  <tr><td data-en="★ Copper deposited and solution decolourizes" data-ar="★ يترسب النحاس ويزول لون المحلول"></td><td>Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu</td></tr>
+  <tr><td data-en="★ Silver nitrate with sodium chloride (precipitate)" data-ar="★ نترات الفضة مع كلوريد الصوديوم (تكوّن راسب)"></td><td>AgNO<sub>3</sub> + NaCl → AgCl↓ + NaNO<sub>3</sub></td>
+      <td rowspan="3" data-en="<b>4 • Double Displacement</b><br>AB + CD → AD + CB" data-ar="<b>٤ • الإحلال المزدوج</b><br>AB + CD → AD + CB"></td></tr>
+  <tr><td data-en="★ Carbon dioxide released (effervescence)" data-ar="★ يتصاعد ثاني أكسيد الكربون (فوران)"></td><td>Na<sub>2</sub>CO<sub>3</sub> + 2HCl → 2NaCl + CO<sub>2</sub>↑ + H<sub>2</sub>O</td></tr>
+  <tr><td data-en="★ Water and salt are formed (neutralization)" data-ar="★ يتكون ماء وملح (تعادل)"></td><td>HCl + NaOH → NaCl + H<sub>2</sub>O</td></tr>
+  <tr><td data-en="★ Zinc loses electrons and copper is deposited" data-ar="★ يفقد الخارصين إلكترونات ويترسب النحاس"></td><td>Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu</td>
+      <td rowspan="2" data-en="<b>5 • Redox Reaction</b><br>Electron transfer" data-ar="<b>٥ • تفاعل أكسدة واختزال</b><br>انتقال إلكترونات"></td></tr>
+  <tr><td data-en="★ Iron loses electrons and copper is deposited" data-ar="★ يفقد الحديد إلكترونات ويترسب النحاس"></td><td>Fe + CuSO<sub>4</sub> → FeSO<sub>4</sub> + Cu</td></tr>
+ </table>
+
+ <div class="grid3">
+  <div class="mini" style="text-align:start"
+   data-en="<b>🔣 Symbols used in equations</b>Δ : Heat<br>↑ : Gas<br>↓ : Precipitate (insoluble solid)<br>+ : Reacts with<br>→ : Produces"
+   data-ar="<b>🔣 الرموز المستخدمة في المعادلات</b>Δ : حرارة<br>↑ : غاز<br>↓ : راسب (صلب غير ذائب)<br>+ : يتفاعل مع<br>→ : ينتج"></div>
+  <div class="mini" style="text-align:start"
+   data-en="<b>📈 Chemical Activity Series</b>Most active → Least active<br>K → Na → Ca → Mg → Al → Zn<br>Fe → Sn → Pb → Cu → Ag → Au<br><i>A more active metal displaces a less active metal from its solution.</i>"
+   data-ar="<b>📈 متسلسلة النشاط الكيميائي</b>الأنشط ← الأقل نشاطًا<br>K → Na → Ca → Mg → Al → Zn<br>Fe → Sn → Pb → Cu → Ag → Au<br><i>الفلز الأنشط يحل محل الفلز الأقل نشاطًا من محلوله.</i>"></div>
+  <div class="mini" style="text-align:start"
+   data-en="<b>💡 Important Notes</b>✅ Chemical reactions produce new substances with different properties and composition.<br>✅ Reactions occur when activation energy is available (heat, light, electric current…).<br>✅ Write chemical equations balancing both sides."
+   data-ar="<b>💡 ملاحظات مهمة</b>✅ التفاعلات الكيميائية تنتج مواد جديدة لها خواص وتركيب مختلف.<br>✅ تحدث التفاعلات عند توفر طاقة التنشيط (حرارة – ضوء – تيار كهربي…).<br>✅ اكتب المعادلات الكيميائية موزونة الطرفين."></div>
+ </div>
+
+ <h4 data-en="🃏 Flip-Card Revision (click a card)" data-ar="🃏 مراجعة ببطاقات مقلوبة (اضغط على البطاقة)"></h4>
+ <div class="flipwrap">
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Combination reaction" data-ar="تفاعل الاتحاد المباشر"></div>
+   <div class="face back" data-en="Two or more substances combine to form ONE new compound (A + B → AB)" data-ar="اتحاد مادتين أو أكثر لتكوين مركب جديد واحد (A + B → AB)"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Decomposition reaction" data-ar="تفاعل التحلل"></div>
+   <div class="face back" data-en="A compound breaks down by heat/light into simpler substances (AB → A + B)" data-ar="تحلل مركب بالحرارة أو الضوء إلى مواد أبسط (AB → A + B)"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Single substitution" data-ar="الإحلال البسيط"></div>
+   <div class="face back" data-en="One element replaces another element in one of its compounds (A + BC → AC + B)" data-ar="يحل عنصر محل عنصر آخر في أحد مركباته (A + BC → AC + B)"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Double substitution" data-ar="الإحلال المزدوج"></div>
+   <div class="face back" data-en="Two ionic compounds exchange their cations &amp; anions (AB + CD → AD + CB)" data-ar="تبادل المركبين الأيونيين لأيوناتهما الموجبة والسالبة (AB + CD → AD + CB)"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Neutralization" data-ar="التعادل"></div>
+   <div class="face back" data-en="Acid + Alkali → Salt + Water (pH = 7, indicator turns green)" data-ar="حمض + قلوي ← ملح + ماء (pH = ٧ ويتحول الدليل للأخضر)"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Oxidation" data-ar="الأكسدة"></div>
+   <div class="face back" data-en="Loss of electrons / gain of oxygen / loss of hydrogen" data-ar="فقد إلكترونات / اكتساب أكسجين / فقد هيدروجين"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Reduction" data-ar="الاختزال"></div>
+   <div class="face back" data-en="Gain of electrons / loss of oxygen / gain of hydrogen" data-ar="اكتساب إلكترونات / فقد أكسجين / اكتساب هيدروجين"></div></div></div>
+  <div class="flip"><div class="flipin">
+   <div class="face front" data-en="Activity series" data-ar="متسلسلة النشاط"></div>
+   <div class="face back" data-en="Arrangement of metals descending according to their chemical activity" data-ar="ترتيب الفلزات تنازليًا حسب درجة نشاطها الكيميائي"></div></div></div>
+ </div>
+</section>
+
+<!-- ================= QUESTION BANK ================= -->
+<section id="bank">
+ <h3 class="title" data-en="📚 Question Bank on Lesson 1 (with model answers)" data-ar="📚 بنك أسئلة الدرس الأول (مع نموذج الإجابة)"></h3>
+
+ <details open><summary data-en="Part (1) — Write the scientific term (30)" data-ar="الجزء (١) — اكتب المصطلح العلمي (٣٠)"></summary>
+ <table>
+  <tr><th>#</th><th data-en="Statement" data-ar="العبارة"></th><th data-en="Answer" data-ar="الإجابة"></th></tr>
+  <tr><td>1</td><td data-en="A reaction in which two or more substances combine to form one product." data-ar="تفاعل تتحد فيه مادتان أو أكثر لتكوين ناتج واحد."></td><td data-en="Direct combination (synthesis) reaction" data-ar="تفاعل الاتحاد المباشر"></td></tr>
+  <tr><td>2</td><td data-en="A reaction in which one compound breaks down into simpler substances." data-ar="تفاعل يتحلل فيه مركب إلى مواد أبسط."></td><td data-en="Decomposition reaction" data-ar="تفاعل التحلل"></td></tr>
+  <tr><td>3</td><td data-en="A reaction in which one element replaces another in a compound." data-ar="تفاعل يحل فيه عنصر محل عنصر آخر في مركب."></td><td data-en="Single substitution reaction" data-ar="تفاعل الإحلال البسيط"></td></tr>
+  <tr><td>4</td><td data-en="A reaction in which ions of two compounds exchange places." data-ar="تفاعل تتبادل فيه أيونات مركبين أماكنها."></td><td data-en="Double substitution reaction" data-ar="تفاعل الإحلال المزدوج"></td></tr>
+  <tr><td>5</td><td data-en="A substance that increases the rate of a reaction without being consumed." data-ar="مادة تزيد من سرعة التفاعل دون أن تُستهلك."></td><td data-en="Catalyst" data-ar="عامل حفاز"></td></tr>
+  <tr><td>6</td><td data-en="A substance that loses electrons during a reaction." data-ar="مادة تفقد إلكترونات أثناء التفاعل."></td><td data-en="Reducing agent" data-ar="عامل مختزل"></td></tr>
+  <tr><td>7</td><td data-en="A substance that gains electrons during a reaction." data-ar="مادة تكتسب إلكترونات أثناء التفاعل."></td><td data-en="Oxidizing agent" data-ar="عامل مؤكسد"></td></tr>
+  <tr><td>8</td><td data-en="The process of losing electrons." data-ar="عملية فقد الإلكترونات."></td><td data-en="Oxidation" data-ar="الأكسدة"></td></tr>
+  <tr><td>9</td><td data-en="The process of gaining electrons." data-ar="عملية اكتساب الإلكترونات."></td><td data-en="Reduction" data-ar="الاختزال"></td></tr>
+  <tr><td>10</td><td data-en="A substance that causes oxidation." data-ar="مادة تسبب الأكسدة."></td><td data-en="Oxidizing agent" data-ar="عامل مؤكسد"></td></tr>
+  <tr><td>11</td><td data-en="A substance that causes reduction." data-ar="مادة تسبب الاختزال."></td><td data-en="Reducing agent" data-ar="عامل مختزل"></td></tr>
+  <tr><td>12</td><td data-en="A list that arranges metals according to their reactivity." data-ar="قائمة ترتب الفلزات حسب نشاطها الكيميائي."></td><td data-en="Chemical activity series" data-ar="متسلسلة النشاط الكيميائي"></td></tr>
+  <tr><td>13</td><td data-en="The reaction between an acid and an alkali producing salt and water." data-ar="تفاعل بين حمض وقلوي ينتج ملحًا وماءً."></td><td data-en="Neutralization reaction" data-ar="تفاعل التعادل"></td></tr>
+  <tr><td>14</td><td data-en="A solution with pH equal to 7." data-ar="محلول رقمه الهيدروجيني يساوي ٧."></td><td data-en="Neutral solution" data-ar="محلول متعادل"></td></tr>
+  <tr><td>15</td><td data-en="A solution with pH less than 7." data-ar="محلول رقمه الهيدروجيني أقل من ٧."></td><td data-en="Acidic solution" data-ar="محلول حمضي"></td></tr>
+  <tr><td>16</td><td data-en="A solution with pH greater than 7." data-ar="محلول رقمه الهيدروجيني أكبر من ٧."></td><td data-en="Alkaline solution" data-ar="محلول قلوي"></td></tr>
+  <tr><td>17</td><td data-en="An indicator that shows different colours according to pH." data-ar="كاشف يعطي ألوانًا مختلفة حسب الرقم الهيدروجيني."></td><td data-en="Universal indicator" data-ar="الدليل العام"></td></tr>
+  <tr><td>18</td><td data-en="A solid formed during a chemical reaction." data-ar="مادة صلبة تتكون أثناء التفاعل الكيميائي."></td><td data-en="Precipitate" data-ar="راسب"></td></tr>
+  <tr><td>19</td><td data-en="A reaction that releases heat." data-ar="تفاعل يصاحبه انطلاق حرارة."></td><td data-en="Exothermic reaction" data-ar="تفاعل طارد للحرارة"></td></tr>
+  <tr><td>20</td><td data-en="A reaction that absorbs heat." data-ar="تفاعل يمتص حرارة."></td><td data-en="Endothermic reaction" data-ar="تفاعل ماص للحرارة"></td></tr>
+  <tr><td>21</td><td data-en="The gas released when metals react with dilute acids." data-ar="الغاز المتصاعد عند تفاعل الفلزات مع الأحماض المخففة."></td><td data-en="Hydrogen (H₂)" data-ar="الهيدروجين (H₂)"></td></tr>
+  <tr><td>22</td><td data-en="The gas that turns lime water milky." data-ar="الغاز الذي يعكّر ماء الجير."></td><td data-en="Carbon dioxide (CO₂)" data-ar="ثاني أكسيد الكربون (CO₂)"></td></tr>
+  <tr><td>23</td><td data-en="A compound formed from an acid and a base." data-ar="مركب ناتج من تفاعل حمض وقاعدة."></td><td data-en="Salt" data-ar="ملح"></td></tr>
+  <tr><td>24</td><td data-en="The process in which zinc replaces copper from copper sulphate solution." data-ar="العملية التي يحل فيها الخارصين محل النحاس من محلول كبريتات النحاس."></td><td data-en="Single substitution (redox)" data-ar="إحلال بسيط (أكسدة واختزال)"></td></tr>
+  <tr><td>25</td><td data-en="The chemical equation showing symbols instead of words." data-ar="المعادلة التي تُكتب بالرموز بدلًا من الكلمات."></td><td data-en="Symbolic (chemical) equation" data-ar="المعادلة الرمزية"></td></tr>
+  <tr><td>26</td><td data-en="The substance that is consumed during a reaction." data-ar="المادة التي تُستهلك أثناء التفاعل."></td><td data-en="Reactant" data-ar="مادة متفاعلة"></td></tr>
+  <tr><td>27</td><td data-en="The substance produced after a reaction." data-ar="المادة الناتجة بعد التفاعل."></td><td data-en="Product" data-ar="مادة ناتجة"></td></tr>
+  <tr><td>28</td><td data-en="The reaction in which magnesium combines with bromine." data-ar="التفاعل الذي يتحد فيه الماغنسيوم مع البروم."></td><td data-en="Direct combination (redox)" data-ar="اتحاد مباشر (أكسدة واختزال)"></td></tr>
+  <tr><td>29</td><td data-en="A metal that can replace copper from its salt solution." data-ar="فلز يمكنه أن يحل محل النحاس من محلول ملحه."></td><td data-en="Zinc (or Fe, Mg, Al)" data-ar="الخارصين (أو الحديد أو الماغنسيوم أو الألومنيوم)"></td></tr>
+  <tr><td>30</td><td data-en="The solution produced when zinc reacts with copper sulphate." data-ar="المحلول الناتج عند تفاعل الخارصين مع كبريتات النحاس."></td><td data-en="Zinc sulphate (colourless)" data-ar="كبريتات الخارصين (عديم اللون)"></td></tr>
+ </table>
+ </details>
+
+ <details><summary data-en="Part (2) — Choose the correct answer (30)" data-ar="الجزء (٢) — اختر الإجابة الصحيحة (٣٠)"></summary>
+ <table>
+  <tr><th>#</th><th data-en="Question" data-ar="السؤال"></th><th data-en="Correct answer" data-ar="الإجابة الصحيحة"></th></tr>
+  <tr><td>1</td><td data-en="Combination reaction produces (one – two – three – four) products." data-ar="ينتج تفاعل الاتحاد (ناتجًا واحدًا – اثنين – ثلاثة – أربعة)."></td><td data-en="<b>one</b>" data-ar="<b>ناتج واحد</b>"></td></tr>
+  <tr><td>2</td><td>Zn + CuSO<sub>4</sub> → (CuSO<sub>4</sub> – ZnSO<sub>4</sub> – H<sub>2</sub>SO<sub>4</sub> – NaCl)</td><td><b>ZnSO<sub>4</sub></b></td></tr>
+  <tr><td>3</td><td data-en="Universal indicator in neutral solution is (red – green – colourless – black)." data-ar="لون الدليل العام في المحلول المتعادل (أحمر – أخضر – عديم اللون – أسود)."></td><td data-en="<b>green</b>" data-ar="<b>أخضر</b>"></td></tr>
+  <tr><td>4</td><td data-en="The pH of a neutral solution is (5 – 6 – 7 – 8)." data-ar="الرقم الهيدروجيني للمحلول المتعادل (٥ – ٦ – ٧ – ٨)."></td><td><b>7</b></td></tr>
+  <tr><td>5</td><td data-en="Hydrochloric acid is (acid – alkali – salt – metal)." data-ar="حمض الهيدروكلوريك (حمض – قلوي – ملح – فلز)."></td><td data-en="<b>acid</b>" data-ar="<b>حمض</b>"></td></tr>
+  <tr><td>6</td><td data-en="Sodium hydroxide is (acid – alkali – salt – oxide)." data-ar="هيدروكسيد الصوديوم (حمض – قلوي – ملح – أكسيد)."></td><td data-en="<b>alkali</b>" data-ar="<b>قلوي</b>"></td></tr>
+  <tr><td>7</td><td data-en="Magnesium loses (1 – 2 – 3 – 4) electrons." data-ar="يفقد الماغنسيوم (١ – ٢ – ٣ – ٤) إلكترونات."></td><td><b>2</b></td></tr>
+  <tr><td>8</td><td data-en="Bromine undergoes (oxidation – reduction – evaporation – neutralization)." data-ar="البروم (يتأكسد – يُختزل – يتبخر – يتعادل)."></td><td data-en="<b>reduction</b>" data-ar="<b>يُختزل</b>"></td></tr>
+  <tr><td>9</td><td data-en="Copper sulphate solution is (red – blue – green – yellow)." data-ar="لون محلول كبريتات النحاس (أحمر – أزرق – أخضر – أصفر)."></td><td data-en="<b>blue</b>" data-ar="<b>أزرق</b>"></td></tr>
+  <tr><td>10</td><td data-en="Zinc sulphate solution is (blue – green – colourless – red)." data-ar="محلول كبريتات الخارصين (أزرق – أخضر – عديم اللون – أحمر)."></td><td data-en="<b>colourless</b>" data-ar="<b>عديم اللون</b>"></td></tr>
+  <tr><td>11</td><td data-en="Deposited copper is (gray – black – reddish-brown – white)." data-ar="النحاس المترسب لونه (رمادي – أسود – بني محمر – أبيض)."></td><td data-en="<b>reddish-brown</b>" data-ar="<b>بني محمر</b>"></td></tr>
+  <tr><td>12</td><td data-en="A catalyst (increases – decreases – stops – prevents) reaction rate." data-ar="العامل الحفاز (يزيد – يقلل – يوقف – يمنع) سرعة التفاعل."></td><td data-en="<b>increases</b>" data-ar="<b>يزيد</b>"></td></tr>
+  <tr><td>13</td><td>Zn + HCl → gas is (O<sub>2</sub> – H<sub>2</sub> – CO<sub>2</sub> – N<sub>2</sub>)</td><td><b>H<sub>2</sub></b></td></tr>
+  <tr><td>14</td><td data-en="Lime water detects (oxygen – hydrogen – carbon dioxide – nitrogen)." data-ar="يكشف ماء الجير عن (الأكسجين – الهيدروجين – ثاني أكسيد الكربون – النيتروجين)."></td><td data-en="<b>carbon dioxide</b>" data-ar="<b>ثاني أكسيد الكربون</b>"></td></tr>
+  <tr><td>15</td><td data-en="CO₂ turns lime water (blue – milky – green – red)." data-ar="يجعل CO₂ ماء الجير (أزرق – عكرًا – أخضر – أحمر)."></td><td data-en="<b>milky</b>" data-ar="<b>عكرًا</b>"></td></tr>
+  <tr><td>16</td><td data-en="Oxidation means (gain – lose – share – receive) electrons." data-ar="الأكسدة تعني (اكتساب – فقد – مشاركة – استقبال) إلكترونات."></td><td data-en="<b>lose</b>" data-ar="<b>فقد</b>"></td></tr>
+  <tr><td>17</td><td data-en="Reduction means (gain – lose – remove – break) electrons." data-ar="الاختزال يعني (اكتساب – فقد – إزالة – كسر) إلكترونات."></td><td data-en="<b>gain</b>" data-ar="<b>اكتساب</b>"></td></tr>
+  <tr><td>18</td><td data-en="The oxidizing agent is (reduced – oxidized – melted – dissolved)." data-ar="العامل المؤكسد (يُختزل – يتأكسد – ينصهر – يذوب)."></td><td data-en="<b>reduced</b>" data-ar="<b>يُختزل</b>"></td></tr>
+  <tr><td>19</td><td data-en="The reducing agent is (oxidized – reduced – neutralized – evaporated)." data-ar="العامل المختزل (يتأكسد – يُختزل – يتعادل – يتبخر)."></td><td data-en="<b>oxidized</b>" data-ar="<b>يتأكسد</b>"></td></tr>
+  <tr><td>20</td><td>NaOH + HCl → (NaCl + H<sub>2</sub>O – H<sub>2</sub> + Cl<sub>2</sub> – Na + H<sub>2</sub>O – Na<sub>2</sub>O)</td><td><b>NaCl + H<sub>2</sub>O</b></td></tr>
+  <tr><td>21</td><td data-en="Acid + alkali reaction is (combination – decomposition – neutralization – displacement)." data-ar="تفاعل الحمض مع القلوي هو (اتحاد – تحلل – تعادل – إحلال)."></td><td data-en="<b>neutralization</b>" data-ar="<b>تعادل</b>"></td></tr>
+  <tr><td>22</td><td data-en="CuSO₄ contains (zinc – copper – sodium – magnesium)." data-ar="تحتوي CuSO₄ على (خارصين – نحاس – صوديوم – ماغنسيوم)."></td><td data-en="<b>copper</b>" data-ar="<b>نحاس</b>"></td></tr>
+  <tr><td>23</td><td data-en="Zinc is (less – more – equal – not) reactive than copper." data-ar="الخارصين (أقل – أكثر – يساوي – ليس) نشاطًا من النحاس."></td><td data-en="<b>more</b>" data-ar="<b>أكثر</b>"></td></tr>
+  <tr><td>24</td><td data-en="MgBr₂ is formed by (combination – decomposition – substitution – neutralization)." data-ar="يتكون MgBr₂ بتفاعل (اتحاد – تحلل – إحلال – تعادل)."></td><td data-en="<b>combination</b>" data-ar="<b>اتحاد</b>"></td></tr>
+  <tr><td>25</td><td data-en="Blue litmus in acid becomes (red – blue – green – yellow)." data-ar="عباد الشمس الأزرق في الحمض يصبح (أحمر – أزرق – أخضر – أصفر)."></td><td data-en="<b>red</b>" data-ar="<b>أحمر</b>"></td></tr>
+  <tr><td>26</td><td data-en="Red litmus in alkali becomes (blue – red – yellow – orange)." data-ar="عباد الشمس الأحمر في القلوي يصبح (أزرق – أحمر – أصفر – برتقالي)."></td><td data-en="<b>blue</b>" data-ar="<b>أزرق</b>"></td></tr>
+  <tr><td>27</td><td data-en="Water is (acidic – alkaline – neutral – oxidizing)." data-ar="الماء (حمضي – قلوي – متعادل – مؤكسد)."></td><td data-en="<b>neutral</b>" data-ar="<b>متعادل</b>"></td></tr>
+  <tr><td>28</td><td data-en="The activity series arranges (acids – metals – salts – gases)." data-ar="ترتب متسلسلة النشاط (الأحماض – الفلزات – الأملاح – الغازات)."></td><td data-en="<b>metals</b>" data-ar="<b>الفلزات</b>"></td></tr>
+  <tr><td>29</td><td data-en="Hydrogen is produced when acids react with (metals – salts – water – oxygen)." data-ar="ينتج الهيدروجين عند تفاعل الأحماض مع (الفلزات – الأملاح – الماء – الأكسجين)."></td><td data-en="<b>metals</b>" data-ar="<b>الفلزات</b>"></td></tr>
+  <tr><td>30</td><td data-en="CO₂ is produced when acids react with (carbonates – metals – oxygen – nitrogen)." data-ar="ينتج CO₂ عند تفاعل الأحماض مع (الكربونات – الفلزات – الأكسجين – النيتروجين)."></td><td data-en="<b>carbonates</b>" data-ar="<b>الكربونات</b>"></td></tr>
+ </table>
+ </details>
+
+ <details><summary data-en="Part (3) — Give the reason (20+)" data-ar="الجزء (٣) — علِّل (٢٠+)"></summary>
+ <table>
+  <tr><th>#</th><th data-en="Statement" data-ar="العبارة"></th><th data-en="Reason" data-ar="السبب"></th></tr>
+  <tr><td>1</td><td data-en="Zinc can replace copper from copper sulphate solution." data-ar="يستطيع الخارصين أن يحل محل النحاس من محلول كبريتات النحاس."></td><td data-en="Because zinc is more reactive (higher in the activity series) than copper." data-ar="لأن الخارصين أنشط (أعلى في المتسلسلة) من النحاس."></td></tr>
+  <tr><td>2</td><td data-en="Copper cannot replace zinc from zinc sulphate solution." data-ar="لا يستطيع النحاس أن يحل محل الخارصين من محلول كبريتات الخارصين."></td><td data-en="Because copper is less reactive than zinc." data-ar="لأن النحاس أقل نشاطًا من الخارصين."></td></tr>
+  <tr><td>3</td><td data-en="Copper sulphate solution loses its blue colour." data-ar="يفقد محلول كبريتات النحاس لونه الأزرق."></td><td data-en="Because Cu²⁺ ions (which give the blue colour) are reduced to copper metal and deposited." data-ar="لأن أيونات Cu²⁺ المسؤولة عن اللون الأزرق تُختزل إلى نحاس ويترسب."></td></tr>
+  <tr><td>4</td><td data-en="Copper is deposited on the zinc rod." data-ar="يترسب النحاس على قضيب الخارصين."></td><td data-en="Because Cu²⁺ gains the 2 electrons lost by zinc becoming neutral copper atoms." data-ar="لأن Cu²⁺ يكتسب الإلكترونين اللذين فقدهما الخارصين فيتحول لذرات نحاس متعادلة."></td></tr>
+  <tr><td>5</td><td data-en="Sandpaper is used before immersing the zinc rod." data-ar="تُستخدم ورقة الصنفرة قبل غمر قضيب الخارصين."></td><td data-en="To remove the oxide layer/impurities so the reaction starts quickly." data-ar="لإزالة طبقة الأكسيد والشوائب حتى يبدأ التفاعل بسرعة."></td></tr>
+  <tr><td>6</td><td data-en="Universal indicator is added to NaOH solution." data-ar="يُضاف الدليل العام إلى محلول NaOH."></td><td data-en="To detect its alkalinity (turns purple) and follow the colour change to the neutralization point." data-ar="للكشف عن قلويته (يتحول للبنفسجي) ولمتابعة تغير اللون حتى نقطة التعادل."></td></tr>
+  <tr><td>7</td><td data-en="Hydrochloric acid is added gradually." data-ar="يُضاف حمض الهيدروكلوريك تدريجيًا."></td><td data-en="To notice the gradual colour change and determine the exact neutralization point (green)." data-ar="لملاحظة التغير التدريجي في اللون وتحديد نقطة التعادل بدقة (اللون الأخضر)."></td></tr>
+  <tr><td>8</td><td data-en="The solution becomes green during neutralization." data-ar="يصبح المحلول أخضر عند التعادل."></td><td data-en="Because the solution becomes neutral (pH = 7); acid exactly neutralizes alkali." data-ar="لأن المحلول يصبح متعادلًا (pH = ٧) حيث يعادل الحمض القلوي تمامًا."></td></tr>
+  <tr><td>9</td><td data-en="Neutralization reactions produce water." data-ar="تنتج تفاعلات التعادل ماءً."></td><td data-en="Because H⁺ from the acid combines with OH⁻ from the alkali forming H₂O." data-ar="لأن أيون H⁺ من الحمض يتحد مع أيون OH⁻ من القلوي مكوّنًا H₂O."></td></tr>
+  <tr><td>10</td><td data-en="Magnesium acts as a reducing agent." data-ar="يعمل الماغنسيوم كعامل مختزل."></td><td data-en="Because it loses electrons and reduces the other substance." data-ar="لأنه يفقد إلكترونات ويختزل المادة الأخرى."></td></tr>
+  <tr><td>11</td><td data-en="Bromine acts as an oxidizing agent." data-ar="يعمل البروم كعامل مؤكسد."></td><td data-en="Because it gains electrons and oxidizes the other substance." data-ar="لأنه يكتسب إلكترونات ويؤكسد المادة الأخرى."></td></tr>
+  <tr><td>12</td><td data-en="Oxidation and reduction occur simultaneously." data-ar="تحدث الأكسدة والاختزال في وقت واحد."></td><td data-en="Because electrons lost by one substance must be gained by another (concomitant)." data-ar="لأن الإلكترونات التي تفقدها مادة لا بد أن تكتسبها مادة أخرى (عمليتان متلازمتان)."></td></tr>
+  <tr><td>13</td><td data-en="Catalysts are important in industry." data-ar="العوامل الحفازة مهمة في الصناعة."></td><td data-en="They increase reaction rate without being consumed, saving time, energy and cost." data-ar="لأنها تزيد سرعة التفاعل دون أن تُستهلك فتوفر الوقت والطاقة والتكلفة."></td></tr>
+  <tr><td>14</td><td data-en="Lime water turns milky with carbon dioxide." data-ar="يتعكر ماء الجير مع ثاني أكسيد الكربون."></td><td data-en="Because insoluble calcium carbonate (CaCO₃) precipitate is formed." data-ar="لتكوّن راسب كربونات الكالسيوم (CaCO₃) غير الذائب."></td></tr>
+  <tr><td>15</td><td data-en="Hydrogen gas burns with a pop sound." data-ar="يشتعل غاز الهيدروجين بصوت فرقعة."></td><td data-en="Because it is combustible and reacts explosively with oxygen forming water." data-ar="لأنه غاز قابل للاشتعال ويتفاعل بشدة مع أكسجين الهواء مكونًا ماءً."></td></tr>
+  <tr><td>16</td><td data-en="Acids should be handled carefully." data-ar="يجب التعامل مع الأحماض بحذر."></td><td data-en="Because concentrated acids are corrosive and cause severe burns." data-ar="لأن الأحماض المركزة كاوية وتسبب حروقًا شديدة."></td></tr>
+  <tr><td>17</td><td data-en="Strong alkalis are corrosive." data-ar="القلويات القوية كاوية."></td><td data-en="Because they ionize completely giving a high concentration of OH⁻ ions." data-ar="لأنها تتأين تأينًا تامًا معطية تركيزًا عاليًا من أيونات OH⁻."></td></tr>
+  <tr><td>18</td><td data-en="Universal indicator has many colours." data-ar="للدليل العام ألوان متعددة."></td><td data-en="Because it is a mixture of indicators, each changing colour at a different pH." data-ar="لأنه خليط من عدة كواشف يتغير لون كل منها عند رقم هيدروجيني مختلف."></td></tr>
+  <tr><td>19</td><td data-en="Metals higher in the activity series replace lower metals." data-ar="الفلزات الأعلى في المتسلسلة تحل محل الفلزات الأدنى."></td><td data-en="Because they have a greater tendency to lose electrons (higher activity)." data-ar="لأن لها ميلًا أكبر لفقد الإلكترونات (نشاط كيميائي أعلى)."></td></tr>
+  <tr><td>20</td><td data-en="Zinc sulphate solution is colourless." data-ar="محلول كبريتات الخارصين عديم اللون."></td><td data-en="Because Zn²⁺ ions are colourless (unlike coloured Cu²⁺)." data-ar="لأن أيونات Zn²⁺ عديمة اللون (بعكس Cu²⁺ الملونة)."></td></tr>
+  <tr><td>+</td><td data-en="Aluminium does not react immediately with dilute HCl." data-ar="الألومنيوم لا يتفاعل فورًا مع الحمض المخفف."></td><td data-en="Because of a protective Al₂O₃ layer preventing acid contact." data-ar="بسبب طبقة أكسيد الألومنيوم Al₂O₃ الواقية التي تمنع وصول الحمض."></td></tr>
+  <tr><td>+</td><td data-en="Never use water to extinguish sodium fires." data-ar="لا يُستخدم الماء لإطفاء حرائق الصوديوم."></td><td data-en="Sodium + water gives great heat and H₂ → ignition. Use dry sand." data-ar="لأن تفاعل الصوديوم مع الماء ينتج حرارة كبيرة وهيدروجين فيحدث اشتعال — يُستخدم الرمل الجاف."></td></tr>
+  <tr><td>+</td><td data-en="Protective eyewear is worn when burning magnesium." data-ar="ترتدي نظارة واقية عند حرق الماغنسيوم."></td><td data-en="Because burning Mg gives very intense light and UV that damage the retina." data-ar="لأن احتراق الماغنسيوم ينتج ضوءًا شديدًا وأشعة فوق بنفسجية تضر بالشبكية."></td></tr>
+ </table>
+ </details>
+
+ <details><summary data-en="Part (4) — What happens when…? (20)" data-ar="الجزء (٤) — ماذا يحدث عند…؟ (٢٠)"></summary>
+ <table>
+  <tr><th>#</th><th data-en="Case" data-ar="الحالة"></th><th data-en="What happens" data-ar="ماذا يحدث"></th></tr>
+  <tr><td>1</td><td data-en="Zinc is immersed in copper sulphate solution." data-ar="غمر الخارصين في محلول كبريتات النحاس."></td><td data-en="Blue colour fades, red copper deposits: Zn + CuSO₄ → ZnSO₄ + Cu↓" data-ar="يزول اللون الأزرق ويترسب نحاس أحمر: Zn + CuSO₄ → ZnSO₄ + Cu↓"></td></tr>
+  <tr><td>2</td><td data-en="Copper is immersed in zinc sulphate solution." data-ar="غمر النحاس في محلول كبريتات الخارصين."></td><td data-en="No reaction — copper is less reactive than zinc." data-ar="لا يحدث تفاعل — النحاس أقل نشاطًا من الخارصين."></td></tr>
+  <tr><td>3</td><td data-en="Magnesium reacts with bromine." data-ar="تفاعل الماغنسيوم مع البروم."></td><td data-en="Combination/redox: Mg + Br₂ → MgBr₂ (Mg oxidized, Br₂ reduced)." data-ar="اتحاد وأكسدة واختزال: Mg + Br₂ → MgBr₂ (يتأكسد Mg ويُختزل Br₂)."></td></tr>
+  <tr><td>4</td><td data-en="Hydrochloric acid is added to sodium hydroxide." data-ar="إضافة حمض الهيدروكلوريك إلى هيدروكسيد الصوديوم."></td><td data-en="Neutralization: HCl + NaOH → NaCl + H₂O; indicator purple → green." data-ar="تفاعل تعادل: HCl + NaOH → NaCl + H₂O، ويتحول الدليل من البنفسجي للأخضر."></td></tr>
+  <tr><td>5</td><td data-en="Excess hydrochloric acid is added after neutralization." data-ar="إضافة زيادة من الحمض بعد التعادل."></td><td data-en="Solution becomes acidic: green → yellow → orange → red." data-ar="يصبح المحلول حمضيًا: أخضر ← أصفر ← برتقالي ← أحمر."></td></tr>
+  <tr><td>6</td><td data-en="Universal indicator is added to an acidic solution." data-ar="إضافة الدليل العام لمحلول حمضي."></td><td data-en="Turns yellow/orange/red (pH &lt; 7)." data-ar="يتحول إلى الأصفر/البرتقالي/الأحمر (pH أقل من ٧)."></td></tr>
+  <tr><td>7</td><td data-en="Universal indicator is added to an alkaline solution." data-ar="إضافة الدليل العام لمحلول قلوي."></td><td data-en="Turns blue/purple (pH &gt; 7)." data-ar="يتحول إلى الأزرق/البنفسجي (pH أكبر من ٧)."></td></tr>
+  <tr><td>8</td><td data-en="Carbon dioxide passes through lime water." data-ar="إمرار ثاني أكسيد الكربون في ماء الجير."></td><td data-en="Lime water turns milky (CaCO₃ precipitate)." data-ar="يتعكر ماء الجير (راسب CaCO₃)."></td></tr>
+  <tr><td>9</td><td data-en="Zinc reacts with dilute hydrochloric acid." data-ar="تفاعل الخارصين مع الحمض المخفف."></td><td data-en="Fast effervescence of H₂: Zn + 2HCl → ZnCl₂ + H₂↑" data-ar="فوران سريع لغاز H₂: Zn + 2HCl → ZnCl₂ + H₂↑"></td></tr>
+  <tr><td>10</td><td data-en="Copper reacts with dilute hydrochloric acid." data-ar="وضع النحاس في الحمض المخفف."></td><td data-en="No reaction — copper is below hydrogen in the series." data-ar="لا يحدث تفاعل — النحاس يلي الهيدروجين في المتسلسلة."></td></tr>
+  <tr><td>11</td><td data-en="Sodium carbonate reacts with hydrochloric acid." data-ar="تفاعل كربونات الصوديوم مع حمض الهيدروكلوريك."></td><td data-en="Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂↑ (effervescence, milky lime water)." data-ar="Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂↑ (فوران وتعكير ماء الجير)."></td></tr>
+  <tr><td>12</td><td data-en="A catalyst is added to a reaction." data-ar="إضافة عامل حفاز للتفاعل."></td><td data-en="Reaction rate increases without the catalyst being consumed." data-ar="تزداد سرعة التفاعل دون استهلاك العامل الحفاز."></td></tr>
+  <tr><td>13</td><td data-en="Bromine gains electrons." data-ar="اكتساب البروم للإلكترونات."></td><td data-en="It is reduced to bromide ions and acts as an oxidizing agent." data-ar="يُختزل إلى أيونات بروميد ويعمل كعامل مؤكسد."></td></tr>
+  <tr><td>14</td><td data-en="Magnesium loses electrons." data-ar="فقد الماغنسيوم للإلكترونات."></td><td data-en="It is oxidized to Mg²⁺ and acts as a reducing agent." data-ar="يتأكسد إلى Mg²⁺ ويعمل كعامل مختزل."></td></tr>
+  <tr><td>15</td><td data-en="A decomposition reaction takes place." data-ar="حدوث تفاعل تحلل."></td><td data-en="One compound breaks into simpler substances using heat/light/electricity." data-ar="يتحلل مركب واحد إلى مواد أبسط بالحرارة أو الضوء أو الكهرباء."></td></tr>
+  <tr><td>16</td><td data-en="Two compounds exchange ions." data-ar="تبادل مركبين لأيوناتهما."></td><td data-en="A double displacement reaction occurs forming two new compounds." data-ar="يحدث تفاعل إحلال مزدوج مكوّنًا مركبين جديدين."></td></tr>
+  <tr><td>17</td><td data-en="A metal reacts with oxygen." data-ar="تفاعل فلز مع الأكسجين."></td><td data-en="A metal oxide is formed (combination), e.g. 2Mg + O₂ → 2MgO." data-ar="يتكون أكسيد الفلز (اتحاد مباشر) مثل 2Mg + O₂ → 2MgO."></td></tr>
+  <tr><td>18</td><td data-en="A strong acid is diluted with water." data-ar="تخفيف حمض قوي بالماء."></td><td data-en="H⁺ concentration decreases, pH rises toward 7 (add acid to water)." data-ar="يقل تركيز H⁺ ويرتفع الـ pH نحو ٧ (يُضاف الحمض إلى الماء)."></td></tr>
+  <tr><td>19</td><td data-en="A more reactive metal is placed in the salt solution of a less reactive metal." data-ar="وضع فلز أنشط في محلول ملح فلز أقل نشاطًا."></td><td data-en="It displaces the less reactive metal which is deposited; colour changes." data-ar="يحل محل الفلز الأقل نشاطًا فيترسب ويتغير لون المحلول."></td></tr>
+  <tr><td>20</td><td data-en="The pH of a solution changes from 13 to 7." data-ar="تغير pH محلول من ١٣ إلى ٧."></td><td data-en="The alkaline solution has been neutralized by acid → neutral (green)." data-ar="تعادل المحلول القلوي بالحمض فأصبح متعادلًا (أخضر)."></td></tr>
+ </table>
+ </details>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz" class="t-green">
+ <h3 class="title" data-en="🎯 Interactive Self-Quiz (click your answer)" data-ar="🎯 اختبر نفسك تفاعليًا (اضغط على إجابتك)"></h3>
+ <div id="quizbox"></div>
+ <p id="score" style="font-weight:bold;font-size:1.2rem;color:var(--dark);margin-top:12px"></p>
+</section>
+
+</div>
+
+<footer>
+ <b data-en="Unit 1 • Lesson 1 — Types of Chemical Reactions" data-ar="الوحدة الأولى • الدرس الأول — أنواع التفاعلات الكيميائية"></b><br>
+ <span data-en="Interactive bilingual visual lesson • 3rd Preparatory Science" data-ar="درس بصري تفاعلي ثنائي اللغة • علوم الصف الثالث الإعدادي"></span><br>
+ 👨‍🏫 Prof. / Ayman Mansour— 📞 01068018005
+</footer>
+
+<script>
+/* ---------- LANGUAGE ENGINE ---------- */
+let LANG = localStorage.getItem('lang') || 'en';
+function applyLang(){
+ document.querySelectorAll('[data-en]').forEach(el=>{
+  const v = el.getAttribute('data-'+LANG);
+  if(v!==null) el.innerHTML = v;
+ });
+ document.body.classList.toggle('ar', LANG==='ar');
+ document.getElementById('htmlRoot').setAttribute('lang', LANG);
+ document.getElementById('htmlRoot').setAttribute('dir', LANG==='ar'?'rtl':'ltr');
+ const label = LANG==='en' ? '🌐 العربية' : '🌐 English';
+ btn1.textContent = label; btn2.textContent = label;
+ buildQuiz();
+}
+function toggleLang(){ LANG = (LANG==='en')?'ar':'en'; localStorage.setItem('lang',LANG); applyLang(); }
+
+/* ---------- QUIZ DATA (bilingual) ---------- */
+const Q=[
+ {en:["Burning magnesium ribbon in air is an example of …",["Decomposition","Direct combination","Double substitution","Neutralization"]],
+  ar:["احتراق شريط الماغنسيوم في الهواء مثال على …",["التحلل","الاتحاد المباشر","الإحلال المزدوج","التعادل"]],a:1},
+ {en:["2HgO —Δ→ 2Hg + O₂ represents a …",["Combination","Single displacement","Decomposition","Neutralization"]],
+  ar:["المعادلة 2HgO —Δ→ 2Hg + O₂ تمثل تفاعل …",["اتحاد","إحلال بسيط","تحلل","تعادل"]],a:2},
+ {en:["Which metal does NOT release H₂ with dilute HCl?",["Zn","Fe","Mg","Cu"]],
+  ar:["أي فلز لا يتصاعد معه H₂ مع الحمض المخفف؟",["Zn","Fe","Mg","Cu"]],a:3},
+ {en:["The gas released when marble reacts with dilute HCl is …",["H₂","O₂","CO₂","N₂"]],
+  ar:["الغاز المتصاعد عند تفاعل الرخام مع HCl المخفف هو …",["H₂","O₂","CO₂","N₂"]],a:2},
+ {en:["Universal indicator at the neutralization point is …",["Purple","Green","Red","Yellow"]],
+  ar:["لون الدليل العام عند نقطة التعادل هو …",["بنفسجي","أخضر","أحمر","أصفر"]],a:1},
+ {en:["In Zn + CuSO₄ → ZnSO₄ + Cu, zinc is the …",["Oxidizing agent","Reducing agent","Catalyst","Precipitate"]],
+  ar:["في التفاعل Zn + CuSO₄ → ZnSO₄ + Cu يكون الخارصين …",["عامل مؤكسد","عامل مختزل","عامل حفاز","راسب"]],a:1},
+ {en:["AgNO₃ + NaCl gives a white precipitate of …",["NaNO₃","AgCl","AgNO₂","NaOH"]],
+  ar:["AgNO₃ + NaCl يعطي راسبًا أبيض من …",["NaNO₃","AgCl","AgNO₂","NaOH"]],a:1},
+ {en:["Aluminium reacts slowly with dilute HCl at first because of …",["Its low density","An Al₂O₃ protective layer","It is below hydrogen","It is a non-metal"]],
+  ar:["يتفاعل الألومنيوم ببطء في البداية مع HCl بسبب …",["كثافته المنخفضة","طبقة Al₂O₃ الواقية","أنه يلي الهيدروجين","أنه لا فلز"]],a:1},
+ {en:["Sodium fires are extinguished using …",["Water","Dry sand","Vinegar","Lime water"]],
+  ar:["تُطفأ حرائق الصوديوم باستخدام …",["الماء","الرمل الجاف","الخل","ماء الجير"]],a:1},
+ {en:["Reduction is …",["Loss of electrons","Gain of electrons","Loss of hydrogen","Gain of oxygen"]],
+  ar:["الاختزال هو …",["فقد إلكترونات","اكتساب إلكترونات","فقد هيدروجين","اكتساب أكسجين"]],a:1}
+];
+function buildQuiz(){
+ const box=document.getElementById('quizbox'); box.innerHTML=''; let score=0,done=0;
+ document.getElementById('score').textContent='';
+ Q.forEach((it,i)=>{
+  const data = it[LANG];
+  const d=document.createElement('div'); d.className='q';
+  d.innerHTML=`<b>${i+1}. ${data[0]}</b>`;
+  data[1].forEach((op,j)=>{
+   const b=document.createElement('div'); b.className='opt'; b.textContent=op;
+   b.onclick=()=>{
+    if(d.dataset.done)return; d.dataset.done=1; done++;
+    if(j===it.a){b.classList.add('right');score++;}
+    else{b.classList.add('wrong'); d.querySelectorAll('.opt')[it.a].classList.add('right');}
+    document.getElementById('score').textContent =
+      (LANG==='en') ? `Score: ${score} / ${done} answered (out of ${Q.length})`
+                    : `النتيجة: ${score} من ${done} سؤالًا تمت إجابتها (من ${Q.length})`;
+   };
+   d.appendChild(b);
+  });
+  box.appendChild(d);
+ });
+}
+/* flip cards */
+document.querySelectorAll('.flip').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('on')));
+applyLang();
+</script>
+</body>
+
