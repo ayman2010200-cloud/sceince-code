@@ -4,7 +4,7 @@ What changed
 - Unit One, Lesson 1 now uses the newly provided lesson-1unit1.html content instead of the previous Lesson 1 page.
 - Unit One, Lesson 2 now uses the newly provided lesson-2 unit1.html content instead of the previous Lesson 2 page.
 - Unit One, Lesson 3 (“Smoking and Its Dangers” / “الدرس الثالث: التدخين وأضراره”) remains included from the earlier request.
-- The lesson viewer opens each standalone HTML lesson as a full lesson, so the navigation and English/Arabic controls inside each page remain available.
+- The lesson viewer opens each standalone HTML lesson as a full lesson, so the navigation and English/Arabic controls inside each page remain available. Click the active “1. Full Lesson” tab again or the new “Full screen” button to fill the screen; press Esc or use the “Exit full screen” button in the lesson window to return.
 
 Files
 - index.html (updated links/tabs and lesson list)

@@ -473,6 +473,24 @@
       background:#fff;box-shadow:0 20px 46px rgba(0,0,0,.40);margin-bottom:34px;
     }
     .lesson-frame{display:block;width:100%;height:84vh;min-height:660px;border:0;background:#fff}
+    /* Full-screen reading mode for the embedded lesson */
+    .page-content:fullscreen,
+    .page-content:-webkit-full-screen{
+      width:100vw;height:100vh;max-width:none;margin:0;border:0;border-radius:0;
+      box-shadow:none;background:#fff;
+    }
+    .page-content:fullscreen .lesson-frame,
+    .page-content:-webkit-full-screen .lesson-frame{
+      width:100%;height:100vh;min-height:0;border:0;
+    }
+    .fullscreen-exit{
+      display:none;position:absolute;top:10px;right:12px;z-index:8;
+      border:1px solid rgba(255,255,255,.28);border-radius:999px;
+      padding:8px 12px;background:rgba(11,18,32,.86);color:#fff;
+      font:700 14px/1.2 system-ui,sans-serif;cursor:pointer;
+    }
+    .page-content:fullscreen .fullscreen-exit,
+    .page-content:-webkit-full-screen .fullscreen-exit{display:block}
     .page-loader{
       position:absolute;inset:0;display:grid;place-items:center;z-index:6;
       background:rgba(11,18,32,.90);color:#fff;font-weight:800;transition:opacity .35s;
@@ -590,11 +608,13 @@
       <button class="btn" id="prevBtn" onclick="stepLesson(-1)">&#8249; Previous lesson</button>
       <button class="btn" id="nextBtn" onclick="stepLesson(1)">Next lesson &#8250;</button>
       <button class="btn" onclick="openFeedback()"><i class="fa-solid fa-layer-group"></i> Flashcards</button>
+      <button class="btn" id="fullscreenBtn" type="button" title="Show the lesson full screen" onclick="toggleLessonFullscreen()">⛶ Full screen</button>
       <a class="btn" id="openTab" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Open in new tab</a>
     </div>
     <div class="lesson-head" id="lessonHead"></div>
     <div class="page-tabs" id="pageTabs"></div>
     <div class="page-content">
+      <button class="fullscreen-exit" id="fullscreenExitBtn" type="button" onclick="toggleLessonFullscreen()" aria-label="Exit full screen">✕ Exit full screen</button>
       <div class="page-loader" id="pageLoader">
         <div class="pl-inner">
           <div class="spinner"></div>
@@ -1397,10 +1417,46 @@ function renderTabs(){
   const tabs = document.getElementById('pageTabs');
   if(!currentLesson){tabs.innerHTML='';return;}
   tabs.innerHTML = currentLesson.pages.map((p,i)=>
-    `<button class="page-tab${i===currentPage?' active':''}" onclick="loadPage(${i})">${i+1}. ${p.label}</button>`
+    `<button class="page-tab${i===currentPage?' active':''}" onclick="handlePageTabClick(${i})" title="Click the Full Lesson tab again to enter full screen">${i+1}. ${p.label}</button>`
   ).join('');
   tabs.scrollLeft = 0;
 }
+
+function handlePageTabClick(i){
+  if(!currentLesson) return;
+  const page = currentLesson.pages[i];
+  /* The one-tab Full Lesson view doubles as a fullscreen shortcut. */
+  if(i===currentPage && page && page.label==='Full Lesson'){
+    toggleLessonFullscreen();
+    return;
+  }
+  loadPage(i);
+}
+
+function toggleLessonFullscreen(){
+  const stage = document.querySelector('#lessonPage .page-content');
+  if(!stage) return;
+  if(document.fullscreenElement===stage){
+    if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+    return;
+  }
+  if(!stage.requestFullscreen){
+    showNotification('fail','⛶','Fullscreen unavailable','Use “Open in new tab” to view the lesson on its own.');
+    return;
+  }
+  stage.requestFullscreen().catch(()=>{
+    showNotification('fail','⛶','Fullscreen unavailable','Use “Open in new tab” to view the lesson on its own.');
+  });
+}
+
+function syncFullscreenButton(){
+  const btn = document.getElementById('fullscreenBtn');
+  const stage = document.querySelector('#lessonPage .page-content');
+  if(!btn) return;
+  const active = !!(stage && document.fullscreenElement===stage);
+  btn.textContent = active ? '⛶ Exit full screen (Esc)' : '⛶ Full screen';
+}
+document.addEventListener('fullscreenchange', syncFullscreenButton);
 
 function loadPage(i, fresh){
   if(!currentLesson) return;
