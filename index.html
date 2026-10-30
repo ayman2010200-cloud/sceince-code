@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Science Code — مستشار المادة</title>
-  <meta name="description" content="Science Code — Grade 9 science hub by Prof. Ayman Mansour. Unit One: Chemical Reactions and Their Environmental Effects (Lesson 1: Types of Chemical Reactions — Lesson 2: Combustion Reactions and Environmental Pollution — Lesson 3: Smoking and Its Dangers) with interactive lesson pages and flashcards. Unit Two: Electricity and Magnetism. Unit Three: Variation of Traits in Living Organisms. Unit Four: The History of Planet Earth." />
+  <meta name="description" content="Science Code — Grade 9 science hub by Prof. Ayman Mansour. Unit One: Chemical Reactions and Their Environmental Effects (Lessons 1–3) with interactive lesson pages, five quizzes worth 25 marks, and flashcards. Unit Two: Electricity and Magnetism (Lesson 1: Electric Current). Unit Three: Variation of Traits in Living Organisms. Unit Four: The History of Planet Earth." />
   <meta name="author" content="Prof. Ayman Mansour" />
   <meta name="theme-color" content="#16233b" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -431,6 +431,8 @@
     .lesson-item .li-ar{display:block;font-weight:900;font-size:1.02rem;color:#0f172a;line-height:1.5}
     .lesson-item .li-en{display:block;font-weight:700;font-size:.79rem;color:#64748b;margin-top:3px}
     .lesson-item .li-go{font-size:1.5rem;line-height:1;color:var(--uc);font-weight:900}
+    .lesson-item.quiz-item{padding:0}
+    .lesson-item.quiz-item>a{display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;color:inherit;text-decoration:none}
     .lesson-item.locked{opacity:.66;cursor:not-allowed;background:#f8fafc}
     .lesson-item.locked:hover{transform:none;border-color:#dbe4f3;box-shadow:none}
     .pill-soon{
@@ -1226,6 +1228,7 @@ const UNITS = [
     en:'Chemical Reactions and Their Environmental Effects',
     enShort:'Chemical Reactions',
     img:'images/unit1-cover.png',
+    quizHref:'unit-1-quizzes.html',
     lessons:[
       {
         ar:'الدرس الأول: أنواع التفاعلات الكيميائية',
@@ -1260,7 +1263,7 @@ const UNITS = [
     enShort:'Electricity & Magnetism',
     img:'images/unit2-cover.png',
     lessons:[
-      {ar:'الدرس الأول: التيار الكهربي',            en:'Lesson 1 — Electric Current',              href:'', pages:[]},
+      {ar:'الدرس الأول: التيار الكهربي',            en:'Lesson 1 — Electric Current',              href:'lesson-electric-current.html', pages:[{label:'Full Lesson', hash:''}]},
       {ar:'الدرس الثاني: الدوائر الكهربية',         en:'Lesson 2 — Electric Circuits',             href:'', pages:[]},
       {ar:'الدرس الثالث: القوى الكهربية والمغناطيسية', en:'Lesson 3 — Electrical and Magnetic Forces', href:'', pages:[]}
     ]
@@ -1346,6 +1349,17 @@ function renderCovers(){
                   ${ready ? '<span class="li-go">&rsaquo;</span>' : '<span class="pill-soon">SOON</span>'}
                 </li>`;
             }).join('')}
+            ${u.quizHref ? `
+              <li class="lesson-item quiz-item">
+                <a href="${u.quizHref}" target="_blank" rel="noopener" aria-label="Open Unit One quizzes">
+                  <span class="li-num">📝</span>
+                  <span class="li-text">
+                    <span class="li-ar">اختبارات الوحدة الأولى</span>
+                    <span class="li-en">Unit One Quizzes · 5 quizzes · 25 marks</span>
+                  </span>
+                  <span class="li-go">&rsaquo;</span>
+                </a>
+              </li>` : ''}
           </ul>
           <img class="unit-photo" src="${u.img}" alt="Unit ${u.num} — ${u.en}" loading="lazy">
         </div>
@@ -1600,7 +1614,7 @@ function init(){
   }catch(e){}
 
   initProtection();
-  showNotification('success','📚','Ready','Science Code loaded — 4 units • 3 lessons live.');
+  showNotification('success','📚','Ready','Science Code loaded — 4 units • 4 lessons live.');
 }
 
 /* =================== FULL PROTECTION SUITE =================== */
