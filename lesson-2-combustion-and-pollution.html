@@ -290,8 +290,58 @@
   }
 
 </style>
+<script id="scienceCodeAccessBoot">
+(function(){
+  try {
+    var access=JSON.parse(localStorage.getItem('scienceCodeAccessV2')||'null');
+    if(!access || !Number.isFinite(Number(access.expiresAt)) || Number(access.expiresAt)<Date.now())
+      document.documentElement.classList.add('science-access-pending');
+  } catch(e) { document.documentElement.classList.add('science-access-pending'); }
+})();
+</script>
+<style id="scienceCodeAccessStyles">
+html.science-access-pending,html.science-access-pending body{overflow:hidden!important}
+html.science-access-pending body>*:not(#scienceAccessGate){visibility:hidden!important;pointer-events:none!important}
+#scienceAccessGate{display:none;position:fixed;inset:0;z-index:2147483647;align-items:center;justify-content:center;padding:18px;background:radial-gradient(900px 500px at 80% 0%,rgba(56,189,248,.18),transparent 65%),linear-gradient(140deg,#07101e,#111a31 62%,#101328);color:#f3f7ff;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+html.science-access-pending #scienceAccessGate{display:flex}
+.sc-gate-card{width:min(100%,480px);padding:30px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:rgba(18,30,51,.96);box-shadow:0 22px 70px rgba(0,0,0,.5)}
+.sc-gate-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid rgba(56,189,248,.4);border-radius:999px;background:rgba(56,189,248,.1);color:#a8e9ff;font-size:.78rem;font-weight:900;letter-spacing:.04em}
+.sc-gate-card h1{margin:14px 0 7px;font-size:clamp(1.6rem,5vw,2.15rem);line-height:1.2;color:#fff}
+.sc-gate-card p{margin:8px 0;color:#b6c4da;font-weight:600}
+.sc-gate-ar{font-family:Tahoma,"Noto Naskh Arabic","Noto Sans Arabic",Arial,sans-serif;text-align:right;line-height:1.85;color:#d9e7fb!important}
+.sc-gate-form{display:grid;gap:13px;margin-top:20px}
+.sc-gate-form label{display:grid;gap:6px;color:#e8f0ff;font-size:.92rem;font-weight:850}
+.sc-gate-form input{width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:#091424;color:#fff;outline:none;font:inherit}
+.sc-gate-form input:focus{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.16)}
+.sc-gate-submit{width:100%;margin-top:3px;padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(105deg,#38bdf8,#9b8cff);color:#06111e;font:900 1rem/1.35 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;cursor:pointer}
+.sc-gate-submit:disabled{opacity:.6;cursor:wait}
+.sc-gate-privacy{font-size:.78rem!important;color:#9eabc0!important;margin-top:14px!important}
+.sc-gate-status{min-height:1.5em;margin-top:10px;color:#ffcf70;font-weight:800;font-size:.9rem}
+.sc-gate-toast{position:fixed;right:16px;bottom:16px;z-index:2147483646;max-width:min(440px,calc(100vw - 32px));padding:12px 16px;border-radius:13px;background:#11243a;color:#fff;border:1px solid rgba(56,189,248,.4);box-shadow:0 12px 32px rgba(0,0,0,.4);font:700 .9rem/1.5 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+@media(max-width:520px){.sc-gate-card{padding:22px 18px;border-radius:19px}}
+</style>
 </head>
 <body class="lang-en">
+<div id="scienceAccessGate" role="dialog" aria-modal="true" aria-labelledby="scGateTitle">
+  <section class="sc-gate-card">
+    <div class="sc-gate-badge">🔒 Science Code · Student Access</div>
+    <h1 id="scGateTitle">Enter the access code</h1>
+    <p>Enter your name and the code provided by your teacher to open the lessons and quizzes.</p>
+    <p class="sc-gate-ar" dir="rtl">اكتب اسمك ورمز الدخول الذي حصلت عليه من المدرس لفتح الدروس والاختبارات.</p>
+    <form class="sc-gate-form" id="scAccessForm" autocomplete="on">
+      <label for="scStudentName">Student name · اسم الطالب
+        <input id="scStudentName" name="studentName" type="text" autocomplete="name" maxlength="80" required>
+      </label>
+      <label for="scAccessCode">Access code · رمز الدخول
+        <input id="scAccessCode" name="accessCode" type="password" autocomplete="one-time-code" required>
+      </label>
+      <button class="sc-gate-submit" id="scAccessSubmit" type="submit">Submit and open content · إرسال وفتح المحتوى</button>
+    </form>
+    <p class="sc-gate-privacy">Your name and access time are emailed to the site owner. The access code itself is not emailed.<br><span class="sc-gate-ar" dir="rtl">سيتم إرسال اسمك ووقت الدخول إلى صاحب الموقع، ولن يتم إرسال رمز الدخول نفسه.</span></p>
+    <div class="sc-gate-status" id="scAccessStatus" role="status" aria-live="polite"></div>
+  </section>
+</div>
+
 
 <!-- ================= NAV ================= -->
 <nav class="nav">
@@ -1279,5 +1329,97 @@ window.addEventListener("scroll", function(){
 });
 topBtn.addEventListener("click", function(){ window.scrollTo({ top: 0, behavior: "smooth" }); });
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ac2e826feb141f',t:'MTc5MjAzOTYwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ac2e826feb141f',t:'MTc5MjAzOTYwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script id="scienceCodeAccessScript">
+(function(){
+  const ACCESS_KEY='scienceCodeAccessV2';
+  const ACCESS_CODES=[
+    {id:'01',hash:'61e45d50f76c91fd0c6620fd292c79661c19833bfc2c7e32af234a561bafb9c1'},
+    {id:'02',hash:'ed30adde628bcecfee4bbc1238b09bedfd270e18870e33d86aa97edae40aa14a'},
+    {id:'03',hash:'49d8196e8257584296256d6c4d1a3d68131f2467879dce6d858234650c52fa35'},
+    {id:'04',hash:'1908f2c0d01a85f11c86fa5501c60127b805da1cce4d7d014473e9b923acda81'},
+    {id:'05',hash:'58d750e9d0c5bfff084a76e4b30e64bbff31fc768d800f5d5fdb5138344d7710'},
+    {id:'06',hash:'0a786eb32add696096f000ae368d41c22685370f95f7be878f15dbf32a3b40e0'},
+    {id:'07',hash:'46b2b77edfe9f97974b4bfdec5a11ededf8be1849f336d43af65868394d749a1'},
+    {id:'08',hash:'75b9e842fb88becd3b23235dcbc986e8a853d2950662bd0245467f24223077c9'},
+    {id:'09',hash:'8e4fede0a2c49051f3270e31871d3007dc4958e52425709f16abbbd7671f2ea0'},
+    {id:'10',hash:'474f613f042175cb0b7c07b362e769ef718ccfa88ed2e8b9c89310093d910895'},
+    {id:'11',hash:'0ad7b7c04357b0cade6202797f966677e69030837061a582984063588e0933f3'},
+    {id:'12',hash:'93f7ed99f2a187f8c3640249104aa20338f73d7f65686b995680caebbdef3ff3'},
+    {id:'13',hash:'1ee31758726718f3618788d8427d9d742f4f1feef55f5b12693b90755e2c4b10'},
+    {id:'14',hash:'823f875180c3bc76eac1c6fcf78e0a1b43a153e678c3bdb5242fb420cd782ead'},
+    {id:'15',hash:'1efb41936eeaf6640fbe8b25ab1ccf0ada0b6b3c859129e81d9f80b01229fb79'}
+  ];
+  const NOTIFY_URL='https://formsubmit.co/ajax/ayman2010200@gmail.com';
+  const ACCESS_MS=12*60*60*1000;
+  const gate=document.getElementById('scienceAccessGate');
+  const form=document.getElementById('scAccessForm');
+  const status=document.getElementById('scAccessStatus');
+  if(!gate||!form||!status)return;
+  function readAccess(){
+    try{const a=JSON.parse(localStorage.getItem(ACCESS_KEY)||'null');return !!(a&&Number(a.expiresAt)>Date.now());}
+    catch(e){return false;}
+  }
+  if(readAccess()){
+    document.documentElement.classList.remove('science-access-pending');
+    gate.style.display='none';
+    return;
+  }
+  document.documentElement.classList.add('science-access-pending');
+  function normalizeCode(value){return String(value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');}
+  async function sha256(value){
+    if(!window.crypto||!window.crypto.subtle||!window.TextEncoder)throw new Error('Secure code check needs HTTPS.');
+    const bytes=new TextEncoder().encode(value);
+    const digest=await window.crypto.subtle.digest('SHA-256',bytes);
+    return Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  function toast(message){
+    const note=document.createElement('div');note.className='sc-gate-toast';note.setAttribute('role','status');note.textContent=message;
+    document.body.appendChild(note);setTimeout(()=>note.remove(),6500);
+  }
+  async function sendNotice(studentName,codeId){
+    const payload={
+      name:studentName,
+      access_code_number:codeId,
+      access_time:new Date().toLocaleString(),
+      message:'A student successfully submitted the Science Code access form. The access code itself is not included.',
+      _subject:'Science Code — student access submitted',
+      _template:'table',
+      _captcha:'false'
+    };
+    const response=await fetch(NOTIFY_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const data=await response.json().catch(()=>({}));
+    return response.ok&&data.success!==false;
+  }
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    const name=document.getElementById('scStudentName').value.trim();
+    const code=normalizeCode(document.getElementById('scAccessCode').value);
+    const button=document.getElementById('scAccessSubmit');
+    if(name.length<2){status.textContent='Please enter your name. · من فضلك اكتب اسمك.';return;}
+    if(!code){status.textContent='Please enter the access code. · من فضلك اكتب رمز الدخول.';return;}
+    button.disabled=true;status.textContent='Checking access… · جارٍ التحقق…';
+    let digest;
+    try{digest=await sha256(code)}catch(e){
+      button.disabled=false;status.textContent='Secure code checking requires the live HTTPS site. · يلزم فتح الموقع الآمن للتحقق.';return;
+    }
+    const matchedCode=ACCESS_CODES.find(item=>item.hash===digest);
+    if(!matchedCode){
+      button.disabled=false;document.getElementById('scAccessCode').value='';
+      status.textContent='That code is not correct. Please try again. · رمز الدخول غير صحيح، حاول مرة أخرى.';return;
+    }
+    try{localStorage.setItem(ACCESS_KEY,JSON.stringify({expiresAt:Date.now()+ACCESS_MS,codeId:matchedCode.id}));}catch(e){}
+    document.documentElement.classList.remove('science-access-pending');gate.style.display='none';
+    toast('Access granted. Sending your access notice… · تم السماح بالدخول، جارٍ إرسال إشعار الدخول…');
+    sendNotice(name,matchedCode.id).then(ok=>{
+      if(ok)toast('Access granted. The site owner was notified. · تم السماح بالدخول وإشعار صاحب الموقع.');
+      else toast('Access is open, but the email notice did not send. The owner may need to confirm FormSubmit. · تم فتح الموقع، لكن لم يُرسل البريد؛ قد يلزم تأكيد الخدمة.');
+    }).catch(()=>toast('Access is open, but the email notice did not send. · تم فتح الموقع، لكن تعذر إرسال إشعار البريد.'));
+  });
+})();
+</script>
+</body>
 </html>
